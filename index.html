@@ -12,7 +12,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tab:hover{color:#3a3a3c}
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
 .content{flex:1;padding:20px 24px}
-
 .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
 .kcard{background:white;border-radius:12px;padding:14px 16px;border:1px solid #e0dcd6}
 .kbadge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:8px}
@@ -45,18 +44,31 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl .paid{color:#1a7f37;font-weight:600}
 
 /* eingaben */
-.inp-page{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.inp-card{background:white;border-radius:14px;border:1px solid #e0dcd6;overflow:visible}
-.inp-card-header{padding:11px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;border-radius:14px;transition:background .12s}
+.inp-page{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.inp-card{background:white;border-radius:14px;border:1px solid #e0dcd6;overflow:hidden}
+.inp-card-header{padding:11px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;transition:background .12s}
 .inp-card-header:hover{background:#faf9f7}
-.inp-card.open .inp-card-header{border-radius:14px 14px 0 0;border-bottom:1px solid #f0ede8}
 .inp-card-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 .inp-card-title{font-size:13px;font-weight:600;flex:1}
-.inp-card-meta{font-size:11px;color:#8e8e93;margin-left:auto;white-space:nowrap}
-.chevron{font-size:11px;color:#8e8e93;transition:transform .2s;margin-left:6px;flex-shrink:0}
+.inp-card-meta{font-size:11px;color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;transition:opacity .2s}
+.chevron{font-size:11px;color:#c0bbb4;transition:transform .25s;margin-left:4px;flex-shrink:0}
+
+/* animated body */
+.inp-card-body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .28s cubic-bezier(.4,0,.2,1);
+}
+.inp-card-body-inner{
+  overflow:hidden;
+  border-top:0px solid #f0ede8;
+  transition:border-top-width .01s .28s;
+}
+.inp-card.open .inp-card-body{grid-template-rows:1fr}
+.inp-card.open .inp-card-body-inner{border-top-width:1px;transition:border-top-width .01s 0s}
 .inp-card.open .chevron{transform:rotate(180deg)}
-.inp-card-body{display:none;padding:4px 0 6px}
-.inp-card.open .inp-card-body{display:block}
+.inp-card.open .inp-card-meta{opacity:0;pointer-events:none}
+
 .irow{display:flex;align-items:center;padding:6px 14px;gap:8px;border-bottom:1px solid #f7f5f2;position:relative}
 .irow:last-child{border-bottom:none}
 .irow:hover{background:#faf9f7}
@@ -169,14 +181,18 @@ function toggleCard(id){
   const card=document.getElementById('icard-'+id);
   if(!card)return;
   card.classList.toggle('open',openState[id]);
+  const meta=card.querySelector('.inp-card-meta');
+  if(meta)meta.textContent=openState[id]?'':summaryText(CARDS.find(c=>c.id===id));
 }
 
 function summaryText(card){
-  const vals=card.fields.filter(f=>f.t!=='text').slice(0,2).map(f=>{
+  const parts=card.fields.filter(f=>f.t!=='text').slice(0,2).map(f=>{
     const v=S[f.k];
-    return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':v;
+    if(f.u==='€')return eu(v);
+    if(f.u==='%')return v.toFixed(f.step<0.1?2:1)+'%';
+    return String(v);
   });
-  return vals.join(' · ');
+  return parts.join(' · ');
 }
 
 function buildEingaben(){
@@ -188,10 +204,10 @@ function buildEingaben(){
       <div class="inp-card-header" onclick="toggleCard('${card.id}')">
         <div class="inp-card-icon" style="background:${card.color}20">${card.icon}</div>
         <div class="inp-card-title" style="color:${card.color}">${card.title}</div>
-        ${!isOpen&&sum?`<span class="inp-card-meta">${sum}</span>`:''}
+        <span class="inp-card-meta">${isOpen?'':sum}</span>
         <span class="chevron">▾</span>
       </div>
-      <div class="inp-card-body">`;
+      <div class="inp-card-body"><div class="inp-card-body-inner">`;
     card.fields.forEach(f=>{
       if(f.t==='text'){
         html+=`<div class="irow">
@@ -212,7 +228,7 @@ function buildEingaben(){
         </div>`;
       }
     });
-    html+='</div></div>';
+    html+='</div></div></div>';
   });
   html+='</div>';
   return html;
@@ -281,7 +297,7 @@ function buildCockpit(c){
 }
 
 function buildFin(c){
-  const fc=(title,color,content)=>`<div class="block" style="border-top:3px solid ${color}"><div class="block-title" style="color:${color}">${title}</div>${content}</div>`;
+  const fc=(t,col,con)=>`<div class="block" style="border-top:3px solid ${col}"><div class="block-title" style="color:${col}">${t}</div>${con}</div>`;
   return`<div class="fin-grid">
   ${fc('Darlehen I','#ff6b35',fr('Darlehenssumme',eu(c.dI))+fr('Zinssatz',pf(p(S.zinssatzI)))+fr('Anfäng. Tilgung',pf(p(S.tilgungI)))+fr('Monatl. Rate',eu(c.fI.rate),true)+fr('davon Zinsen',eu(c.fI.zinsen))+fr('davon Tilgung',eu(c.fI.tilgung)))}
   ${c.dII>0?fc('Darlehen II','#5856d6',fr('Darlehenssumme',eu(c.dII))+fr('Zinssatz',pf(p(S.zinssatzII)))+fr('Anfäng. Tilgung',pf(p(S.tilgungII)))+fr('Monatl. Rate',eu(c.fII.rate),true)+fr('davon Zinsen',eu(c.fII.zinsen))+fr('davon Tilgung',eu(c.fII.tilgung))):''}
