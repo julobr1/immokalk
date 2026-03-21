@@ -1,0 +1,410 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--accent:#1d4ed8;--accent-light:#eff6ff;--green:#16a34a;--red:#dc2626;--yellow:#ca8a04;--radius:10px;--radius-sm:6px}
+body{font-family:var(--font-sans,system-ui,sans-serif);font-size:14px;color:var(--color-text-primary)}
+.app{display:flex;flex-direction:column;min-height:100vh}
+.header{background:#1e3a8a;color:white;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header h1{font-size:18px;font-weight:500}
+.header p{font-size:12px;opacity:.7}
+.body{display:flex;flex:1;min-height:0}
+.sidebar{width:280px;min-width:280px;background:var(--color-background-primary);border-right:0.5px solid var(--color-border-tertiary);overflow-y:auto;max-height:calc(100vh - 48px)}
+.main{flex:1;padding:16px;overflow-x:hidden}
+.tab-nav{display:flex;gap:2px;margin-bottom:16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tab-btn{padding:7px 14px;border:none;background:transparent;color:var(--color-text-secondary);font-size:13px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab-btn:hover{color:var(--accent);background:var(--accent-light)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+.section-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:transparent;border:none;border-bottom:0.5px solid var(--color-border-tertiary);cursor:pointer;font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.section-toggle:hover{background:var(--color-background-secondary)}
+.section-toggle.open{background:var(--accent-light);color:var(--accent)}
+.section-body{padding:10px 14px 12px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.input-row{display:flex;flex-direction:column;gap:2px;margin-bottom:7px}
+.input-label{font-size:11px;color:var(--color-text-secondary)}
+.ifw{display:flex;align-items:center;gap:4px}
+.ifw input{flex:1;padding:5px 7px;border:0.5px solid var(--color-border-secondary);border-radius:var(--radius-sm);font-size:12px;background:var(--color-background-primary);color:#0000cc;font-weight:500;min-width:0}
+.ifw input:focus{outline:none;border-color:var(--accent)}
+.iafx{font-size:11px;color:var(--color-text-secondary)}
+.sdiv{font-size:10px;font-weight:500;color:var(--accent);margin:10px 0 5px;text-transform:uppercase;letter-spacing:.5px}
+.tab-content .hidden{display:none}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:18px}
+.kcard{background:var(--color-background-primary);border:2px solid;border-radius:var(--radius);padding:10px}
+.kampel{font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:5px}
+.klabel{font-size:10px;color:var(--color-text-secondary);margin-bottom:3px}
+.kwert{font-size:17px;font-weight:500}
+.ksub{font-size:10px;color:var(--color-text-secondary);margin-top:2px}
+.ugrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
+.ublock{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--radius);padding:12px}
+.ublock h3{font-size:12px;font-weight:500;color:var(--accent);margin-bottom:8px;padding-bottom:5px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.urow{display:flex;justify-content:space-between;padding:3px 0;font-size:12px;border-bottom:0.5px solid var(--color-background-secondary)}
+.urow.b{font-weight:500}
+.urow.m{color:var(--color-text-secondary)}
+.cfbox{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--radius);max-width:460px;overflow:hidden;margin-bottom:18px}
+.cfrow{display:flex;justify-content:space-between;padding:8px 14px;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px}
+.cfrow:last-child{border-bottom:none}
+.cftotal{font-weight:500;font-size:13px}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.stitle{font-size:15px;font-weight:500;margin-bottom:12px;color:var(--color-text-primary)}
+.disc{font-size:10px;color:var(--color-text-secondary);padding:8px 0;border-top:0.5px solid var(--color-border-tertiary);margin-top:8px}
+.fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.fcard{background:var(--color-background-primary);border-radius:var(--radius);border:0.5px solid var(--color-border-tertiary);border-left:3px solid;overflow:hidden}
+.fcard-t{padding:10px 14px;font-size:12px;font-weight:500;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.frow{display:flex;justify-content:space-between;padding:6px 14px;font-size:12px;border-bottom:0.5px solid var(--color-background-secondary)}
+.frow.fh{font-weight:500;background:var(--accent-light)}
+.flabel{color:var(--color-text-secondary)}
+.chartcard{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--radius);padding:14px;margin-bottom:14px}
+.ctitle{font-size:13px;font-weight:500;margin-bottom:10px}
+.ttable{width:100%;border-collapse:collapse;font-size:12px;background:var(--color-background-primary);border-radius:var(--radius);overflow:hidden}
+.ttable th{background:#1e3a8a;color:white;padding:8px 10px;text-align:right;font-size:11px;font-weight:500}
+.ttable th:first-child{text-align:left}
+.ttable td{padding:6px 10px;border-bottom:0.5px solid var(--color-border-tertiary);text-align:right}
+.ttable td:first-child{text-align:left;font-weight:500}
+.ttable tr:nth-child(even){background:var(--color-background-secondary)}
+.ttable .tpaid{color:var(--green);font-weight:500}
+@media(max-width:700px){.body{flex-direction:column}.sidebar{width:100%;min-width:0;max-height:none}.kgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="app">
+  <div class="header">
+    <div>
+      <h1>🏠 Immobilienrechner</h1>
+      <p>Kauf &amp; Vermietungsanalyse</p>
+    </div>
+    <span id="obj-name" style="font-size:13px;opacity:.8"></span>
+  </div>
+  <div class="body">
+    <div class="sidebar" id="sidebar"></div>
+    <div class="main">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('cockpit',this)">Cockpit</button>
+        <button class="tab-btn" onclick="showTab('finanzierung',this)">Finanzierung</button>
+        <button class="tab-btn" onclick="showTab('charts',this)">Charts</button>
+        <button class="tab-btn" onclick="showTab('tilgung',this)">Tilgungsplan</button>
+      </div>
+      <div id="tab-cockpit"></div>
+      <div id="tab-finanzierung" class="hidden"></div>
+      <div id="tab-charts" class="hidden"></div>
+      <div id="tab-tilgung" class="hidden"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const S={
+  adresse:'',kaufjahr:2025,kaufpreis:200000,wohnflaeche:60,
+  anfInvest:0,makler:3.57,notar:1.5,grundbuch:0.5,grunderwerb:6.5,sonst:0,
+  mietePqm:8,stellplatz:0,mietausfall:3,ruecklage:1,
+  hausgeldU:150,hausgeldN:80,grundsteuer:50,sonstverwalt:0,
+  darlehenIA:90,zinssatzI:3.5,tilgungI:2,
+  darlehenII:0,zinssatzII:4,tilgungII:2,
+  afa:2,gebaude:75,steuer:42,
+  wertst:2,mietst:2,kostst:2,betrjahr:2050
+};
+
+const SECTIONS=[
+  {label:'Objekt',fields:[
+    {k:'adresse',l:'Adresse / Bezeichnung',t:'text'},
+    {k:'kaufjahr',l:'Kaufjahr',min:2000,max:2050},
+    {k:'kaufpreis',l:'Kaufpreis (€)',step:1000},
+    {k:'wohnflaeche',l:'Wohnfläche (m²)',step:1},
+    {k:'anfInvest',l:'Anfängl. Investitionen (€)',step:500}
+  ]},
+  {label:'Nebenkosten',note:'% des Kaufpreises',fields:[
+    {k:'makler',l:'Maklerprovision (%)',step:0.01},
+    {k:'notar',l:'Notar (%)',step:0.01},
+    {k:'grundbuch',l:'Grundbuchamt (%)',step:0.01},
+    {k:'grunderwerb',l:'Grunderwerbsteuer (%)',step:0.01},
+    {k:'sonst',l:'Sonstige (%)',step:0.01}
+  ]},
+  {label:'Miete & Bewirtschaftung',fields:[
+    {k:'mietePqm',l:'Kaltmiete (€/m²)',step:0.5},
+    {k:'stellplatz',l:'Stellplatz (€/Mo.)',step:10},
+    {k:'mietausfall',l:'Kalk. Mietausfall (%)',step:0.5},
+    {k:'ruecklage',l:'Rücklage (€/m²/Jahr)',step:0.5},
+    {k:'hausgeldU',l:'Hausgeld umlagef. (€/Mo.)',step:10},
+    {k:'hausgeldN',l:'Hausgeld n.umlagef. (€/Mo.)',step:10},
+    {k:'grundsteuer',l:'Grundsteuer (€/Mo.)',step:5},
+    {k:'sonstverwalt',l:'Sonstige Verwaltung (€/Mo.)',step:10}
+  ]},
+  {label:'Finanzierung',fields:[
+    {k:'darlehenIA',l:'Darlehen I (% Kaufpreis)',step:1},{k:'zinssatzI',l:'Zinssatz I (% p.a.)',step:0.1},{k:'tilgungI',l:'Tilgung I (% p.a.)',step:0.1},
+    {k:'darlehenII',l:'Darlehen II (€)',step:1000},{k:'zinssatzII',l:'Zinssatz II (% p.a.)',step:0.1},{k:'tilgungII',l:'Tilgung II (% p.a.)',step:0.1}
+  ]},
+  {label:'Steuern & AfA',fields:[
+    {k:'afa',l:'AfA-Satz (% p.a.)',step:0.1},
+    {k:'gebaude',l:'Gebäudeanteil am KP (%)',step:1},
+    {k:'steuer',l:'Grenzsteuersatz (%)',step:1}
+  ]},
+  {label:'Prognose',fields:[
+    {k:'betrjahr',l:'Betrachtungsjahr',min:2025,max:2100},
+    {k:'wertst',l:'Wertsteigerung (% p.a.)',step:0.1},
+    {k:'mietst',l:'Mietsteigerung (% p.a.)',step:0.1},
+    {k:'kostst',l:'Kostensteigerung (% p.a.)',step:0.1}
+  ]}
+];
+
+let openSec=0;
+let charts={};
+
+function buildSidebar(){
+  const sb=document.getElementById('sidebar');
+  sb.innerHTML='<div style="padding:10px 14px 6px;border-bottom:0.5px solid var(--color-border-tertiary)"><span style="font-size:13px;font-weight:500">Eingaben</span><br><span style="font-size:10px;color:var(--color-text-secondary)">Blaue Felder = anpassbar</span></div>';
+  SECTIONS.forEach((sec,si)=>{
+    const open=openSec===si;
+    const btn=document.createElement('button');
+    btn.className='section-toggle'+(open?' open':'');
+    btn.innerHTML=`<span>${sec.label}</span><span style="font-size:10px">${open?'▲':'▼'}</span>`;
+    btn.onclick=()=>{openSec=openSec===si?-1:si;buildSidebar();recalc()};
+    sb.appendChild(btn);
+    if(open){
+      const body=document.createElement('div');
+      body.className='section-body';
+      if(sec.note){const n=document.createElement('p');n.style='font-size:10px;color:var(--color-text-secondary);margin-bottom:6px';n.textContent=sec.note;body.appendChild(n)}
+      sec.fields.forEach(f=>{
+        const row=document.createElement('div');row.className='input-row';
+        const lbl=document.createElement('label');lbl.className='input-label';lbl.textContent=f.l;
+        const wrap=document.createElement('div');wrap.className='ifw';
+        const inp=document.createElement('input');
+        inp.type=f.t||'number';inp.value=S[f.k];
+        if(f.step)inp.step=f.step;if(f.min!==undefined)inp.min=f.min;if(f.max!==undefined)inp.max=f.max;
+        inp.oninput=e=>{S[f.k]=f.t==='text'?e.target.value:(parseFloat(e.target.value)||0);recalc()};
+        wrap.appendChild(inp);row.appendChild(lbl);row.appendChild(wrap);body.appendChild(row);
+      });
+      sb.appendChild(body);
+    }
+  });
+}
+
+function pct(v){return(v/100)}
+
+function calcAll(){
+  const kp=S.kaufpreis,wf=S.wohnflaeche;
+  const nkGes=kp*(pct(S.makler)+pct(S.notar)+pct(S.grundbuch)+pct(S.grunderwerb)+pct(S.sonst));
+  const nkObjekte={makler:kp*pct(S.makler),notar:kp*pct(S.notar),grundbuch:kp*pct(S.grundbuch),grunderwerb:kp*pct(S.grunderwerb),sonst:kp*pct(S.sonst),gesamt:nkGes};
+  const gesamtInvest=kp+nkGes+S.anfInvest;
+  const dI=kp*pct(S.darlehenIA),dII=S.darlehenII,dGes=dI+dII;
+  const ek=gesamtInvest-dGes;
+  const finI=annuitat(dI,pct(S.zinssatzI),pct(S.tilgungI));
+  const finII=annuitat(dII,pct(S.zinssatzII),pct(S.tilgungII));
+  const kd=finI.rate+finII.rate,zi=finI.zinsen+finII.zinsen,ti=finI.tilgung+finII.tilgung;
+  const nkm=S.mietePqm*wf;
+  const mao=nkm*pct(S.mietausfall);
+  const nkmEff=nkm-mao;
+  const betrK=S.hausgeldN+S.sonstverwalt+(S.ruecklage*wf/12)+mao;
+  const afaM=(kp*pct(S.gebaude)*pct(S.afa))/12;
+  const zuVers=nkmEff-betrK-zi-afaM;
+  const steuerM=zuVers*pct(S.steuer);
+  const cfOp=nkmEff-betrK-zi-ti;
+  const cfNSt=cfOp-steuerM;
+  const bruttoR=kp>0?(nkm*12)/kp:0;
+  const nettoR=gesamtInvest>0?((nkmEff-betrK)*12)/gesamtInvest:0;
+  const faktor=nkm>0?kp/(nkm*12):0;
+  const tplan=tilgungsplan(dI,pct(S.zinssatzI),pct(S.tilgungI),50);
+  const jahre=Math.max(1,S.betrjahr-S.kaufjahr);
+  const proj=projektion(kp,nkmEff,betrK,dGes,(dI*pct(S.zinssatzI)+dII*pct(S.zinssatzII))/(dGes||1),(dI*pct(S.tilgungI)+dII*pct(S.tilgungII))/(dGes||1),jahre);
+  return{nkObjekte,nkGes,gesamtInvest,dI,dII,dGes,ek,finI,finII,kd,zi,ti,nkm,mao,nkmEff,betrK,afaM,steuerM,cfOp,cfNSt,bruttoR,nettoR,faktor,tplan,proj};
+}
+
+function annuitat(d,z,t){
+  if(d<=0)return{rate:0,zinsen:0,tilgung:0};
+  const zm=z/12,ann=d*(zm+t/12),zin=d*zm,til=ann-zin;
+  return{rate:ann,zinsen:zin,tilgung:til};
+}
+
+function tilgungsplan(d,z,t,jahre){
+  if(d<=0)return[];
+  const zm=z/12,ann=d*(zm+t/12);
+  let rs=d;const plan=[];
+  for(let j=1;j<=jahre;j++){
+    let zj=0,tj=0;
+    for(let m=0;m<12;m++){if(rs<=0)break;const zin=rs*zm,til=Math.min(ann-zin,rs);zj+=zin;tj+=til;rs-=til;}
+    plan.push({j,zj,tj,ann:(zj+tj),rs:Math.max(0,rs),kdm:(zj+tj)/12});
+    if(rs<=0)break;
+  }
+  return plan;
+}
+
+function projektion(kp,nkm,bk,dGes,z,t,jahre){
+  const tp=tilgungsplan(dGes,z,t,50);
+  const data=[];
+  for(let j=0;j<=jahre;j++){
+    const wert=kp*Math.pow(1+pct(S.wertst),j);
+    const miete=nkm*Math.pow(1+pct(S.mietst),j);
+    const kosten=bk*Math.pow(1+pct(S.kostst),j);
+    const row=tp[j]||tp[tp.length-1]||{rs:0,zj:0,tj:0};
+    const rs=row?row.rs:0;
+    const zi=row?row.zj/12:0;
+    const ti=row?row.tj/12:0;
+    const nv=wert-rs;
+    const afaM=(kp*pct(S.gebaude)*pct(S.afa))/12;
+    const zvs=miete-kosten-zi-afaM;
+    const st=zvs*pct(S.steuer);
+    const cf=miete-kosten-zi-ti-st;
+    data.push({j,yr:S.kaufjahr+j,wert,rs,nv,miete,kosten,cf});
+  }
+  return data;
+}
+
+function eur(v){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v)}
+function pctFmt(v,d=2){return(v*100).toFixed(d)+'%'}
+function ampelColor(v,sw){const c=v>=sw[0]?'gruen':v>=sw[1]?'gelb':'rot';return c}
+const SW={bm:[0.06,0.05],nm:[0.05,0.04],cf:[100,0],fakt:[20,25]};
+const AFARBEN={gruen:{bg:'#dcfce7',text:'#16a34a',lbl:'✓ Gut'},gelb:{bg:'#fef9c3',text:'#ca8a04',lbl:'~ Ok'},rot:{bg:'#fee2e2',text:'#dc2626',lbl:'✗ Kritisch'}};
+function faktAmpel(v){return v<=SW.fakt[0]?'gruen':v<=SW.fakt[1]?'gelb':'rot'}
+
+function kcard(label,wert,ampel,sub){
+  const f=AFARBEN[ampel];
+  return`<div class="kcard" style="border-color:${f.text}"><div class="kampel" style="background:${f.bg};color:${f.text}">${f.lbl}</div><div class="klabel">${label}</div><div class="kwert" style="color:${f.text}">${wert}</div>${sub?`<div class="ksub">${sub}</div>`:''}</div>`;
+}
+
+function buildCockpit(c){
+  const bma=ampelColor(c.bruttoR,SW.bm),nma=ampelColor(c.nettoR,SW.nm),cfa=ampelColor(c.cfOp,SW.cf),cfna=ampelColor(c.cfNSt,SW.cf),fa=faktAmpel(c.faktor);
+  return`
+<div class="stitle">📊 Kennzahlen heute</div>
+<div class="kgrid">
+  ${kcard('Bruttomietrendite',pctFmt(c.bruttoR),bma,'Kaltmiete / Kaufpreis')}
+  ${kcard('Nettomietrendite',pctFmt(c.nettoR),nma,'nach Bewirtschaftung')}
+  ${kcard('Kaufpreisfaktor',c.faktor.toFixed(1)+'x',fa,'KP / Jahreskaltmiete')}
+  ${kcard('Cashflow operativ',eur(c.cfOp)+'/Mo.',cfa,'vor Steuern')}
+  ${kcard('Cashflow n. Steuern',eur(c.cfNSt)+'/Mo.',cfna,'nach AfA & Steuern')}
+  ${kcard('Monatl. AfA',eur(c.afaM),'gruen','steuerliche Absetzung')}
+</div>
+<div class="stitle">📋 Übersicht</div>
+<div class="ugrid">
+  <div class="ublock"><h3>Investition</h3>
+    <div class="urow"><span>Kaufpreis</span><span>${eur(S.kaufpreis)}</span></div>
+    <div class="urow"><span>Kaufnebenkosten</span><span>${eur(c.nkGes)}</span></div>
+    <div class="urow"><span>Anfängl. Investitionen</span><span>${eur(S.anfInvest)}</span></div>
+    <div class="urow b"><span>Gesamtinvestition</span><span>${eur(c.gesamtInvest)}</span></div>
+    <div class="urow"><span>Wohnfläche</span><span>${S.wohnflaeche} m²</span></div>
+    <div class="urow"><span>Kaufpreis/m²</span><span>${eur(S.kaufpreis/(S.wohnflaeche||1))}</span></div>
+  </div>
+  <div class="ublock"><h3>Miete & Bewirtschaftung</h3>
+    <div class="urow"><span>Kaltmiete/m²</span><span>${S.mietePqm.toFixed(2)} €</span></div>
+    <div class="urow"><span>Nettokaltmiete</span><span>${eur(c.nkm)}/Mo.</span></div>
+    <div class="urow m"><span>- Mietausfall (kalk.)</span><span>-${eur(c.mao)}/Mo.</span></div>
+    <div class="urow b"><span>= Nettokaltmiete eff.</span><span>${eur(c.nkmEff)}/Mo.</span></div>
+    <div class="urow m"><span>Bewirtschaftung</span><span>-${eur(c.betrK)}/Mo.</span></div>
+    <div class="urow"><span>Nettokaltmiete p.a.</span><span>${eur(c.nkm*12)}</span></div>
+  </div>
+  <div class="ublock"><h3>Finanzierung</h3>
+    <div class="urow"><span>Gesamtdarlehen</span><span>${eur(c.dGes)}</span></div>
+    <div class="urow b"><span>Eigenkapital</span><span>${eur(c.ek)}</span></div>
+    <div class="urow"><span>EK-Anteil</span><span>${pctFmt(c.ek/(c.gesamtInvest||1))}</span></div>
+    <div class="urow b"><span>Kapitaldienst</span><span>${eur(c.kd)}/Mo.</span></div>
+    <div class="urow m"><span>davon Zinsen</span><span>${eur(c.zi)}/Mo.</span></div>
+    <div class="urow m"><span>davon Tilgung</span><span>${eur(c.ti)}/Mo.</span></div>
+  </div>
+</div>
+<div class="stitle">💶 Cashflow-Rechnung (monatlich)</div>
+<div class="cfbox">
+  ${cfrow('Nettokaltmiete (effektiv)',c.nkmEff)}
+  ${cfrow('– Bewirtschaftungskosten',-c.betrK)}
+  ${cfrow('– Zinsen',-c.zi)}
+  ${cfrow('– Tilgung',-c.ti)}
+  ${cfrowTotal('= Cashflow operativ',c.cfOp,cfa)}
+  ${cfrow('– Steuern',-c.steuerM)}
+  ${cfrowTotal('= Cashflow nach Steuern',c.cfNSt,cfna)}
+</div>
+<p class="disc">⚠ Keine Gewähr für Richtigkeit. Kein Ersatz für Steuer- oder Finanzberatung.</p>`;
+}
+
+function cfrow(lbl,v){return`<div class="cfrow"><span>${lbl}</span><span class="${v>=0?'pos':'neg'}">${eur(v)}</span></div>`}
+function cfrowTotal(lbl,v,ampel){const f=AFARBEN[ampel];return`<div class="cfrow cftotal" style="background:${f.bg};color:${f.text}"><span>${lbl}</span><span>${eur(v)}</span></div>`}
+
+function buildFinanzierung(c){
+  return`<div class="fin-grid">
+  <div class="fcard" style="border-left-color:#3b82f6">
+    <div class="fcard-t">Darlehen I (Hauptdarlehen)</div>
+    ${fr('Darlehenssumme',eur(c.dI))}${fr('Zinssatz',pctFmt(pct(S.zinssatzI)))}${fr('Anfäng. Tilgung',pctFmt(pct(S.tilgungI)))}
+    ${fr('Monatl. Rate',eur(c.finI.rate),true)}${fr('davon Zinsen',eur(c.finI.zinsen))}${fr('davon Tilgung',eur(c.finI.tilgung))}
+  </div>
+  ${c.dII>0?`<div class="fcard" style="border-left-color:#0d9488"><div class="fcard-t">Darlehen II</div>
+    ${fr('Darlehenssumme',eur(c.dII))}${fr('Zinssatz',pctFmt(pct(S.zinssatzII)))}${fr('Anfäng. Tilgung',pctFmt(pct(S.tilgungII)))}
+    ${fr('Monatl. Rate',eur(c.finII.rate),true)}${fr('davon Zinsen',eur(c.finII.zinsen))}${fr('davon Tilgung',eur(c.finII.tilgung))}
+  </div>`:''}
+  <div class="fcard" style="border-left-color:#16a34a">
+    <div class="fcard-t">Eigenkapital & Gesamtfinanzierung</div>
+    ${fr('Gesamtinvestition',eur(c.gesamtInvest))}${fr('Gesamtdarlehen',eur(c.dGes))}${fr('Eigenkapital',eur(c.ek),true)}
+    ${fr('EK-Anteil',pctFmt(c.ek/(c.gesamtInvest||1)))}${fr('Gesamt-Kapitaldienst',eur(c.kd),true)}
+  </div>
+  <div class="fcard" style="border-left-color:#ea580c">
+    <div class="fcard-t">Nebenkosten-Aufschlüsselung</div>
+    ${fr('Makler',eur(c.nkObjekte.makler))}${fr('Notar',eur(c.nkObjekte.notar))}${fr('Grundbuchamt',eur(c.nkObjekte.grundbuch))}
+    ${fr('Grunderwerbsteuer',eur(c.nkObjekte.grunderwerb))}${fr('Sonstige',eur(c.nkObjekte.sonst))}
+    ${fr('Summe Nebenkosten',eur(c.nkGes),true)}${fr('in % Kaufpreis',pctFmt(c.nkGes/(S.kaufpreis||1)))}
+  </div>
+</div>`;
+}
+function fr(l,v,h){return`<div class="frow${h?' fh':''}"><span class="flabel">${l}</span><span>${v}</span></div>`}
+
+function buildCharts(c){
+  return`
+<div class="chartcard">
+  <div class="ctitle">📈 Wertentwicklung & Restschuld</div>
+  <div style="position:relative;width:100%;height:280px"><canvas id="chartWert"></canvas></div>
+</div>
+<div class="chartcard">
+  <div class="ctitle">💶 Cashflow-Entwicklung (monatlich)</div>
+  <div style="position:relative;width:100%;height:280px"><canvas id="chartCF"></canvas></div>
+</div>`;
+}
+
+function renderCharts(c){
+  if(charts.wert){charts.wert.destroy();delete charts.wert}
+  if(charts.cf){charts.cf.destroy();delete charts.cf}
+  const proj=c.proj;
+  const labels=proj.map(d=>d.yr);
+  const cw=document.getElementById('chartWert');
+  const ccf=document.getElementById('chartCF');
+  if(!cw||!ccf)return;
+  charts.wert=new Chart(cw,{type:'line',data:{labels,datasets:[
+    {label:'Immobilienwert',data:proj.map(d=>Math.round(d.wert)),borderColor:'#3b82f6',borderWidth:2,pointRadius:0,tension:.3},
+    {label:'Restschuld',data:proj.map(d=>Math.round(d.rs)),borderColor:'#ef4444',borderWidth:2,pointRadius:0,tension:.3},
+    {label:'Nettovermögen',data:proj.map(d=>Math.round(d.nv)),borderColor:'#22c55e',borderWidth:2,pointRadius:0,tension:.3}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:12,font:{size:11}}}},scales:{x:{ticks:{font:{size:11},maxTicksLimit:10}},y:{ticks:{font:{size:11},callback:v=>(v/1000).toFixed(0)+'k €'}}}}});
+  charts.cf=new Chart(ccf,{type:'line',data:{labels,datasets:[
+    {label:'Miete',data:proj.map(d=>Math.round(d.miete)),borderColor:'#3b82f6',borderWidth:1.5,pointRadius:0,tension:.3,fill:false},
+    {label:'Cashflow n. Steuern',data:proj.map(d=>Math.round(d.cf)),borderColor:'#22c55e',borderWidth:2,pointRadius:0,tension:.3,fill:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:12,font:{size:11}}}},scales:{x:{ticks:{font:{size:11},maxTicksLimit:10}},y:{ticks:{font:{size:11},callback:v=>eur(v)}}}}});
+}
+
+function buildTilgung(c){
+  let rows='';
+  c.tplan.forEach(r=>{
+    const paid=r.rs<=0;
+    rows+=`<tr class="${paid?'':''}">`+
+    `<td>${S.kaufjahr+r.j-1}</td>`+
+    `<td>${eur(r.zj)}</td>`+
+    `<td>${eur(r.tj)}</td>`+
+    `<td>${eur(r.ann)}</td>`+
+    `<td class="${paid?'tpaid':''}">${paid?'✓ abbezahlt':eur(r.rs)}</td>`+
+    `<td>${eur(r.kdm)}</td></tr>`;
+  });
+  return`<div class="stitle">🏦 Tilgungsplan Darlehen I</div>
+<div style="overflow-x:auto"><table class="ttable">
+<thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>KD/Monat</th></tr></thead>
+<tbody>${rows}</tbody></table></div>`;
+}
+
+function showTab(id,btn){
+  ['cockpit','finanzierung','charts','tilgung'].forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('hidden',t!==id);
+  });
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(id==='charts'){const c=calcAll();document.getElementById('tab-charts').innerHTML=buildCharts(c);setTimeout(()=>renderCharts(c),50)}
+}
+
+function recalc(){
+  document.getElementById('obj-name').textContent=S.adresse||'';
+  const c=calcAll();
+  document.getElementById('tab-cockpit').innerHTML=buildCockpit(c);
+  if(!document.getElementById('tab-finanzierung').classList.contains('hidden'))document.getElementById('tab-finanzierung').innerHTML=buildFinanzierung(c);
+  if(!document.getElementById('tab-charts').classList.contains('hidden')){document.getElementById('tab-charts').innerHTML=buildCharts(c);setTimeout(()=>renderCharts(c),50)}
+  if(!document.getElementById('tab-tilgung').classList.contains('hidden'))document.getElementById('tab-tilgung').innerHTML=buildTilgung(c);
+}
+
+buildSidebar();
+recalc();
+</script>
