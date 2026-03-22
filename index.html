@@ -6,7 +6,6 @@
   --fs-sm:clamp(12px,1.3vw,14px);
   --fs-md:clamp(13px,1.5vw,15px);
   --fs-lg:clamp(15px,1.8vw,18px);
-  --fs-xl:clamp(18px,2.2vw,22px);
   --fs-label:clamp(9px,1vw,11px);
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:var(--fs-md);background:#f0ede8;color:#2c2c2e;min-height:100vh}
@@ -21,6 +20,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
 .content{flex:1;padding:clamp(14px,2vw,24px)}
 
+/* cockpit */
 .cockpit-top{display:grid;grid-template-columns:1fr clamp(220px,22vw,300px);gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(14px,2vw,20px);align-items:start}
 .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,0.8vw,10px)}
 .kcard{background:white;border-radius:10px;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);border:1px solid #e0dcd6}
@@ -53,33 +53,75 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl .paid{color:#1a7f37;font-weight:600}
 
-/* ── Eingaben Tab – komplett neu ── */
-.inp-layout{display:flex;flex-direction:column;gap:12px;max-width:680px}
+/* ── Eingaben: zwei-spaltig nebeneinander ── */
+.inp-layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:0;
+  background:white;
+  border-radius:16px;
+  border:1px solid #e0dcd6;
+  overflow:hidden;
+  min-height:400px;
+}
 
-/* Gruppe: einklappbare Sektion */
-.inp-group{background:white;border-radius:14px;border:1px solid #e0dcd6;overflow:hidden}
-.inp-group-header{display:flex;align-items:center;gap:10px;padding:13px 18px;cursor:pointer;user-select:none;transition:background .12s}
-.inp-group-header:hover{background:#faf9f7}
-.inp-group.open .inp-group-header{border-bottom:1px solid #f0ede8}
-.group-icon{font-size:15px;width:28px;text-align:center;flex-shrink:0}
-.group-title{font-size:var(--fs-md);font-weight:600;flex:1;color:#2c2c2e}
-.group-summary{font-size:var(--fs-xs);color:#8e8e93;transition:opacity .2s}
-.inp-group.open .group-summary{opacity:0;pointer-events:none}
-.group-chevron{font-size:11px;color:#c0bbb4;transition:transform .25s;flex-shrink:0}
-.inp-group.open .group-chevron{transform:rotate(180deg)}
-.inp-group-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .26s cubic-bezier(.4,0,.2,1)}
-.inp-group.open .inp-group-body{grid-template-rows:1fr}
-.inp-group-inner{overflow:hidden}
+/* Linke Spalte: Gruppen-Liste */
+.inp-nav{
+  background:#f5f2ed;
+  border-right:1px solid #e0dcd6;
+  padding:8px 0;
+  display:flex;
+  flex-direction:column;
+}
+.inp-nav-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 16px;
+  cursor:pointer;
+  user-select:none;
+  transition:background .12s;
+  border-left:3px solid transparent;
+  position:relative;
+}
+.inp-nav-item:hover{background:#ede9e2}
+.inp-nav-item.active{
+  background:white;
+  border-left-color:#ff6b35;
+}
+.nav-icon{font-size:15px;width:22px;text-align:center;flex-shrink:0}
+.nav-label{font-size:var(--fs-sm);font-weight:500;flex:1;color:#2c2c2e}
+.inp-nav-item.active .nav-label{font-weight:600;color:#ff6b35}
+.nav-summary{font-size:var(--fs-xs);color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px}
+.inp-nav-item.active .nav-summary{display:none}
+.nav-arrow{font-size:10px;color:#c0bbb4;flex-shrink:0}
+.inp-nav-item.active .nav-arrow{color:#ff6b35}
 
-/* Zeilen innerhalb einer Gruppe */
-.irow{display:flex;align-items:center;padding:10px 18px;gap:12px;border-bottom:1px solid #f7f5f2;position:relative}
+/* Rechte Spalte: Felder der aktiven Gruppe */
+.inp-detail{
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+.inp-detail-header{
+  padding:14px 20px 12px;
+  border-bottom:1px solid #f0ede8;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.inp-detail-icon{font-size:18px}
+.inp-detail-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
+.inp-detail-fields{flex:1}
+
+.irow{display:flex;align-items:center;padding:11px 20px;gap:12px;border-bottom:1px solid #f7f5f2;position:relative}
 .irow:last-child{border-bottom:none}
-.irow:hover{background:#faf9f7}
-.ilabel{flex:1;font-size:var(--fs-sm);color:#2c2c2e;min-width:0}
+.irow:hover{background:#fdfcfb}
+.ilabel{flex:1;font-size:var(--fs-sm);color:#2c2c2e;line-height:1.3;min-width:0}
 .ifield{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .ifield input[type=number]{
   width:clamp(80px,8vw,100px);
-  padding:6px 10px;
+  padding:7px 10px;
   border:1px solid #d6d2cb;
   border-radius:8px;
   font-size:var(--fs-sm);
@@ -88,26 +130,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
   color:#0055cc;
   font-weight:600;
   -moz-appearance:textfield;
-  transition:border-color .15s,background .15s
+  transition:border-color .15s,background .15s,box-shadow .15s
 }
-.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.1)}
+.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12)}
 .ifield input[type=number]::-webkit-inner-spin-button,
 .ifield input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
 .ifield input[type=text]{
   width:clamp(140px,16vw,200px);
-  padding:6px 10px;
+  padding:7px 10px;
   border:1px solid #d6d2cb;
   border-radius:8px;
   font-size:var(--fs-sm);
   background:#f5f2ed;
   color:#0055cc;
   font-weight:600;
-  transition:border-color .15s
+  transition:border-color .15s,background .15s,box-shadow .15s
 }
-.ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.1)}
-.iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:24px;white-space:nowrap}
+.ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12)}
+.iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:26px;white-space:nowrap}
 
-/* info button */
 .iinfo{width:18px;height:18px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:10px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .iinfo:hover{background:#d6d2cb;color:#3a3a3c}
 .tooltip{display:none;position:absolute;right:26px;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:10px 13px;width:240px;z-index:300;line-height:1.6;pointer-events:none}
@@ -144,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 <script>
 const S={
   adresse:'',kaufjahr:2025,kaufpreis:200000,wohnflaeche:60,anfInvest:0,
-  makler:3.57,notar:1.5,grundbuch:0.5,grunderwerb:6.5,
+  makler:3.57,notar:2.0,grunderwerb:6.5,
   mietePqm:8,mietausfall:3,ruecklage:1,
   hausgeldN:80,grundsteuer:50,
   darlehenPct:90,zinssatz:3.5,tilgung:2,
@@ -153,98 +194,105 @@ const S={
 };
 
 const GROUPS=[
-  {id:'g0',icon:'🏠',title:'Objekt',open:true,fields:[
+  {id:'g0',icon:'🏠',title:'Objekt',fields:[
     {k:'adresse',l:'Adresse',t:'text',info:'Name oder Adresse des Objekts — nur zur Beschriftung.',std:'z.B. Mülheim, 3-Zi-Wohnung'},
     {k:'kaufpreis',l:'Kaufpreis',u:'€',step:1000,info:'Vereinbarter Kaufpreis laut Kaufvertrag, ohne Nebenkosten.',std:'150.000 – 500.000 €'},
     {k:'wohnflaeche',l:'Wohnfläche',u:'m²',step:1,info:'Wohnfläche laut Grundriss oder Exposé.',std:'40 – 120 m²'},
     {k:'kaufjahr',l:'Kaufjahr',u:'',step:1,info:'Jahr des Kaufabschlusses. Startpunkt für alle Zeitrechnungen.',std:String(new Date().getFullYear())},
     {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc. zusätzlich zum Kaufpreis.',std:'0 – 30.000 €'}
   ]},
-  {id:'g1',icon:'📋',title:'Kaufnebenkosten',open:false,fields:[
+  {id:'g1',icon:'📋',title:'Kaufnebenkosten',fields:[
     {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'Maklerprovision des Käufers. In DE meist 3,57% (Hälfte von 7,14%).',std:'3,57 %'},
     {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ca. 1,5% + Grundbuchamt ca. 0,5% = zusammen ~2%.',std:'2,0 %'},
-    {k:'grunderwerb',l:'Grunderwerbsteuer',u:'%',step:0.1,info:'Variiert je Bundesland: Bayern 3,5% — NRW, SH 6,5%.',std:'NRW: 6,5% · Bayern: 3,5%'}
+    {k:'grunderwerb',l:'Grunderwerbsteuer',u:'%',step:0.1,info:'Variiert je Bundesland: Bayern 3,5% — NRW & SH 6,5%.',std:'NRW: 6,5% · Bayern: 3,5%'}
   ]},
-  {id:'g2',icon:'🏷️',title:'Miete',open:true,fields:[
+  {id:'g2',icon:'🏷️',title:'Miete',fields:[
     {k:'mietePqm',l:'Kaltmiete pro m²',u:'€',step:0.5,info:'Erzielbare Kaltmiete je m². Am lokalen Mietspiegel orientieren.',std:'6 – 15 €/m² je nach Lage'},
     {k:'mietausfall',l:'Kalk. Mietausfall',u:'%',step:0.5,info:'Abschlag für Leerstand & Mietausfälle — konservativ einplanen.',std:'3 % ≈ 2 Wochen/Jahr'},
     {k:'ruecklage',l:'Instandhaltungsrücklage',u:'€/m²/Jahr',step:0.5,info:'Eigene Rücklage für Reparaturen, zusätzlich zur WEG-Rücklage.',std:'8 – 12 €/m²/Jahr empfohlen'}
   ]},
-  {id:'g3',icon:'🔧',title:'Bewirtschaftung',open:false,fields:[
+  {id:'g3',icon:'🔧',title:'Bewirtschaftung',fields:[
     {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:10,info:'Nicht umlagefähiger Teil: Verwaltung, WEG-Rücklage. Trägt der Eigentümer.',std:'0,50 – 1,50 €/m² mtl.'},
     {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,info:'Monatlicher Anteil der Grundsteuer (Jahresbescheid ÷ 12).',std:'Jahresbescheid ÷ 12'}
   ]},
-  {id:'g4',icon:'🏦',title:'Finanzierung',open:true,fields:[
+  {id:'g4',icon:'🏦',title:'Finanzierung',fields:[
     {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'Beleihungsquote. 90% bedeutet 10% Eigenkapital. Empfehlung: mind. 20% EK.',std:'80 – 90 %'},
     {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung — tagesaktuell bei der Bank erfragen.',std:'Aktuell ca. 3,5 – 4,5 % p.a.'},
     {k:'tilgung',l:'Anfängliche Tilgung',u:'%',step:0.1,info:'Anfänglicher Tilgungssatz. 2% p.a. entspricht ca. 35 Jahren Laufzeit.',std:'2 % p.a. (= ~35 Jahre)'}
   ]},
-  {id:'g5',icon:'📊',title:'Steuern & AfA',open:false,fields:[
+  {id:'g5',icon:'📊',title:'Steuern & AfA',fields:[
     {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'Jährliche steuerliche Abschreibung. 2% für Bestandsbauten, 3% für Neubauten ab 2023.',std:'2 % Bestand · 3 % Neubau'},
-    {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes (ohne Grundstück). Nur der Gebäudewert ist abschreibbar.',std:'60 – 80 % (je nach Lage)'},
+    {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück. Nur der Gebäudewert ist abschreibbar.',std:'60 – 80 % (je nach Lage)'},
     {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Steuersatz auf zusätzliches Einkommen. Aus dem aktuellen Steuerbescheid.',std:'42 % ab ca. 66.000 € zvE'}
   ]},
-  {id:'g6',icon:'📈',title:'Prognose',open:false,fields:[
+  {id:'g6',icon:'📈',title:'Prognose',fields:[
     {k:'betrjahr',l:'Betrachtungsjahr',u:'',step:1,info:'Bis zu welchem Jahr soll die Langfristprojektion gehen?',std:'Kaufjahr + 25 Jahre'},
-    {k:'wertst',l:'Wertsteigerung p.a.',u:'%',step:0.1,info:'Jährliche Wertsteigerung der Immobilie. Historisch Deutschland: ~2 % p.a.',std:'2 % p.a.'},
+    {k:'wertst',l:'Wertsteigerung p.a.',u:'%',step:0.1,info:'Jährliche Wertsteigerung. Historisch Deutschland: ~2 % p.a.',std:'2 % p.a.'},
     {k:'mietst',l:'Mietsteigerung p.a.',u:'%',step:0.1,info:'Jährliche Mietsteigerung.',std:'2 % p.a.'},
     {k:'kostst',l:'Kostensteigerung p.a.',u:'%',step:0.1,info:'Jährliche Kostensteigerung (Inflation).',std:'2 % p.a.'}
   ]}
 ];
 
-const openState={};
-GROUPS.forEach(g=>openState[g.id]=g.open);
+let activeGroup='g0';
 
-function toggleGroup(id){
-  openState[id]=!openState[id];
-  const el=document.getElementById('ig-'+id);
-  if(!el)return;
-  el.classList.toggle('open',openState[id]);
-  const sum=el.querySelector('.group-summary');
-  if(sum)sum.textContent=openState[id]?'':groupSummary(GROUPS.find(g=>g.id===id));
-}
 function groupSummary(g){
-  return g.fields.filter(f=>f.t!=='text').slice(0,2).map(f=>{
+  return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
     const v=S[f.k];
     return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
-  }).join(' · ');
+  }).join('');
+}
+
+function selectGroup(id){
+  activeGroup=id;
+  document.querySelectorAll('.inp-nav-item').forEach(el=>{
+    el.classList.toggle('active',el.dataset.gid===id);
+  });
+  const g=GROUPS.find(g=>g.id===id);
+  const detail=document.getElementById('inp-detail');
+  if(!detail||!g)return;
+  detail.innerHTML=renderDetail(g);
+}
+
+function renderDetail(g){
+  let html=`<div class="inp-detail-header">
+    <span class="inp-detail-icon">${g.icon}</span>
+    <span class="inp-detail-title">${g.title}</span>
+  </div><div class="inp-detail-fields">`;
+  g.fields.forEach(f=>{
+    if(f.t==='text'){
+      html+=`<div class="irow"><span class="ilabel">${f.l}</span>
+        <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
+          oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value;if(activeTab!=='eingaben')renderTab(activeTab)"></div>
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
+      </div>`;
+    } else {
+      html+=`<div class="irow"><span class="ilabel">${f.l}</span>
+        <div class="ifield">
+          <input type="number" value="${S[f.k]}" step="${f.step||1}"
+            oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
+          <span class="iunit">${f.u||''}</span>
+        </div>
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
+      </div>`;
+    }
+  });
+  return html+'</div>';
 }
 
 function buildEingaben(){
-  let html='<div class="inp-layout">';
-  GROUPS.forEach(g=>{
-    const isOpen=openState[g.id];
-    html+=`<div class="inp-group${isOpen?' open':''}" id="ig-${g.id}">
-      <div class="inp-group-header" onclick="toggleGroup('${g.id}')">
-        <span class="group-icon">${g.icon}</span>
-        <span class="group-title">${g.title}</span>
-        <span class="group-summary">${isOpen?'':groupSummary(g)}</span>
-        <span class="group-chevron">▾</span>
-      </div>
-      <div class="inp-group-body"><div class="inp-group-inner">`;
-    g.fields.forEach(f=>{
-      if(f.t==='text'){
-        html+=`<div class="irow">
-          <span class="ilabel">${f.l}</span>
-          <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
-            oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value;if(activeTab!=='eingaben')renderTab(activeTab)"></div>
-          <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
-        </div>`;
-      } else {
-        html+=`<div class="irow">
-          <span class="ilabel">${f.l}</span>
-          <div class="ifield">
-            <input type="number" value="${S[f.k]}" step="${f.step||1}"
-              oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
-            <span class="iunit">${f.u||''}</span>
-          </div>
-          <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
-        </div>`;
-      }
-    });
-    html+='</div></div></div>';
+  const g=GROUPS.find(g=>g.id===activeGroup)||GROUPS[0];
+  let navHtml='<div class="inp-nav">';
+  GROUPS.forEach(gr=>{
+    const sum=groupSummary(gr);
+    navHtml+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
+      <span class="nav-icon">${gr.icon}</span>
+      <span class="nav-label">${gr.title}</span>
+      ${sum?`<span class="nav-summary">${sum}</span>`:''}
+      <span class="nav-arrow">›</span>
+    </div>`;
   });
-  return html+'</div>';
+  navHtml+='</div>';
+  return`<div class="inp-layout">${navHtml}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
 }
 
 const p=v=>v/100;
@@ -254,19 +302,14 @@ function prjCalc(kp,nkm,bk,dG,z,t,jahre){const tp=tilgPlan(dG,z,t,50);const d=[]
 
 function calcAll(){
   const kp=S.kaufpreis,wf=S.wohnflaeche;
-  const nkPct=p(S.makler)+p(S.notar)+p(S.grunderwerb);
-  const nkGes=kp*nkPct;
+  const nkGes=kp*(p(S.makler)+p(S.notar)+p(S.grunderwerb));
   const nkObj={makler:kp*p(S.makler),notar:kp*p(S.notar),grunderwerb:kp*p(S.grunderwerb),gesamt:nkGes};
-  const gI=kp+nkGes+S.anfInvest;
-  const darlehen=kp*p(S.darlehenPct);
-  const ek=gI-darlehen;
+  const gI=kp+nkGes+S.anfInvest,darlehen=kp*p(S.darlehenPct),ek=gI-darlehen;
   const fin=ann(darlehen,p(S.zinssatz),p(S.tilgung));
   const nkm=S.mietePqm*wf,mao=nkm*p(S.mietausfall),nkmE=nkm-mao;
   const bk=S.hausgeldN+S.grundsteuer+(S.ruecklage*wf/12)+mao;
-  const afaM=(kp*p(S.gebaude)*p(S.afa))/12;
-  const zvs=nkmE-bk-fin.zinsen-afaM,stM=zvs*p(S.steuer);
-  const cfOp=nkmE-bk-fin.zinsen-fin.tilgung;
-  const cfNSt=cfOp-stM;
+  const afaM=(kp*p(S.gebaude)*p(S.afa))/12,zvs=nkmE-bk-fin.zinsen-afaM,stM=zvs*p(S.steuer);
+  const cfOp=nkmE-bk-fin.zinsen-fin.tilgung,cfNSt=cfOp-stM;
   const bR=kp>0?(nkm*12)/kp:0,nR=gI>0?((nkmE-bk)*12)/gI:0,fakt=nkm>0?kp/(nkm*12):0;
   const tplan=tilgPlan(darlehen,p(S.zinssatz),p(S.tilgung),50);
   const jahre=Math.max(1,S.betrjahr-S.kaufjahr);
@@ -336,7 +379,7 @@ function buildFin(c){
   return`<div class="fin-grid">
   ${fc('Darlehen','#ff6b35',fr('Darlehenssumme',eu(c.darlehen))+fr('Zinssatz',pf(p(S.zinssatz)))+fr('Anfäng. Tilgung',pf(p(S.tilgung)))+fr('Monatl. Rate',eu(c.fin.rate),true)+fr('davon Zinsen',eu(c.fin.zinsen))+fr('davon Tilgung',eu(c.fin.tilgung)))}
   ${fc('Eigenkapital & Gesamtinvestition','#34c759',fr('Kaufpreis',eu(S.kaufpreis))+fr('Nebenkosten',eu(c.nkGes))+fr('Anfängl. Invest.',eu(S.anfInvest))+fr('Gesamtinvestition',eu(c.gI),true)+fr('Eigenkapital',eu(c.ek),true)+fr('EK-Anteil',pf(c.ek/(c.gI||1))))}
-  ${fc('Nebenkosten aufgeschlüsselt','#8e8e93',fr('Makler',eu(c.nkObj.makler))+fr('Notar & Grundbuch',eu(c.nkObj.notar))+fr('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))+fr('Summe',eu(c.nkGes),true)+fr('in % des Kaufpreises',pf(c.nkGes/(S.kaufpreis||1))))}
+  ${fc('Nebenkosten','#8e8e93',fr('Makler',eu(c.nkObj.makler))+fr('Notar & Grundbuch',eu(c.nkObj.notar))+fr('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))+fr('Summe',eu(c.nkGes),true)+fr('in % des Kaufpreises',pf(c.nkGes/(S.kaufpreis||1))))}
   ${fc('Steuern & AfA','#5856d6',fr('AfA-Satz',pf(p(S.afa)))+fr('Gebäudeanteil',pf(p(S.gebaude)))+fr('Monatl. AfA',eu(c.afaM))+fr('Grenzsteuersatz',pf(p(S.steuer)))+fr('Monatl. Steuern',eu(c.stM),true))}
 </div>`;
 }
