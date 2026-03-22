@@ -19,8 +19,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tab:hover{color:#3a3a3c}
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
 .content{flex:1;padding:clamp(14px,2vw,24px)}
-
-/* cockpit */
 .cockpit-top{display:grid;grid-template-columns:1fr clamp(220px,22vw,300px);gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(14px,2vw,20px);align-items:start}
 .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,0.8vw,10px)}
 .kcard{background:white;border-radius:10px;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);border:1px solid #e0dcd6}
@@ -53,42 +51,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl .paid{color:#1a7f37;font-weight:600}
 
-/* ── Eingaben: zwei-spaltig nebeneinander ── */
-.inp-layout{
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:0;
-  background:white;
-  border-radius:16px;
-  border:1px solid #e0dcd6;
-  overflow:hidden;
-  min-height:400px;
-}
-
-/* Linke Spalte: Gruppen-Liste */
-.inp-nav{
-  background:#f5f2ed;
-  border-right:1px solid #e0dcd6;
-  padding:8px 0;
-  display:flex;
-  flex-direction:column;
-}
-.inp-nav-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:11px 16px;
-  cursor:pointer;
-  user-select:none;
-  transition:background .12s;
-  border-left:3px solid transparent;
-  position:relative;
-}
+/* Eingaben */
+.inp-layout{display:grid;grid-template-columns:260px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:400px}
+.inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0;display:flex;flex-direction:column}
+.inp-nav-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
 .inp-nav-item:hover{background:#ede9e2}
-.inp-nav-item.active{
-  background:white;
-  border-left-color:#ff6b35;
-}
+.inp-nav-item.active{background:white;border-left-color:#ff6b35}
 .nav-icon{font-size:15px;width:22px;text-align:center;flex-shrink:0}
 .nav-label{font-size:var(--fs-sm);font-weight:500;flex:1;color:#2c2c2e}
 .inp-nav-item.active .nav-label{font-weight:600;color:#ff6b35}
@@ -96,66 +64,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .inp-nav-item.active .nav-summary{display:none}
 .nav-arrow{font-size:10px;color:#c0bbb4;flex-shrink:0}
 .inp-nav-item.active .nav-arrow{color:#ff6b35}
-
-/* Rechte Spalte: Felder der aktiven Gruppe */
-.inp-detail{
-  padding:0;
-  display:flex;
-  flex-direction:column;
-}
-.inp-detail-header{
-  padding:14px 20px 12px;
-  border-bottom:1px solid #f0ede8;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.inp-detail{padding:0;display:flex;flex-direction:column}
+.inp-detail-header{padding:14px 20px 12px;border-bottom:1px solid #f0ede8;display:flex;align-items:center;gap:10px}
 .inp-detail-icon{font-size:18px}
 .inp-detail-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
 .inp-detail-fields{flex:1}
-
 .irow{display:flex;align-items:center;padding:11px 20px;gap:12px;border-bottom:1px solid #f7f5f2;position:relative}
 .irow:last-child{border-bottom:none}
 .irow:hover{background:#fdfcfb}
-.ilabel{flex:1;font-size:var(--fs-sm);color:#2c2c2e;line-height:1.3;min-width:0}
+.ilabel{flex:1;min-width:0}
+.ilabel-main{font-size:var(--fs-sm);color:#2c2c2e;display:block}
+.ilabel-hint{font-size:var(--fs-xs);color:#8e8e93;display:block;margin-top:1px}
 .ifield{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.ifield input[type=number]{
-  width:clamp(80px,8vw,100px);
-  padding:7px 10px;
-  border:1px solid #d6d2cb;
-  border-radius:8px;
-  font-size:var(--fs-sm);
-  text-align:right;
-  background:#f5f2ed;
-  color:#0055cc;
-  font-weight:600;
-  -moz-appearance:textfield;
-  transition:border-color .15s,background .15s,box-shadow .15s
-}
-.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12)}
-.ifield input[type=number]::-webkit-inner-spin-button,
-.ifield input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-.ifield input[type=text]{
-  width:clamp(140px,16vw,200px);
-  padding:7px 10px;
-  border:1px solid #d6d2cb;
-  border-radius:8px;
-  font-size:var(--fs-sm);
-  background:#f5f2ed;
-  color:#0055cc;
-  font-weight:600;
-  transition:border-color .15s,background .15s,box-shadow .15s
-}
+.ifield input[type=number]{width:clamp(80px,8vw,100px);padding:7px 10px;border:1px solid #d6d2cb;border-radius:8px;font-size:var(--fs-sm);text-align:right;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield;transition:border-color .15s,background .15s,box-shadow .15s}
+.ifield input[type=number].auto-val{background:#fff8f5;border-color:#ffd4c2;color:#cc4400}
+.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12);color:#0055cc}
+.ifield input[type=number]::-webkit-inner-spin-button,.ifield input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.ifield input[type=text]{width:clamp(140px,16vw,200px);padding:7px 10px;border:1px solid #d6d2cb;border-radius:8px;font-size:var(--fs-sm);background:#f5f2ed;color:#0055cc;font-weight:600;transition:border-color .15s,background .15s,box-shadow .15s}
 .ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12)}
 .iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:26px;white-space:nowrap}
-
+.reset-btn{background:none;border:none;cursor:pointer;font-size:10px;color:#8e8e93;padding:2px 5px;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.reset-btn:hover{background:#f0ede8;color:#ff6b35}
 .iinfo{width:18px;height:18px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:10px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .iinfo:hover{background:#d6d2cb;color:#3a3a3c}
-.tooltip{display:none;position:absolute;right:26px;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:10px 13px;width:240px;z-index:300;line-height:1.6;pointer-events:none}
+.tooltip{display:none;position:absolute;right:26px;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:10px 13px;width:250px;z-index:300;line-height:1.6;pointer-events:none}
 .tooltip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:#1c1c1e;border-right:none}
 .iinfo:hover .tooltip{display:block}
 .tt-title{font-weight:600;margin-bottom:4px;color:#fff}
-.tt-std{color:#888;font-size:var(--fs-xs);margin-top:5px;padding-top:5px;border-top:1px solid #333}
+.tt-std{color:#aaa;font-size:var(--fs-xs);margin-top:5px;padding-top:5px;border-top:1px solid #333}
+.auto-badge{font-size:9px;background:#fff0eb;color:#cc4400;padding:1px 5px;border-radius:4px;font-weight:600;flex-shrink:0}
 </style>
 
 <div class="shell">
@@ -187,18 +124,27 @@ const S={
   adresse:'',kaufjahr:2025,kaufpreis:200000,wohnflaeche:60,anfInvest:0,
   makler:3.57,notar:2.0,grunderwerb:6.5,
   mietePqm:8,mietausfall:3,ruecklage:1,
-  hausgeldN:80,grundsteuer:50,
+  hausgeldN:null,grundsteuer:null,
   darlehenPct:90,zinssatz:3.5,tilgung:2,
   afa:2,gebaude:75,steuer:42,
   wertst:2,mietst:2,kostst:2,betrjahr:2050
 };
+
+// Auto-berechnete Bewirtschaftungswerte (Mittelwert der üblichen Range * m²)
+// hausgeldN: 1,00 €/m² mtl. (Mitte von 0,50–1,50)
+// grundsteuer: 1,50 €/m² jährlich ≈ 0,125 €/m² mtl. → gerundet auf typische ~50 €/Mo für 60m²
+function autoHausgeld(){return Math.round(S.wohnflaeche*1.00)}
+function autoGrundsteuer(){return Math.round(S.wohnflaeche*0.9)}
+
+function getHausgeld(){return S.hausgeldN!==null?S.hausgeldN:autoHausgeld()}
+function getGrundsteuer(){return S.grundsteuer!==null?S.grundsteuer:autoGrundsteuer()}
 
 const GROUPS=[
   {id:'g0',icon:'🏠',title:'Objekt',fields:[
     {k:'adresse',l:'Adresse',t:'text',info:'Name oder Adresse des Objekts — nur zur Beschriftung.',std:'z.B. Mülheim, 3-Zi-Wohnung'},
     {k:'kaufpreis',l:'Kaufpreis',u:'€',step:1000,info:'Vereinbarter Kaufpreis laut Kaufvertrag, ohne Nebenkosten.',std:'150.000 – 500.000 €'},
     {k:'wohnflaeche',l:'Wohnfläche',u:'m²',step:1,info:'Wohnfläche laut Grundriss oder Exposé.',std:'40 – 120 m²'},
-    {k:'kaufjahr',l:'Kaufjahr',u:'',step:1,info:'Jahr des Kaufabschlusses. Startpunkt für alle Zeitrechnungen.',std:String(new Date().getFullYear())},
+    {k:'kaufjahr',l:'Kaufjahr',u:'',step:1,info:'Jahr des Kaufabschlusses.',std:String(new Date().getFullYear())},
     {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc. zusätzlich zum Kaufpreis.',std:'0 – 30.000 €'}
   ]},
   {id:'g1',icon:'📋',title:'Kaufnebenkosten',fields:[
@@ -212,24 +158,34 @@ const GROUPS=[
     {k:'ruecklage',l:'Instandhaltungsrücklage',u:'€/m²/Jahr',step:0.5,info:'Eigene Rücklage für Reparaturen, zusätzlich zur WEG-Rücklage.',std:'8 – 12 €/m²/Jahr empfohlen'}
   ]},
   {id:'g3',icon:'🔧',title:'Bewirtschaftung',fields:[
-    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:10,info:'Nicht umlagefähiger Teil: Verwaltung, WEG-Rücklage. Trägt der Eigentümer.',std:'0,50 – 1,50 €/m² mtl.'},
-    {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,info:'Monatlicher Anteil der Grundsteuer (Jahresbescheid ÷ 12).',std:'Jahresbescheid ÷ 12'}
+    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:5,
+      auto:true,
+      autoFn:'autoHausgeld',
+      hint:'Automatisch: 1,00 €/m² × Wohnfläche',
+      info:'Nicht umlagefähiger Anteil: Verwaltung, WEG-Rücklage. Mittelwert: 1,00 €/m² mtl.',
+      std:'0,50 – 1,50 €/m² mtl.'},
+    {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,
+      auto:true,
+      autoFn:'autoGrundsteuer',
+      hint:'Automatisch: 0,90 €/m² × Wohnfläche',
+      info:'Monatlicher Anteil der Grundsteuer. Richtwert: ~0,90 €/m² mtl. Exakten Wert im Jahresbescheid prüfen.',
+      std:'Jahresbescheid ÷ 12'}
   ]},
   {id:'g4',icon:'🏦',title:'Finanzierung',fields:[
-    {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'Beleihungsquote. 90% bedeutet 10% Eigenkapital. Empfehlung: mind. 20% EK.',std:'80 – 90 %'},
-    {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung — tagesaktuell bei der Bank erfragen.',std:'Aktuell ca. 3,5 – 4,5 % p.a.'},
-    {k:'tilgung',l:'Anfängliche Tilgung',u:'%',step:0.1,info:'Anfänglicher Tilgungssatz. 2% p.a. entspricht ca. 35 Jahren Laufzeit.',std:'2 % p.a. (= ~35 Jahre)'}
+    {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'Beleihungsquote. 90% = 10% Eigenkapital.',std:'80 – 90 %'},
+    {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung.',std:'Aktuell ca. 3,5 – 4,5 % p.a.'},
+    {k:'tilgung',l:'Anfängliche Tilgung',u:'%',step:0.1,info:'2% p.a. = ca. 35 Jahre Laufzeit.',std:'2 % p.a. (= ~35 Jahre)'}
   ]},
   {id:'g5',icon:'📊',title:'Steuern & AfA',fields:[
-    {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'Jährliche steuerliche Abschreibung. 2% für Bestandsbauten, 3% für Neubauten ab 2023.',std:'2 % Bestand · 3 % Neubau'},
-    {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück. Nur der Gebäudewert ist abschreibbar.',std:'60 – 80 % (je nach Lage)'},
-    {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Steuersatz auf zusätzliches Einkommen. Aus dem aktuellen Steuerbescheid.',std:'42 % ab ca. 66.000 € zvE'}
+    {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'2% Bestandsbauten, 3% Neubauten ab 2023.',std:'2 % Bestand · 3 % Neubau'},
+    {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück. Nur der Gebäudewert ist abschreibbar.',std:'60 – 80 % je nach Lage'},
+    {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Steuersatz auf zusätzliches Einkommen.',std:'42 % ab ca. 66.000 € zvE'}
   ]},
   {id:'g6',icon:'📈',title:'Prognose',fields:[
-    {k:'betrjahr',l:'Betrachtungsjahr',u:'',step:1,info:'Bis zu welchem Jahr soll die Langfristprojektion gehen?',std:'Kaufjahr + 25 Jahre'},
-    {k:'wertst',l:'Wertsteigerung p.a.',u:'%',step:0.1,info:'Jährliche Wertsteigerung. Historisch Deutschland: ~2 % p.a.',std:'2 % p.a.'},
+    {k:'betrjahr',l:'Betrachtungsjahr',u:'',step:1,info:'Bis zu welchem Jahr soll die Projektion gehen?',std:'Kaufjahr + 25 Jahre'},
+    {k:'wertst',l:'Wertsteigerung p.a.',u:'%',step:0.1,info:'Historisch Deutschland: ~2 % p.a.',std:'2 % p.a.'},
     {k:'mietst',l:'Mietsteigerung p.a.',u:'%',step:0.1,info:'Jährliche Mietsteigerung.',std:'2 % p.a.'},
-    {k:'kostst',l:'Kostensteigerung p.a.',u:'%',step:0.1,info:'Jährliche Kostensteigerung (Inflation).',std:'2 % p.a.'}
+    {k:'kostst',l:'Kostensteigerung p.a.',u:'%',step:0.1,info:'Jährliche Kostensteigerung.',std:'2 % p.a.'}
   ]}
 ];
 
@@ -237,20 +193,19 @@ let activeGroup='g0';
 
 function groupSummary(g){
   return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
-    const v=S[f.k];
+    const v=f.auto?(S[f.k]!==null?S[f.k]:window[f.autoFn]()):S[f.k];
     return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
   }).join('');
 }
 
-function selectGroup(id){
-  activeGroup=id;
-  document.querySelectorAll('.inp-nav-item').forEach(el=>{
-    el.classList.toggle('active',el.dataset.gid===id);
-  });
-  const g=GROUPS.find(g=>g.id===id);
-  const detail=document.getElementById('inp-detail');
-  if(!detail||!g)return;
-  detail.innerHTML=renderDetail(g);
+function resetAuto(k){
+  S[k]=null;
+  if(activeTab==='eingaben'){
+    const el=document.getElementById('inp-detail');
+    const g=GROUPS.find(g=>g.id===activeGroup);
+    if(el&&g)el.innerHTML=renderDetail(g);
+  }
+  if(activeTab!=='eingaben')renderTab(activeTab);
 }
 
 function renderDetail(g){
@@ -258,15 +213,34 @@ function renderDetail(g){
     <span class="inp-detail-icon">${g.icon}</span>
     <span class="inp-detail-title">${g.title}</span>
   </div><div class="inp-detail-fields">`;
+
   g.fields.forEach(f=>{
     if(f.t==='text'){
-      html+=`<div class="irow"><span class="ilabel">${f.l}</span>
+      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
         <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
           oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value;if(activeTab!=='eingaben')renderTab(activeTab)"></div>
         <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
       </div>`;
+    } else if(f.auto){
+      const isAuto=S[f.k]===null;
+      const val=isAuto?window[f.autoFn]():S[f.k];
+      html+=`<div class="irow">
+        <div class="ilabel">
+          <span class="ilabel-main">${f.l}</span>
+          <span class="ilabel-hint">${f.hint}</span>
+        </div>
+        ${isAuto?`<span class="auto-badge">Auto</span>`:''}
+        <div class="ifield">
+          <input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}"
+            class="${isAuto?'auto-val':''}"
+            oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
+          <span class="iunit">${f.u||''}</span>
+        </div>
+        <button class="reset-btn" id="reset-${f.k}" style="display:${isAuto?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button>
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
+      </div>`;
     } else {
-      html+=`<div class="irow"><span class="ilabel">${f.l}</span>
+      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
         <div class="ifield">
           <input type="number" value="${S[f.k]}" step="${f.step||1}"
             oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
@@ -277,6 +251,14 @@ function renderDetail(g){
     }
   });
   return html+'</div>';
+}
+
+function selectGroup(id){
+  activeGroup=id;
+  document.querySelectorAll('.inp-nav-item').forEach(el=>el.classList.toggle('active',el.dataset.gid===id));
+  const g=GROUPS.find(g=>g.id===id);
+  const detail=document.getElementById('inp-detail');
+  if(detail&&g)detail.innerHTML=renderDetail(g);
 }
 
 function buildEingaben(){
@@ -307,14 +289,15 @@ function calcAll(){
   const gI=kp+nkGes+S.anfInvest,darlehen=kp*p(S.darlehenPct),ek=gI-darlehen;
   const fin=ann(darlehen,p(S.zinssatz),p(S.tilgung));
   const nkm=S.mietePqm*wf,mao=nkm*p(S.mietausfall),nkmE=nkm-mao;
-  const bk=S.hausgeldN+S.grundsteuer+(S.ruecklage*wf/12)+mao;
+  const hg=getHausgeld(),gs=getGrundsteuer();
+  const bk=hg+gs+(S.ruecklage*wf/12)+mao;
   const afaM=(kp*p(S.gebaude)*p(S.afa))/12,zvs=nkmE-bk-fin.zinsen-afaM,stM=zvs*p(S.steuer);
   const cfOp=nkmE-bk-fin.zinsen-fin.tilgung,cfNSt=cfOp-stM;
   const bR=kp>0?(nkm*12)/kp:0,nR=gI>0?((nkmE-bk)*12)/gI:0,fakt=nkm>0?kp/(nkm*12):0;
   const tplan=tilgPlan(darlehen,p(S.zinssatz),p(S.tilgung),50);
   const jahre=Math.max(1,S.betrjahr-S.kaufjahr);
   const prj=prjCalc(kp,nkmE,bk,darlehen,p(S.zinssatz),p(S.tilgung),jahre);
-  return{nkObj,nkGes,gI,darlehen,ek,fin,nkm,mao,nkmE,bk,afaM,stM,cfOp,cfNSt,bR,nR,fakt,tplan,prj};
+  return{nkObj,nkGes,gI,darlehen,ek,fin,nkm,mao,nkmE,bk,hg,gs,afaM,stM,cfOp,cfNSt,bR,nR,fakt,tplan,prj};
 }
 
 const eu=v=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
