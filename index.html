@@ -7,32 +7,79 @@
   --fs-md:clamp(13px,1.5vw,15px);
   --fs-lg:clamp(15px,1.8vw,18px);
   --fs-label:clamp(9px,1vw,11px);
+  --gap:clamp(10px,1.2vw,16px);
+  --pad:clamp(12px,1.4vw,18px);
+  --radius:12px;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:var(--fs-md);background:#f0ede8;color:#2c2c2e;min-height:100vh}
 .shell{display:flex;flex-direction:column;min-height:100vh}
-.topbar{background:#eae7e1;border-bottom:1px solid #d6d2cb;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.topbar-brand{display:flex;align-items:baseline;gap:10px;padding:14px 0}
+
+/* ── Topbar ── */
+.topbar{background:#eae7e1;border-bottom:1px solid #d6d2cb;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-left{display:flex;align-items:baseline;gap:10px;padding:14px 0;flex-shrink:0}
 .topbar-logo{font-size:var(--fs-lg);font-weight:700;color:#2c2c2e;letter-spacing:-.3px}
 .topbar-obj{font-size:var(--fs-sm);color:#8e8e93}
 .tab-bar{display:flex}
 .tab{padding:14px clamp(10px,1.4vw,18px);font-size:var(--fs-sm);font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:#8e8e93;transition:all .12s;user-select:none;white-space:nowrap}
 .tab:hover{color:#3a3a3c}
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
-.content{flex:1;padding:clamp(14px,2vw,24px)}
 
-/* cockpit */
-.cockpit-top{display:grid;grid-template-columns:1fr clamp(220px,22vw,300px);gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(14px,2vw,20px);align-items:start}
-.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,0.8vw,10px)}
-.kcard{background:white;border-radius:10px;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);border:1px solid #e0dcd6;position:relative}
-.kcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
-.kbadge{display:inline-flex;align-items:center;font-size:var(--fs-xs);font-weight:600;padding:2px 7px;border-radius:20px}
+/* ── Content wrapper ── */
+.content{flex:1;padding:clamp(16px,2vw,24px)}
+
+/* ── Shared section header ── */
+.sec-header{display:flex;align-items:center;gap:8px;margin-bottom:var(--gap)}
+.sec-header-icon{font-size:15px;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sec-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
+.sec-divider{height:1px;background:#e0dcd6;margin:clamp(14px,1.8vw,20px) 0}
+
+/* ── Cards & blocks ── */
+.card{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
+.card-header{padding:11px var(--pad);border-bottom:1px solid #f0ede8;display:flex;align-items:center;gap:8px}
+.card-header-icon{font-size:14px}
+.card-title{font-size:var(--fs-sm);font-weight:600;color:#2c2c2e}
+.card-body{padding:var(--pad)}
+
+/* row within a card */
+.drow{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:var(--fs-sm);border-bottom:1px solid #f7f5f2}
+.drow:last-child{border-bottom:none}
+.drow .dl{color:#8e8e93}
+.drow .dv{font-weight:500;color:#2c2c2e}
+.drow.drow-bold .dl{color:#2c2c2e;font-weight:600}
+.drow.drow-bold .dv{font-weight:700}
+
+/* grid layouts */
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
+
+/* ── Cockpit: Fazit ── */
+.fazit{border-radius:var(--radius);border:1.5px solid;padding:var(--pad) clamp(14px,1.6vw,20px);margin-bottom:var(--gap);display:flex;gap:14px;align-items:flex-start}
+.fazit-icon{font-size:26px;flex-shrink:0;line-height:1;margin-top:2px}
+.fazit-body{flex:1;min-width:0}
+.fazit-verdict{font-size:var(--fs-lg);font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+.fazit-summary{font-size:var(--fs-sm);line-height:1.55;margin-bottom:10px;opacity:.9}
+.fazit-points{display:flex;flex-direction:column;gap:4px}
+.fazit-point{display:flex;align-items:flex-start;gap:7px;font-size:var(--fs-xs);line-height:1.45}
+.fp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.fazit.green{background:#f0faf1;border-color:#86efac}
+.fazit.green .fazit-verdict,.fazit.green .fazit-summary,.fazit.green .fazit-point{color:#166534}
+.fazit.yellow{background:#fefce8;border-color:#fde047}
+.fazit.yellow .fazit-verdict,.fazit.yellow .fazit-summary,.fazit.yellow .fazit-point{color:#713f12}
+.fazit.red{background:#fff1f2;border-color:#fca5a5}
+.fazit.red .fazit-verdict,.fazit.red .fazit-summary,.fazit.red .fazit-point{color:#881337}
+
+/* ── Cockpit: Kennzahl-Karten ── */
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.kcard{background:white;border-radius:var(--radius);padding:clamp(10px,1.2vw,14px);border:1px solid #e0dcd6;position:relative}
+.kcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px}
+.kbadge{display:inline-flex;align-items:center;font-size:var(--fs-xs);font-weight:600;padding:2px 8px;border-radius:20px}
 .kg{background:#e3f9e5;color:#1a7f37}.ky{background:#fff3cd;color:#856404}.kr{background:#fde8e8;color:#b91c1c}
-.kcard-label{font-size:var(--fs-xs);color:#8e8e93;margin-bottom:2px}
+.kcard-label{font-size:var(--fs-xs);color:#8e8e93;margin-bottom:3px}
 .kcard-val{font-size:var(--fs-lg);font-weight:700;letter-spacing:-.2px;white-space:nowrap}
 .kcard-sub{font-size:var(--fs-xs);color:#8e8e93;margin-top:2px}
-.kinfo-btn{width:16px;height:16px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:9px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;margin-top:1px}
+.kinfo-btn{width:16px;height:16px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:9px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .kinfo-btn:hover{background:#d6d2cb;color:#3a3a3c}
-.ktooltip{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:12px;padding:12px 14px;width:260px;z-index:400;line-height:1.6;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.ktooltip{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:12px 14px;width:260px;z-index:400;line-height:1.6;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .ktooltip::before{content:'';position:absolute;top:-5px;right:5px;border:5px solid transparent;border-bottom-color:#1c1c1e;border-top:none}
 .kinfo-btn:hover .ktooltip{display:block}
 .kt-title{font-weight:600;font-size:var(--fs-sm);margin-bottom:6px;color:#fff}
@@ -42,111 +89,89 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .kt-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .kt-dot.g{background:#34c759}.kt-dot.y{background:#f4d03f}.kt-dot.r{background:#ff453a}
 .kt-rowlbl{color:#aaa}
-.cf-box{background:white;border-radius:12px;border:1px solid #e0dcd6;overflow:hidden}
-.cfr{display:flex;justify-content:space-between;padding:clamp(6px,0.8vw,9px) clamp(10px,1.2vw,14px);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
+
+/* ── Cashflow-Box ── */
+.cf-box{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
+.cfr{display:flex;justify-content:space-between;padding:8px var(--pad);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
 .cfr:last-child{border-bottom:none}
-.cft{font-weight:600;font-size:var(--fs-md)}
+.cft{font-weight:600}
 .gv{color:#1a7f37;font-weight:600}.rv{color:#b91c1c;font-weight:600}
-.slabel{font-size:var(--fs-label);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
-.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1vw,12px);margin-bottom:clamp(14px,2vw,20px)}
-.block{background:white;border-radius:12px;padding:clamp(10px,1.2vw,14px) clamp(12px,1.4vw,16px);border:1px solid #e0dcd6}
-.block-title{font-size:var(--fs-xs);font-weight:600;color:#ff6b35;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #f0ede8}
-.brow{display:flex;justify-content:space-between;align-items:baseline;padding:clamp(3px,0.4vw,5px) 0;font-size:var(--fs-sm);border-bottom:1px solid #f7f5f2}
-.brow:last-child{border-bottom:none}
-.brow.bb{font-weight:600}.brow.bm{color:#8e8e93}
-.disc{font-size:var(--fs-xs);color:#8e8e93;margin-top:8px}
-.fin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1vw,12px);margin-bottom:clamp(12px,1.5vw,18px)}
-.tplan-accordion{background:white;border-radius:14px;border:1px solid #e0dcd6;overflow:hidden}
-.tplan-header{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;user-select:none;transition:background .12s}
-.tplan-header:hover{background:#faf9f7}
-.tplan-accordion.open .tplan-header{border-bottom:1px solid #f0ede8}
-.tplan-icon{width:32px;height:32px;border-radius:8px;background:#f0ede8;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.tplan-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
-.tplan-meta{font-size:var(--fs-xs);color:#8e8e93;display:flex;gap:20px;margin-right:12px}
-.tplan-chevron{font-size:12px;color:#c0bbb4;transition:transform .25s;flex-shrink:0}
-.tplan-accordion.open .tplan-chevron{transform:rotate(180deg)}
-.tplan-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s cubic-bezier(.4,0,.2,1)}
-.tplan-accordion.open .tplan-body{grid-template-rows:1fr}
-.tplan-inner{overflow:hidden}
+
+/* ── Tilgungsplan accordion ── */
+.accordion{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
+.accordion-header{display:flex;align-items:center;gap:12px;padding:13px var(--pad);cursor:pointer;user-select:none;transition:background .12s}
+.accordion-header:hover{background:#faf9f7}
+.accordion.open .accordion-header{border-bottom:1px solid #f0ede8}
+.accordion-icon{width:30px;height:30px;border-radius:7px;background:#f0ede8;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.accordion-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e;flex:1}
+.accordion-meta{display:flex;gap:clamp(10px,2vw,24px);font-size:var(--fs-xs);color:#8e8e93;flex-wrap:wrap}
+.accordion-meta strong{color:#2c2c2e}
+.accordion-chevron{font-size:11px;color:#c0bbb4;transition:transform .25s;flex-shrink:0}
+.accordion.open .accordion-chevron{transform:rotate(180deg)}
+.accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s cubic-bezier(.4,0,.2,1)}
+.accordion.open .accordion-body{grid-template-rows:1fr}
+.accordion-inner{overflow:hidden}
+
+/* ── Table ── */
 .tbl{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
-.tbl th{background:#3a3a3c;color:white;padding:clamp(7px,0.9vw,10px) clamp(8px,1vw,14px);text-align:right;font-size:var(--fs-xs);font-weight:600}
+.tbl th{background:#3a3a3c;color:white;padding:9px clamp(10px,1.2vw,16px);text-align:right;font-size:var(--fs-xs);font-weight:600}
 .tbl th:first-child{text-align:left}
-.tbl td{padding:clamp(5px,0.7vw,8px) clamp(8px,1vw,14px);border-bottom:1px solid #f7f5f2;text-align:right}
+.tbl td{padding:7px clamp(10px,1.2vw,16px);border-bottom:1px solid #f7f5f2;text-align:right}
 .tbl td:first-child{text-align:left;font-weight:500}
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl tr:hover{background:#fff8f5}
 .tbl .paid{color:#1a7f37;font-weight:600}
-.tbl .highlight-row{background:#fff8f5;font-weight:600}
+.tbl .done-row td{color:#1a7f37;font-weight:600}
 
-/* fazit */
-.fazit{border-radius:14px;border:1.5px solid;padding:16px 20px;margin-bottom:clamp(14px,2vw,20px);display:flex;gap:14px;align-items:flex-start}
-.fazit-icon{font-size:28px;flex-shrink:0;line-height:1}
-.fazit-body{flex:1;min-width:0}
-.fazit-verdict{font-size:var(--fs-lg);font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
-.fazit-summary{font-size:var(--fs-sm);line-height:1.55;margin-bottom:10px}
-.fazit-points{display:flex;flex-direction:column;gap:4px}
-.fazit-point{display:flex;align-items:baseline;gap:7px;font-size:var(--fs-xs);line-height:1.4}
-.fp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
-.fazit.green{background:#f0faf1;border-color:#86efac}
-.fazit.green .fazit-verdict{color:#15803d}
-.fazit.green .fazit-summary{color:#166534}
-.fazit.green .fazit-point{color:#166534}
-.fazit.yellow{background:#fefce8;border-color:#fde047}
-.fazit.yellow .fazit-verdict{color:#854d0e}
-.fazit.yellow .fazit-summary{color:#713f12}
-.fazit.yellow .fazit-point{color:#713f12}
-.fazit.red{background:#fff1f2;border-color:#fca5a5}
-.fazit.red .fazit-verdict{color:#9f1239}
-.fazit.red .fazit-summary{color:#881337}
-.fazit.red .fazit-point{color:#881337}
+/* ── Disclaimer ── */
+.disclaimer{font-size:var(--fs-xs);color:#8e8e93;margin-top:clamp(10px,1.2vw,16px);padding-top:10px;border-top:1px solid #e0dcd6}
 
-/* eingaben */
-.inp-layout{display:grid;grid-template-columns:260px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:400px}
-.inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0;display:flex;flex-direction:column}
-.inp-nav-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
+/* ── Input tab ── */
+.inp-layout{display:grid;grid-template-columns:240px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:420px}
+.inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0}
+.inp-nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
 .inp-nav-item:hover{background:#ede9e2}
 .inp-nav-item.active{background:white;border-left-color:#ff6b35}
-.nav-icon{font-size:15px;width:22px;text-align:center;flex-shrink:0}
+.nav-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
 .nav-label{font-size:var(--fs-sm);font-weight:500;flex:1;color:#2c2c2e}
 .inp-nav-item.active .nav-label{font-weight:600;color:#ff6b35}
-.nav-summary{font-size:var(--fs-xs);color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px}
+.nav-summary{font-size:var(--fs-xs);color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72px}
 .inp-nav-item.active .nav-summary{display:none}
-.nav-arrow{font-size:10px;color:#c0bbb4;flex-shrink:0}
-.inp-nav-item.active .nav-arrow{color:#ff6b35}
-.inp-detail{padding:0;display:flex;flex-direction:column}
-.inp-detail-header{padding:14px 20px 12px;border-bottom:1px solid #f0ede8;display:flex;align-items:center;gap:10px}
-.inp-detail-icon{font-size:18px}
-.inp-detail-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
-.inp-detail-fields{flex:1}
-.irow{display:flex;align-items:center;padding:11px 20px;gap:12px;border-bottom:1px solid #f7f5f2;position:relative}
+.nav-arr{font-size:10px;color:#c0bbb4;flex-shrink:0}
+.inp-nav-item.active .nav-arr{color:#ff6b35}
+.inp-detail{display:flex;flex-direction:column}
+.inp-dheader{padding:13px 20px 11px;border-bottom:1px solid #f0ede8;display:flex;align-items:center;gap:9px}
+.inp-dicon{font-size:17px}
+.inp-dtitle{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
+.irow{display:flex;align-items:center;padding:10px 20px;gap:10px;border-bottom:1px solid #f7f5f2;position:relative}
 .irow:last-child{border-bottom:none}
 .irow:hover{background:#fdfcfb}
 .ilabel{flex:1;min-width:0}
 .ilabel-main{font-size:var(--fs-sm);color:#2c2c2e;display:block}
 .ilabel-hint{font-size:var(--fs-xs);color:#8e8e93;display:block;margin-top:1px}
-.ifield{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.ifield input[type=number]{width:clamp(80px,8vw,100px);padding:7px 10px;border:1px solid #d6d2cb;border-radius:8px;font-size:var(--fs-sm);text-align:right;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield;transition:border-color .15s,background .15s,box-shadow .15s}
+.ifield{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.ifield input[type=number]{width:clamp(78px,7.5vw,96px);padding:6px 9px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);text-align:right;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield;transition:border-color .15s,background .15s,box-shadow .15s}
 .ifield input[type=number].auto-val{background:#fff8f5;border-color:#ffd4c2;color:#cc4400}
-.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12);color:#0055cc}
+.ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.1);color:#0055cc}
 .ifield input[type=number]::-webkit-inner-spin-button,.ifield input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-.ifield input[type=text]{width:clamp(140px,16vw,200px);padding:7px 10px;border:1px solid #d6d2cb;border-radius:8px;font-size:var(--fs-sm);background:#f5f2ed;color:#0055cc;font-weight:600;transition:border-color .15s}
-.ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.12)}
-.iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:26px;white-space:nowrap}
-.reset-btn{background:none;border:none;cursor:pointer;font-size:10px;color:#8e8e93;padding:2px 5px;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.ifield input[type=text]{width:clamp(130px,14vw,185px);padding:6px 9px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);background:#f5f2ed;color:#0055cc;font-weight:600;transition:border-color .15s}
+.ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white;box-shadow:0 0 0 3px rgba(255,107,53,.1)}
+.iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:24px;white-space:nowrap}
+.reset-btn{background:none;border:none;cursor:pointer;font-size:var(--fs-xs);color:#8e8e93;padding:2px 6px;border-radius:5px;flex-shrink:0;white-space:nowrap}
 .reset-btn:hover{background:#f0ede8;color:#ff6b35}
-.iinfo{width:18px;height:18px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:10px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.auto-badge{font-size:9px;background:#fff0eb;color:#cc4400;padding:1px 6px;border-radius:4px;font-weight:600;flex-shrink:0}
+.iinfo{width:17px;height:17px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:9px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .iinfo:hover{background:#d6d2cb;color:#3a3a3c}
-.tooltip{display:none;position:absolute;right:26px;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:10px 13px;width:250px;z-index:300;line-height:1.6;pointer-events:none}
+.tooltip{display:none;position:absolute;right:25px;top:50%;transform:translateY(-50%);background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:10px;padding:10px 13px;width:245px;z-index:300;line-height:1.6;pointer-events:none}
 .tooltip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:#1c1c1e;border-right:none}
 .iinfo:hover .tooltip{display:block}
 .tt-title{font-weight:600;margin-bottom:4px;color:#fff}
 .tt-std{color:#aaa;font-size:var(--fs-xs);margin-top:5px;padding-top:5px;border-top:1px solid #333}
-.auto-badge{font-size:9px;background:#fff0eb;color:#cc4400;padding:1px 5px;border-radius:4px;font-weight:600;flex-shrink:0}
 </style>
 
 <div class="shell">
   <div class="topbar">
-    <div class="topbar-brand">
+    <div class="topbar-left">
       <span class="topbar-logo">Immobilien Kalkulation</span>
       <span class="topbar-obj" id="obj-name"></span>
     </div>
@@ -176,23 +201,22 @@ const S={
 
 const KINFO={
   bm:{title:'Bruttomietrendite',desc:'Verhältnis der jährlichen Kaltmiete zum Kaufpreis. Schnellcheck ohne Kosten.',scale:[{c:'g',lbl:'Gut: über 6 %'},{c:'y',lbl:'Ok: 5 – 6 %'},{c:'r',lbl:'Kritisch: unter 5 %'}]},
-  nm:{title:'Nettomietrendite',desc:'Wie die Bruttomietrendite, aber nach Abzug aller Bewirtschaftungskosten.',scale:[{c:'g',lbl:'Gut: über 5 %'},{c:'y',lbl:'Ok: 4 – 5 %'},{c:'r',lbl:'Kritisch: unter 4 %'}]},
-  fakt:{title:'Kaufpreisfaktor',desc:'Kaufpreis geteilt durch die jährliche Kaltmiete. Niedrigerer Faktor = besseres Geschäft.',scale:[{c:'g',lbl:'Gut: unter 20x'},{c:'y',lbl:'Ok: 20 – 25x'},{c:'r',lbl:'Teuer: über 25x'}]},
-  cfo:{title:'Cashflow operativ',desc:'Monatlicher Überschuss nach Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
+  nm:{title:'Nettomietrendite',desc:'Bruttomietrendite nach Abzug aller Bewirtschaftungskosten.',scale:[{c:'g',lbl:'Gut: über 5 %'},{c:'y',lbl:'Ok: 4 – 5 %'},{c:'r',lbl:'Kritisch: unter 4 %'}]},
+  fakt:{title:'Kaufpreisfaktor',desc:'Kaufpreis ÷ Jahreskaltmiete. Niedrigerer Faktor = besseres Geschäft.',scale:[{c:'g',lbl:'Gut: unter 20x'},{c:'y',lbl:'Ok: 20 – 25x'},{c:'r',lbl:'Teuer: über 25x'}]},
+  cfo:{title:'Cashflow operativ',desc:'Monatlicher Überschuss aus Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
   cfn:{title:'Cashflow nach Steuern',desc:'Tatsächlicher monatlicher Über- oder Unterschuss nach allen Kosten inkl. Steuer.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
   afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein Geldfluss, aber steuerlich absetzbar.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},{c:'r',lbl:'Kein schlechter Wert — nur Kontext'}]}
 };
-
-function kInfoTooltip(key){
+function kTip(key){
   const d=KINFO[key];if(!d)return'';
   const rows=d.scale.map(r=>`<div class="kt-row"><div class="kt-dot ${r.c}"></div><span class="kt-rowlbl">${r.lbl}</span></div>`).join('');
   return`<div class="ktooltip"><div class="kt-title">${d.title}</div><div class="kt-desc">${d.desc}</div><div class="kt-scale">${rows}</div></div>`;
 }
 
-function autoHausgeld(){return Math.round(S.wohnflaeche*1.00)}
+function autoHausgeld(){return Math.round(S.wohnflaeche*1.0)}
 function autoGrundsteuer(){return Math.round(S.wohnflaeche*0.9)}
-function getHausgeld(){return S.hausgeldN!==null?S.hausgeldN:autoHausgeld()}
-function getGrundsteuer(){return S.grundsteuer!==null?S.grundsteuer:autoGrundsteuer()}
+function getHG(){return S.hausgeldN!==null?S.hausgeldN:autoHausgeld()}
+function getGS(){return S.grundsteuer!==null?S.grundsteuer:autoGrundsteuer()}
 
 const GROUPS=[
   {id:'g0',icon:'🏠',title:'Objekt',fields:[
@@ -203,8 +227,8 @@ const GROUPS=[
     {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc. zusätzlich zum Kaufpreis.',std:'0 – 30.000 €'}
   ]},
   {id:'g1',icon:'📋',title:'Kaufnebenkosten',fields:[
-    {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'In DE meist 3,57%.',std:'3,57 %'},
-    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ~1,5% + Grundbuchamt ~0,5%.',std:'2,0 %'},
+    {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'In DE meist 3,57 %.',std:'3,57 %'},
+    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ~1,5% + Grundbuchamt ~0,5% = ~2%.',std:'2,0 %'},
     {k:'grunderwerb',l:'Grunderwerbsteuer',u:'%',step:0.1,info:'Bayern 3,5% — NRW & SH 6,5%.',std:'NRW: 6,5% · Bayern: 3,5%'}
   ]},
   {id:'g2',icon:'🏷️',title:'Miete',fields:[
@@ -234,9 +258,9 @@ const GROUPS=[
   ]}
 ];
 
-let activeGroup='g0', tplanOpen=false;
+let activeGroup='g0',tplanOpen=false;
 
-function groupSummary(g){
+function gSum(g){
   return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
     const v=f.auto?(S[f.k]!==null?S[f.k]:window[f.autoFn]()):S[f.k];
     return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
@@ -248,47 +272,47 @@ function resetAuto(k){
   if(activeTab!=='eingaben')renderTab(activeTab);
 }
 function renderDetail(g){
-  let html=`<div class="inp-detail-header"><span class="inp-detail-icon">${g.icon}</span><span class="inp-detail-title">${g.title}</span></div><div class="inp-detail-fields">`;
+  let h=`<div class="inp-dheader"><span class="inp-dicon">${g.icon}</span><span class="inp-dtitle">${g.title}</span></div>`;
   g.fields.forEach(f=>{
     if(f.t==='text'){
-      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
+      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
         <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
-          oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value;if(activeTab!=='eingaben')renderTab(activeTab)"></div>
+          oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value||'';if(activeTab!=='eingaben')renderTab(activeTab)"></div>
         <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     } else if(f.auto){
-      const isAuto=S[f.k]===null,val=isAuto?window[f.autoFn]():S[f.k];
-      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
-        ${isAuto?'<span class="auto-badge">Auto</span>':''}
-        <div class="ifield"><input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isAuto?'auto-val':''}"
+      const isA=S[f.k]===null,val=isA?window[f.autoFn]():S[f.k];
+      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
+        ${isA?'<span class="auto-badge">Auto</span>':''}
+        <div class="ifield"><input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isA?'auto-val':''}"
           oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
           <span class="iunit">${f.u||''}</span></div>
-        <button class="reset-btn" id="reset-${f.k}" style="display:${isAuto?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button>
+        <button class="reset-btn" id="reset-${f.k}" style="display:${isA?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button>
         <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     } else {
-      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
+      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
         <div class="ifield"><input type="number" value="${S[f.k]}" step="${f.step||1}"
           oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
           <span class="iunit">${f.u||''}</span></div>
         <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     }
   });
-  return html+'</div>';
+  return h;
 }
-function selectGroup(id){
+function selGroup(id){
   activeGroup=id;
   document.querySelectorAll('.inp-nav-item').forEach(el=>el.classList.toggle('active',el.dataset.gid===id));
   const g=GROUPS.find(g=>g.id===id);
-  const detail=document.getElementById('inp-detail');
-  if(detail&&g)detail.innerHTML=renderDetail(g);
+  const d=document.getElementById('inp-detail');
+  if(d&&g)d.innerHTML=renderDetail(g);
 }
 function buildEingaben(){
   const g=GROUPS.find(g=>g.id===activeGroup)||GROUPS[0];
   let nav='<div class="inp-nav">';
   GROUPS.forEach(gr=>{
-    const sum=groupSummary(gr);
-    nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
+    const s=gSum(gr);
+    nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selGroup('${gr.id}')">
       <span class="nav-icon">${gr.icon}</span><span class="nav-label">${gr.title}</span>
-      ${sum?`<span class="nav-summary">${sum}</span>`:''}<span class="nav-arrow">›</span></div>`;
+      ${s?`<span class="nav-summary">${s}</span>`:''}<span class="nav-arr">›</span></div>`;
   });
   nav+='</div>';
   return`<div class="inp-layout">${nav}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
@@ -296,22 +320,21 @@ function buildEingaben(){
 
 const p=v=>v/100;
 function ann(d,z,t){if(d<=0)return{rate:0,zinsen:0,tilgung:0};const zm=z/12,r=d*(zm+t/12),zi=d*zm,ti=r-zi;return{rate:r,zinsen:zi,tilgung:ti}}
-function tilgPlan(d,z,t,j=50){if(d<=0)return[];const zm=z/12,r=d*(zm+t/12);let rs=d;const pl=[];for(let i=1;i<=j;i++){let zj=0,tj=0;for(let m=0;m<12;m++){if(rs<=0)break;const zi=rs*zm,ti=Math.min(r-zi,rs);zj+=zi;tj+=ti;rs-=ti;}pl.push({j:i,zj,tj,ann:zj+tj,rs:Math.max(0,rs),kdm:(zj+tj)/12});if(rs<=0)break;}return pl}
-
+function tilgP(d,z,t,j=50){if(d<=0)return[];const zm=z/12,r=d*(zm+t/12);let rs=d;const pl=[];for(let i=1;i<=j;i++){let zj=0,tj=0;for(let m=0;m<12;m++){if(rs<=0)break;const zi=rs*zm,ti=Math.min(r-zi,rs);zj+=zi;tj+=ti;rs-=ti;}pl.push({j:i,zj,tj,ann:zj+tj,rs:Math.max(0,rs),kdm:(zj+tj)/12});if(rs<=0)break;}return pl}
 function calcAll(){
   const kp=S.kaufpreis,wf=S.wohnflaeche;
   const nkGes=kp*(p(S.makler)+p(S.notar)+p(S.grunderwerb));
   const nkObj={makler:kp*p(S.makler),notar:kp*p(S.notar),grunderwerb:kp*p(S.grunderwerb),gesamt:nkGes};
-  const gI=kp+nkGes+S.anfInvest,darlehen=kp*p(S.darlehenPct),ek=gI-darlehen;
-  const fin=ann(darlehen,p(S.zinssatz),p(S.tilgung));
+  const gI=kp+nkGes+S.anfInvest,dar=kp*p(S.darlehenPct),ek=gI-dar;
+  const fin=ann(dar,p(S.zinssatz),p(S.tilgung));
   const nkm=S.mietePqm*wf,mao=nkm*p(S.mietausfall),nkmE=nkm-mao;
-  const hg=getHausgeld(),gs=getGrundsteuer();
+  const hg=getHG(),gs=getGS();
   const bk=hg+gs+(S.ruecklage*wf/12)+mao;
   const afaM=(kp*p(S.gebaude)*p(S.afa))/12,zvs=nkmE-bk-fin.zinsen-afaM,stM=zvs*p(S.steuer);
   const cfOp=nkmE-bk-fin.zinsen-fin.tilgung,cfNSt=cfOp-stM;
   const bR=kp>0?(nkm*12)/kp:0,nR=gI>0?((nkmE-bk)*12)/gI:0,fakt=nkm>0?kp/(nkm*12):0;
-  const tplan=tilgPlan(darlehen,p(S.zinssatz),p(S.tilgung),50);
-  return{nkObj,nkGes,gI,darlehen,ek,fin,nkm,mao,nkmE,bk,afaM,stM,cfOp,cfNSt,bR,nR,fakt,tplan};
+  const tplan=tilgP(dar,p(S.zinssatz),p(S.tilgung),50);
+  return{nkObj,nkGes,gI,dar,ek,fin,nkm,mao,nkmE,bk,hg,gs,afaM,stM,cfOp,cfNSt,bR,nR,fakt,tplan};
 }
 
 const eu=v=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
@@ -323,54 +346,46 @@ function famp(v){return v<=SW.fk[0]?'kg':v<=SW.fk[1]?'ky':'kr'}
 const ALBL={kg:'Gut',ky:'Ok',kr:'Kritisch'};
 const ACOL={kg:'#1a7f37',ky:'#856404',kr:'#b91c1c'};
 
-function buildFazit(c){
-  const score={green:0,yellow:0,red:0};
-  const inc=a=>score[a==='kg'?'green':a==='ky'?'yellow':'red']++;
-  inc(amp(c.bR,SW.bm));inc(amp(c.nR,SW.nm));inc(famp(c.fakt));inc(amp(c.cfOp,SW.cf));inc(amp(c.cfNSt,SW.cf));
-  const points=[];
-  if(c.bR>=0.06)points.push({pos:true,txt:`Bruttomietrendite ${pf(c.bR)} — über 6 %`});
-  else if(c.bR>=0.05)points.push({pos:null,txt:`Bruttomietrendite ${pf(c.bR)} — mittlerer Bereich`});
-  else points.push({pos:false,txt:`Bruttomietrendite ${pf(c.bR)} — unter 5 %, schwach`});
-  if(c.fakt<=20)points.push({pos:true,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig bewertet`});
-  else if(c.fakt<=25)points.push({pos:null,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`});
-  else points.push({pos:false,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer bewertet`});
-  if(c.cfNSt>=100)points.push({pos:true,txt:`Cashflow ${eu(c.cfNSt)}/Mo. nach Steuern — positiv`});
-  else if(c.cfNSt>=0)points.push({pos:null,txt:`Cashflow ${eu(c.cfNSt)}/Mo. — nahezu neutral`});
-  else points.push({pos:false,txt:`Negativer Cashflow ${eu(c.cfNSt)}/Mo. — monatliche Zuzahlung nötig`});
-  const ekPct=c.ek/(c.gI||1);
-  if(ekPct>=0.2)points.push({pos:true,txt:`Eigenkapitalanteil ${pf(ekPct)} — solide Basis`});
-  else if(ekPct>=0.1)points.push({pos:null,txt:`Eigenkapitalanteil ${pf(ekPct)} — knapp kalkuliert`});
-  else points.push({pos:false,txt:`Eigenkapitalanteil ${pf(ekPct)} — hohes Finanzierungsrisiko`});
-  let cls,icon,verdict,summary;
-  if(score.green>=3&&score.red===0){cls='green';icon='✅';verdict='Interessantes Objekt';summary='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow. Das Objekt trägt sich weitgehend selbst und ist als Kapitalanlage attraktiv.';}
-  else if(score.red>=3){cls='red';icon='❌';verdict='Nicht empfehlenswert';summary='Mehrere kritische Kennzahlen machen dieses Objekt zu einem schlechten Investment. Rendite, Cashflow oder Bewertung sind unattraktiv.';}
-  else if(score.green>=2&&score.red<=1){cls='green';icon='✅';verdict='Tendenziell interessant';summary='Das Objekt zeigt überwiegend gute Kennzahlen mit einzelnen Schwächen. Mit etwas Verhandlungsspielraum kann es attraktiv werden.';}
-  else if(score.red>=2){cls='red';icon='⚠️';verdict='Eher nicht empfehlenswert';summary='Mehrere Kennzahlen sind kritisch. Das Objekt ist unter den aktuellen Bedingungen ein schwaches Investment.';}
-  else{cls='yellow';icon='📊';verdict='Durchschnittliches Objekt';summary='Die Kennzahlen sind gemischt. Weder besonders attraktiv noch offensichtlich ungeeignet — mit moderaten Ertragserwartungen denkbar.';}
-  const ptHtml=points.map(pt=>`<div class="fazit-point"><div class="fp-dot" style="background:${pt.pos===true?'#22c55e':pt.pos===false?'#f43f5e':'#eab308'}"></div><span>${pt.txt}</span></div>`).join('');
-  return`<div class="fazit ${cls}"><div class="fazit-icon">${icon}</div><div class="fazit-body"><div class="fazit-verdict">${verdict}</div><div class="fazit-summary">${summary}</div><div class="fazit-points">${ptHtml}</div></div></div>`;
+function secH(icon,title,color='#ff6b35'){
+  return`<div class="sec-header"><div class="sec-header-icon" style="background:${color}18">${icon}</div><span class="sec-title">${title}</span></div>`;
 }
-
-function kc(l,v,a,s,infoKey){
-  return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kInfoTooltip(infoKey)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;
-}
-function br(l,v,cls=''){return`<div class="brow ${cls}"><span>${l}</span><span>${v}</span></div>`}
+function drow(l,v,bold=false){return`<div class="drow${bold?' drow-bold':''}"><span class="dl">${l}</span><span class="dv">${v}</span></div>`}
 function cfr(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
 function cfrt(l,v,a){return`<div class="cfr cft" style="background:${a==='kg'?'#f0faf1':a==='ky'?'#fffbeb':'#fef2f2'}"><span>${l}</span><span style="color:${ACOL[a]}">${eu(v)}</span></div>`}
-function fr(l,v,h=false){return`<div class="brow${h?' bb':''}"><span style="color:#8e8e93">${l}</span><span>${v}</span></div>`}
-
-function toggleTilgung(){
-  tplanOpen=!tplanOpen;
-  const el=document.getElementById('tplan-acc');
-  if(el)el.classList.toggle('open',tplanOpen);
+function kc(l,v,a,s,k){
+  return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kTip(k)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;
 }
+
+function buildFazit(c){
+  const sc={g:0,y:0,r:0};
+  const inc=a=>{if(a==='kg')sc.g++;else if(a==='ky')sc.y++;else sc.r++};
+  inc(amp(c.bR,SW.bm));inc(amp(c.nR,SW.nm));inc(famp(c.fakt));inc(amp(c.cfOp,SW.cf));inc(amp(c.cfNSt,SW.cf));
+  const pts=[
+    c.bR>=0.06?{p:true,t:`Bruttomietrendite ${pf(c.bR)} — über 6 %`}:c.bR>=0.05?{p:null,t:`Bruttomietrendite ${pf(c.bR)} — mittlerer Bereich`}:{p:false,t:`Bruttomietrendite ${pf(c.bR)} — unter 5 %`},
+    c.fakt<=20?{p:true,t:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig bewertet`}:c.fakt<=25?{p:null,t:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`}:{p:false,t:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer bewertet`},
+    c.cfNSt>=100?{p:true,t:`Cashflow ${eu(c.cfNSt)}/Mo. nach Steuern — positiv`}:c.cfNSt>=0?{p:null,t:`Cashflow ${eu(c.cfNSt)}/Mo. — nahezu neutral`}:{p:false,t:`Negativer Cashflow ${eu(c.cfNSt)}/Mo. — Zuzahlung nötig`},
+  ];
+  const ekP=c.ek/(c.gI||1);
+  pts.push(ekP>=0.2?{p:true,t:`Eigenkapitalanteil ${pf(ekP)} — solide Basis`}:ekP>=0.1?{p:null,t:`Eigenkapitalanteil ${pf(ekP)} — knapp kalkuliert`}:{p:false,t:`Eigenkapitalanteil ${pf(ekP)} — hohes Finanzierungsrisiko`});
+  let cls,icon,verd,summ;
+  if(sc.g>=3&&sc.r===0){cls='green';icon='✅';verd='Interessantes Objekt';summ='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow. Das Objekt trägt sich weitgehend selbst.';}
+  else if(sc.r>=3){cls='red';icon='❌';verd='Nicht empfehlenswert';summ='Mehrere kritische Kennzahlen machen dieses Objekt zu einem schlechten Investment. Abstand oder Nachverhandlung empfohlen.';}
+  else if(sc.g>=2&&sc.r<=1){cls='green';icon='✅';verd='Tendenziell interessant';summ='Überwiegend gute Kennzahlen mit einzelnen Schwächen. Mit Verhandlungsspielraum beim Kaufpreis kann es attraktiv werden.';}
+  else if(sc.r>=2){cls='red';icon='⚠️';verd='Eher nicht empfehlenswert';summ='Mehrere Kennzahlen sind kritisch. Das Objekt ist unter den aktuellen Bedingungen ein schwaches Investment.';}
+  else{cls='yellow';icon='📊';verd='Durchschnittliches Objekt';summ='Die Kennzahlen sind gemischt — weder besonders attraktiv noch offensichtlich ungeeignet.';}
+  const ptH=pts.map(pt=>`<div class="fazit-point"><div class="fp-dot" style="background:${pt.p===true?'#22c55e':pt.p===false?'#f43f5e':'#eab308'}"></div><span>${pt.t}</span></div>`).join('');
+  return`<div class="fazit ${cls}"><div class="fazit-icon">${icon}</div><div class="fazit-body"><div class="fazit-verdict">${verd}</div><div class="fazit-summary">${summ}</div><div class="fazit-points">${ptH}</div></div></div>`;
+}
+
+function toggleTP(){tplanOpen=!tplanOpen;const el=document.getElementById('tplan-acc');if(el)el.classList.toggle('open',tplanOpen);}
 
 function buildCockpit(c){
   const bma=amp(c.bR,SW.bm),nma=amp(c.nR,SW.nm),cfa=amp(c.cfOp,SW.cf),cfna=amp(c.cfNSt,SW.cf),fa=famp(c.fakt);
-  return`${buildFazit(c)}
-<div class="cockpit-top">
+  return`
+${buildFazit(c)}
+<div style="display:grid;grid-template-columns:1fr clamp(220px,22vw,290px);gap:var(--gap);margin-bottom:var(--gap);align-items:start">
   <div>
-    <div class="slabel" style="margin-bottom:8px">Kennzahlen</div>
+    ${secH('📊','Kennzahlen')}
     <div class="kgrid">
       ${kc('Bruttomietrendite',pf(c.bR),bma,'Kaltmiete / KP','bm')}
       ${kc('Nettomietrendite',pf(c.nR),nma,'nach Bewirt.','nm')}
@@ -381,7 +396,7 @@ function buildCockpit(c){
     </div>
   </div>
   <div>
-    <div class="slabel" style="margin-bottom:8px">Monatlicher Cashflow</div>
+    ${secH('💶','Monatlicher Cashflow')}
     <div class="cf-box">
       ${cfr('Nettokaltmiete',c.nkmE)}${cfr('– Bewirtschaftung',-c.bk)}${cfr('– Zinsen',-c.fin.zinsen)}${cfr('– Tilgung',-c.fin.tilgung)}
       ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr('– Steuern',-c.stM)}
@@ -389,48 +404,67 @@ function buildCockpit(c){
     </div>
   </div>
 </div>
-<div class="slabel">Übersicht</div>
-<div class="row3">
-  <div class="block"><div class="block-title">Investition</div>
-    ${br('Kaufpreis',eu(S.kaufpreis))}${br('Kaufnebenkosten',eu(c.nkGes),'bm')}${br('Anfängl. Invest.',eu(S.anfInvest),'bm')}${br('Gesamtinvestition',eu(c.gI),'bb')}${br('Kaufpreis/m²',eu(S.kaufpreis/(S.wohnflaeche||1)),'bm')}
-  </div>
-  <div class="block"><div class="block-title">Miete & Bewirtschaftung</div>
-    ${br('Kaltmiete/m²',S.mietePqm.toFixed(2)+' €')}${br('Nettokaltmiete',eu(c.nkm)+'/Mo.')}${br('– Mietausfall','–'+eu(c.mao)+'/Mo.','bm')}${br('Nettokaltmiete eff.',eu(c.nkmE)+'/Mo.','bb')}${br('Bewirtschaftung','–'+eu(c.bk)+'/Mo.','bm')}
-  </div>
-  <div class="block"><div class="block-title">Finanzierung</div>
-    ${br('Darlehen',eu(c.darlehen))}${br('Eigenkapital',eu(c.ek),'bb')}${br('EK-Anteil',pf(c.ek/(c.gI||1)),'bm')}${br('Kapitaldienst',eu(c.fin.rate)+'/Mo.','bb')}${br('davon Zinsen',eu(c.fin.zinsen)+'/Mo.','bm')}${br('davon Tilgung',eu(c.fin.tilgung)+'/Mo.','bm')}
-  </div>
+<div class="sec-divider"></div>
+${secH('📋','Übersicht')}
+<div class="grid-3" style="margin-bottom:var(--gap)">
+  <div class="card"><div class="card-header"><span class="card-header-icon">🏠</span><span class="card-title">Investition</span></div><div class="card-body">
+    ${drow('Kaufpreis',eu(S.kaufpreis))}${drow('Kaufnebenkosten',eu(c.nkGes))}${drow('Anfängl. Invest.',eu(S.anfInvest))}${drow('Gesamtinvestition',eu(c.gI),true)}${drow('Kaufpreis/m²',eu(S.kaufpreis/(S.wohnflaeche||1)))}
+  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">🏷️</span><span class="card-title">Miete & Bewirtschaftung</span></div><div class="card-body">
+    ${drow('Kaltmiete/m²',S.mietePqm.toFixed(2)+' €')}${drow('Nettokaltmiete',eu(c.nkm)+'/Mo.')}${drow('– Mietausfall','–'+eu(c.mao)+'/Mo.')}${drow('Nettokaltmiete eff.',eu(c.nkmE)+'/Mo.',true)}${drow('Bewirtschaftung','–'+eu(c.bk)+'/Mo.')}
+  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">🏦</span><span class="card-title">Finanzierung</span></div><div class="card-body">
+    ${drow('Darlehen',eu(c.dar))}${drow('Eigenkapital',eu(c.ek),true)}${drow('EK-Anteil',pf(c.ek/(c.gI||1)))}${drow('Kapitaldienst',eu(c.fin.rate)+'/Mo.',true)}${drow('davon Zinsen',eu(c.fin.zinsen)+'/Mo.')}${drow('davon Tilgung',eu(c.fin.tilgung)+'/Mo.')}
+  </div></div>
 </div>
-<div class="disc">Keine Gewähr für Richtigkeit. Kein Ersatz für Rechts-, Steuer- oder Finanzberatung.</div>`;
+<div class="disclaimer">Keine Gewähr für Richtigkeit. Kein Ersatz für Rechts-, Steuer- oder Finanzberatung.</div>`;
 }
 
 function buildFin(c){
-  const fc=(t,col,con)=>`<div class="block" style="border-top:3px solid ${col}"><div class="block-title" style="color:${col}">${t}</div>${con}</div>`;
-  const vollTilgJahr=c.tplan.length>0?S.kaufjahr+c.tplan[c.tplan.length-1].j-1:'—';
-  const gesamtZinsen=c.tplan.reduce((s,r)=>s+r.zj,0);
+  const vollJ=c.tplan.length>0?S.kaufjahr+c.tplan[c.tplan.length-1].j-1:'—';
+  const gZinsen=c.tplan.reduce((s,r)=>s+r.zj,0);
   let rows='';
   c.tplan.forEach(r=>{
     const paid=r.rs<=0;
-    rows+=`<tr class="${paid?'highlight-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td class="${paid?'paid':''}">${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;
+    rows+=`<tr class="${paid?'done-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td>${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;
   });
-  return`<div class="fin-grid">
-  ${fc('Darlehen','#ff6b35',fr('Darlehenssumme',eu(c.darlehen))+fr('Zinssatz',pf(p(S.zinssatz)))+fr('Anfäng. Tilgung',pf(p(S.tilgung)))+fr('Monatl. Rate',eu(c.fin.rate),true)+fr('davon Zinsen',eu(c.fin.zinsen))+fr('davon Tilgung',eu(c.fin.tilgung)))}
-  ${fc('Eigenkapital & Gesamt','#34c759',fr('Kaufpreis',eu(S.kaufpreis))+fr('Nebenkosten',eu(c.nkGes))+fr('Anfängl. Invest.',eu(S.anfInvest))+fr('Gesamtinvestition',eu(c.gI),true)+fr('Eigenkapital',eu(c.ek),true)+fr('EK-Anteil',pf(c.ek/(c.gI||1))))}
-  ${fc('Nebenkosten','#8e8e93',fr('Makler',eu(c.nkObj.makler))+fr('Notar & Grundbuch',eu(c.nkObj.notar))+fr('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))+fr('Summe',eu(c.nkGes),true)+fr('in % Kaufpreis',pf(c.nkGes/(S.kaufpreis||1))))}
-  ${fc('Steuern & AfA','#5856d6',fr('AfA-Satz',pf(p(S.afa)))+fr('Gebäudeanteil',pf(p(S.gebaude)))+fr('Monatl. AfA',eu(c.afaM))+fr('Grenzsteuersatz',pf(p(S.steuer)))+fr('Monatl. Steuern',eu(c.stM),true))}
+  return`
+${secH('🏦','Finanzierungsübersicht')}
+<div class="grid-2" style="margin-bottom:var(--gap)">
+  <div class="card"><div class="card-header"><span class="card-header-icon">📄</span><span class="card-title">Darlehen</span></div><div class="card-body">
+    ${drow('Darlehenssumme',eu(c.dar))}${drow('Zinssatz',pf(p(S.zinssatz)))}${drow('Anfäng. Tilgung',pf(p(S.tilgung)))}${drow('Monatl. Rate',eu(c.fin.rate),true)}${drow('davon Zinsen',eu(c.fin.zinsen))}${drow('davon Tilgung',eu(c.fin.tilgung))}
+  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">💰</span><span class="card-title">Eigenkapital & Gesamtinvestition</span></div><div class="card-body">
+    ${drow('Kaufpreis',eu(S.kaufpreis))}${drow('Nebenkosten',eu(c.nkGes))}${drow('Anfängl. Invest.',eu(S.anfInvest))}${drow('Gesamtinvestition',eu(c.gI),true)}${drow('Eigenkapital',eu(c.ek),true)}${drow('EK-Anteil',pf(c.ek/(c.gI||1)))}
+  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">📋</span><span class="card-title">Kaufnebenkosten</span></div><div class="card-body">
+    ${drow('Makler',eu(c.nkObj.makler))}${drow('Notar & Grundbuch',eu(c.nkObj.notar))}${drow('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))}${drow('Summe',eu(c.nkGes),true)}${drow('in % des Kaufpreises',pf(c.nkGes/(S.kaufpreis||1)))}
+  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">📊</span><span class="card-title">Steuern & AfA</span></div><div class="card-body">
+    ${drow('AfA-Satz',pf(p(S.afa)))}${drow('Gebäudeanteil',pf(p(S.gebaude)))}${drow('Monatl. AfA',eu(c.afaM))}${drow('Grenzsteuersatz',pf(p(S.steuer)))}${drow('Monatl. Steuern',eu(c.stM),true)}
+  </div></div>
 </div>
-<div class="tplan-accordion${tplanOpen?' open':''}" id="tplan-acc">
-  <div class="tplan-header" onclick="toggleTilgung()">
-    <div class="tplan-icon">📅</div>
-    <div><div class="tplan-title">Tilgungsplan</div></div>
-    <div style="flex:1"></div>
-    <div class="tplan-meta"><span>Volltilgung: <strong>${vollTilgJahr}</strong></span><span>Gesamt-Zinsen: <strong>${eu(gesamtZinsen)}</strong></span><span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span></div>
-    <span class="tplan-chevron">▾</span>
+<div class="sec-divider"></div>
+${secH('📅','Tilgungsplan')}
+<div class="accordion${tplanOpen?' open':''}" id="tplan-acc">
+  <div class="accordion-header" onclick="toggleTP()">
+    <div class="accordion-icon">📅</div>
+    <span class="accordion-title">Jahresübersicht</span>
+    <div class="accordion-meta">
+      <span>Volltilgung: <strong>${vollJ}</strong></span>
+      <span>Gesamt-Zinsen: <strong>${eu(gZinsen)}</strong></span>
+      <span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span>
+    </div>
+    <span class="accordion-chevron">▾</span>
   </div>
-  <div class="tplan-body"><div class="tplan-inner"><div style="overflow-x:auto">
-    <table class="tbl"><thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate/Monat</th></tr></thead><tbody>${rows}</tbody></table>
+  <div class="accordion-body"><div class="accordion-inner"><div style="overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate / Monat</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
   </div></div></div>
-</div>`;
+</div>
+<div class="disclaimer">Keine Gewähr für Richtigkeit. Kein Ersatz für Rechts-, Steuer- oder Finanzberatung.</div>`;
 }
 
 let activeTab='eingaben';
