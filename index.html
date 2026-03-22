@@ -1,64 +1,68 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:13px;background:#f0ede8;color:#2c2c2e;min-height:100vh}
+:root{
+  --fs-xs:clamp(10px,1.1vw,12px);
+  --fs-sm:clamp(12px,1.3vw,14px);
+  --fs-md:clamp(13px,1.5vw,15px);
+  --fs-lg:clamp(15px,1.8vw,18px);
+  --fs-xl:clamp(18px,2.2vw,22px);
+  --fs-label:clamp(9px,1vw,11px);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:var(--fs-md);background:#f0ede8;color:#2c2c2e;min-height:100vh}
 .shell{display:flex;flex-direction:column;min-height:100vh}
 .topbar{background:#eae7e1;border-bottom:1px solid #d6d2cb;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
 .topbar-brand{display:flex;align-items:baseline;gap:10px;padding:14px 0}
-.topbar-logo{font-size:16px;font-weight:700;color:#2c2c2e;letter-spacing:-.3px}
-.topbar-obj{font-size:12px;color:#8e8e93}
+.topbar-logo{font-size:var(--fs-lg);font-weight:700;color:#2c2c2e;letter-spacing:-.3px}
+.topbar-obj{font-size:var(--fs-sm);color:#8e8e93}
 .tab-bar{display:flex}
-.tab{padding:14px 16px;font-size:13px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:#8e8e93;transition:all .12s;user-select:none;white-space:nowrap}
+.tab{padding:14px clamp(10px,1.4vw,18px);font-size:var(--fs-sm);font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:#8e8e93;transition:all .12s;user-select:none;white-space:nowrap}
 .tab:hover{color:#3a3a3c}
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
-.content{flex:1;padding:20px 24px}
+.content{flex:1;padding:clamp(14px,2vw,24px)}
 
-/* cockpit top row: kennzahlen + cashflow side by side */
-.cockpit-top{display:grid;grid-template-columns:1fr 280px;gap:14px;margin-bottom:20px;align-items:start}
-.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.kcard{background:white;border-radius:10px;padding:10px 12px;border:1px solid #e0dcd6;display:flex;align-items:center;gap:10px}
-.kcard-left{flex:1;min-width:0}
-.kbadge{display:inline-flex;align-items:center;font-size:9px;font-weight:600;padding:2px 6px;border-radius:20px;margin-bottom:4px}
+/* cockpit */
+.cockpit-top{display:grid;grid-template-columns:1fr clamp(220px,22vw,300px);gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(14px,2vw,20px);align-items:start}
+.kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,0.8vw,10px)}
+.kcard{background:white;border-radius:10px;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);border:1px solid #e0dcd6}
+.kbadge{display:inline-flex;align-items:center;font-size:var(--fs-xs);font-weight:600;padding:2px 7px;border-radius:20px;margin-bottom:5px}
 .kg{background:#e3f9e5;color:#1a7f37}.ky{background:#fff3cd;color:#856404}.kr{background:#fde8e8;color:#b91c1c}
-.kcard-label{font-size:10px;color:#8e8e93;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kcard-val{font-size:15px;font-weight:700;letter-spacing:-.2px;white-space:nowrap}
-.kcard-sub{font-size:9px;color:#8e8e93;margin-top:1px}
-
-/* cashflow box */
+.kcard-label{font-size:var(--fs-xs);color:#8e8e93;margin-bottom:2px}
+.kcard-val{font-size:var(--fs-lg);font-weight:700;letter-spacing:-.2px;white-space:nowrap}
+.kcard-sub{font-size:var(--fs-xs);color:#8e8e93;margin-top:2px}
 .cf-box{background:white;border-radius:12px;border:1px solid #e0dcd6;overflow:hidden}
-.cf-title{font-size:10px;font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.6px;padding:10px 14px 6px}
-.cfr{display:flex;justify-content:space-between;padding:7px 14px;border-bottom:1px solid #f7f5f2;font-size:12px}
+.cf-title{font-size:var(--fs-label);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.6px;padding:10px 14px 6px}
+.cfr{display:flex;justify-content:space-between;padding:clamp(6px,0.8vw,9px) clamp(10px,1.2vw,14px);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
 .cfr:last-child{border-bottom:none}
-.cft{font-weight:600;font-size:12px}
+.cft{font-weight:600;font-size:var(--fs-md)}
 .gv{color:#1a7f37;font-weight:600}.rv{color:#b91c1c;font-weight:600}
-
-.slabel{font-size:10px;font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
-.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:20px}
-.block{background:white;border-radius:12px;padding:14px 16px;border:1px solid #e0dcd6}
-.block-title{font-size:11px;font-weight:600;color:#ff6b35;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #f0ede8}
-.brow{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;font-size:12px;border-bottom:1px solid #f7f5f2}
+.slabel{font-size:var(--fs-label);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,1vw,12px);margin-bottom:clamp(14px,2vw,20px)}
+.block{background:white;border-radius:12px;padding:clamp(10px,1.2vw,14px) clamp(12px,1.4vw,16px);border:1px solid #e0dcd6}
+.block-title{font-size:var(--fs-xs);font-weight:600;color:#ff6b35;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #f0ede8}
+.brow{display:flex;justify-content:space-between;align-items:baseline;padding:clamp(3px,0.4vw,5px) 0;font-size:var(--fs-sm);border-bottom:1px solid #f7f5f2}
 .brow:last-child{border-bottom:none}
 .brow.bb{font-weight:600}.brow.bm{color:#8e8e93}
-.disc{font-size:10px;color:#8e8e93;margin-top:8px}
-.fin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.chart-wrap{background:white;border-radius:12px;border:1px solid #e0dcd6;padding:16px;margin-bottom:12px}
-.chart-title{font-size:12px;font-weight:600;color:#3a3a3c;margin-bottom:12px}
-.tbl{width:100%;border-collapse:collapse;font-size:11px;background:white;border-radius:12px;overflow:hidden;border:1px solid #e0dcd6}
-.tbl th{background:#3a3a3c;color:white;padding:8px 10px;text-align:right;font-size:10px;font-weight:600}
+.disc{font-size:var(--fs-xs);color:#8e8e93;margin-top:8px}
+.fin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1vw,12px)}
+.chart-wrap{background:white;border-radius:12px;border:1px solid #e0dcd6;padding:clamp(12px,1.5vw,18px);margin-bottom:12px}
+.chart-title{font-size:var(--fs-sm);font-weight:600;color:#3a3a3c;margin-bottom:12px}
+.tbl{width:100%;border-collapse:collapse;font-size:var(--fs-sm);background:white;border-radius:12px;overflow:hidden;border:1px solid #e0dcd6}
+.tbl th{background:#3a3a3c;color:white;padding:clamp(7px,0.9vw,10px) clamp(8px,1vw,12px);text-align:right;font-size:var(--fs-xs);font-weight:600}
 .tbl th:first-child{text-align:left}
-.tbl td{padding:6px 10px;border-bottom:1px solid #f7f5f2;text-align:right}
+.tbl td{padding:clamp(5px,0.7vw,8px) clamp(8px,1vw,12px);border-bottom:1px solid #f7f5f2;text-align:right}
 .tbl td:first-child{text-align:left;font-weight:500}
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl .paid{color:#1a7f37;font-weight:600}
 
 /* eingaben */
-.inp-page{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.inp-page{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1.2vw,14px);align-items:start}
 .inp-card{background:white;border-radius:14px;border:1px solid #e0dcd6;overflow:hidden}
-.inp-card-header{padding:11px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;transition:background .12s}
+.inp-card-header{padding:clamp(9px,1.1vw,13px) clamp(12px,1.4vw,16px);display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;transition:background .12s}
 .inp-card-header:hover{background:#faf9f7}
-.inp-card-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.inp-card-title{font-size:13px;font-weight:600;flex:1}
-.inp-card-meta{font-size:11px;color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px;transition:opacity .2s}
+.inp-card-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.inp-card-title{font-size:var(--fs-md);font-weight:600;flex:1}
+.inp-card-meta{font-size:var(--fs-xs);color:#8e8e93;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px;transition:opacity .2s}
 .chevron{font-size:11px;color:#c0bbb4;transition:transform .25s;margin-left:4px;flex-shrink:0}
 .inp-card-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s cubic-bezier(.4,0,.2,1)}
 .inp-card-body-inner{overflow:hidden;border-top:0px solid #f0ede8;transition:border-top-width .01s .28s}
@@ -66,24 +70,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .inp-card.open .inp-card-body-inner{border-top-width:1px;transition:border-top-width .01s 0s}
 .inp-card.open .chevron{transform:rotate(180deg)}
 .inp-card.open .inp-card-meta{opacity:0;pointer-events:none}
-.irow{display:flex;align-items:center;padding:6px 14px;gap:8px;border-bottom:1px solid #f7f5f2;position:relative}
+.irow{display:flex;align-items:center;padding:clamp(5px,0.7vw,8px) clamp(12px,1.4vw,16px);gap:8px;border-bottom:1px solid #f7f5f2;position:relative}
 .irow:last-child{border-bottom:none}
 .irow:hover{background:#faf9f7}
-.ilabel{flex:1;font-size:12px;color:#3a3a3c;line-height:1.3;min-width:0}
-.ifield{display:flex;align-items:center;gap:4px;flex-shrink:0}
-.ifield input[type=number]{width:84px;padding:5px 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:12px;text-align:right;background:#f5f2ed;color:#0055cc;font-weight:500;-moz-appearance:textfield;transition:border-color .15s,background .15s}
+.ilabel{flex:1;font-size:var(--fs-sm);color:#3a3a3c;line-height:1.3;min-width:0}
+.ifield{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.ifield input[type=number]{width:clamp(72px,7vw,92px);padding:clamp(4px,0.5vw,6px) 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);text-align:right;background:#f5f2ed;color:#0055cc;font-weight:500;-moz-appearance:textfield;transition:border-color .15s,background .15s}
 .ifield input[type=number]:focus{outline:none;border-color:#ff6b35;background:white}
 .ifield input[type=number]::-webkit-inner-spin-button,.ifield input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-.ifield input[type=text]{width:150px;padding:5px 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:12px;background:#f5f2ed;color:#0055cc;font-weight:500;transition:border-color .15s}
+.ifield input[type=text]{width:clamp(120px,13vw,160px);padding:clamp(4px,0.5vw,6px) 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);background:#f5f2ed;color:#0055cc;font-weight:500;transition:border-color .15s}
 .ifield input[type=text]:focus{outline:none;border-color:#ff6b35;background:white}
-.iunit{font-size:10px;color:#8e8e93;min-width:20px}
-.iinfo{width:15px;height:15px;border-radius:50%;background:#e8e5df;border:none;cursor:pointer;font-size:9px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;line-height:1}
+.iunit{font-size:var(--fs-xs);color:#8e8e93;min-width:20px}
+.iinfo{width:16px;height:16px;border-radius:50%;background:#e8e5df;border:none;cursor:pointer;font-size:10px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;line-height:1}
 .iinfo:hover{background:#d6d2cb;color:#3a3a3c}
-.tooltip{display:none;position:absolute;right:28px;top:50%;transform:translateY(-50%);background:#2c2c2e;color:white;font-size:11px;border-radius:8px;padding:9px 12px;width:230px;z-index:200;line-height:1.55;pointer-events:none}
+.tooltip{display:none;position:absolute;right:28px;top:50%;transform:translateY(-50%);background:#2c2c2e;color:white;font-size:var(--fs-xs);border-radius:8px;padding:9px 12px;width:230px;z-index:200;line-height:1.55;pointer-events:none}
 .tooltip::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:#2c2c2e;border-right:none}
 .iinfo:hover .tooltip{display:block}
 .tt-title{font-weight:600;margin-bottom:3px}
-.tt-std{color:#aaa;font-size:10px;margin-top:4px}
+.tt-std{color:#aaa;font-size:var(--fs-xs);margin-top:4px}
 </style>
 
 <div class="shell">
@@ -140,7 +144,7 @@ const CARDS=[
   {id:'c2',title:'Miete & Mietausfall',icon:'🏷️',color:'#34c759',open:true,fields:[
     {k:'mietePqm',l:'Kaltmiete pro m²',u:'€',step:0.5,info:'Erzielbare Kaltmiete je m².',std:'6 – 15 €/m²'},
     {k:'stellplatz',l:'Stellplatz / Garage',u:'€/Mo.',step:5,info:'Zusätzliche Mieteinnahmen für Stellplatz.',std:'0 – 80 €/Monat'},
-    {k:'mietausfall',l:'Kalk. Mietausfall',u:'%',step:0.5,info:'Sicherheitsabschlag für Leerstand & Mietausfall.',std:'3 % ≈ 2 Wochen/Jahr'},
+    {k:'mietausfall',l:'Kalk. Mietausfall',u:'%',step:0.5,info:'Sicherheitsabschlag für Leerstand.',std:'3 % ≈ 2 Wochen/Jahr'},
     {k:'ruecklage',l:'Instandhaltungsrücklage',u:'€/m²/Jahr',step:0.5,info:'Eigene Rücklage für Reparaturen.',std:'8 – 12 €/m²/Jahr'}
   ]},
   {id:'c3',title:'Bewirtschaftungskosten',icon:'🔧',color:'#ff9f0a',open:false,fields:[
@@ -150,7 +154,7 @@ const CARDS=[
     {k:'sonstverwalt',l:'Sonstige Verwaltung',u:'€/Mo.',step:10,info:'Hausverwaltung, Steuerberater.',std:'0 – 50 €/Monat'}
   ]},
   {id:'c4',title:'Finanzierung',icon:'🏦',color:'#007aff',open:true,fields:[
-    {k:'darlehenIA',l:'Darlehen I (% vom Kaufpreis)',u:'%',step:1,info:'Beleihungsquote. 90% = 10% Eigenkapital.',std:'80 – 90 %'},
+    {k:'darlehenIA',l:'Darlehen I (% vom KP)',u:'%',step:1,info:'Beleihungsquote. 90% = 10% Eigenkapital.',std:'80 – 90 %'},
     {k:'zinssatzI',l:'Zinssatz Darlehen I',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung.',std:'ca. 3,5 – 4,5 % p.a.'},
     {k:'tilgungI',l:'Anfängl. Tilgung I',u:'%',step:0.1,info:'2% = ca. 35 Jahre Laufzeit.',std:'2 % p.a.'},
     {k:'darlehenII',l:'Darlehen II',u:'€',step:1000,info:'Optionales zweites Darlehen (z.B. KfW).',std:'0 oder KfW-Betrag'},
@@ -159,7 +163,7 @@ const CARDS=[
   ]},
   {id:'c5',title:'Steuern & AfA',icon:'📊',color:'#5856d6',open:false,fields:[
     {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'2% Bestandsbauten, 3% Neubauten (ab 2023).',std:'2 % Bestand · 3 % Neubau'},
-    {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück.',std:'60 – 80 %'},
+    {k:'gebaude',l:'Gebäudeanteil am KP',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück.',std:'60 – 80 %'},
     {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Grenzsteuersatz auf zusätzliches Einkommen.',std:'42 % ab ~66.000 € zvE'}
   ]},
   {id:'c6',title:'Prognose & Wachstum',icon:'📈',color:'#34c759',open:false,fields:[
@@ -182,13 +186,10 @@ function toggleCard(id){
   if(meta)meta.textContent=openState[id]?'':summaryText(CARDS.find(c=>c.id===id));
 }
 function summaryText(card){
-  const parts=card.fields.filter(f=>f.t!=='text').slice(0,2).map(f=>{
+  return card.fields.filter(f=>f.t!=='text').slice(0,2).map(f=>{
     const v=S[f.k];
-    if(f.u==='€')return eu(v);
-    if(f.u==='%')return v.toFixed(f.step<0.1?2:1)+'%';
-    return String(v);
-  });
-  return parts.join(' · ');
+    return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
+  }).join(' · ');
 }
 function buildEingaben(){
   let html='<div class="inp-page">';
@@ -257,9 +258,7 @@ function famp(v){return v<=SW.fk[0]?'kg':v<=SW.fk[1]?'ky':'kr'}
 const ALBL={kg:'Gut',ky:'Ok',kr:'Kritisch'};
 const ACOL={kg:'#1a7f37',ky:'#856404',kr:'#b91c1c'};
 
-function kc(l,v,a,s){
-  return`<div class="kcard"><div class="kcard-left"><span class="kbadge ${a}">${ALBL[a]}</span><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div></div>`;
-}
+function kc(l,v,a,s){return`<div class="kcard"><span class="kbadge ${a}">${ALBL[a]}</span><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`}
 function br(l,v,cls=''){return`<div class="brow ${cls}"><span>${l}</span><span>${v}</span></div>`}
 function cfr(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
 function cfrt(l,v,a){return`<div class="cfr cft" style="background:${a==='kg'?'#f0faf1':a==='ky'?'#fffbeb':'#fef2f2'}"><span>${l}</span><span style="color:${ACOL[a]}">${eu(v)}</span></div>`}
@@ -296,26 +295,13 @@ function buildCockpit(c){
 <div class="slabel">Übersicht</div>
 <div class="row3">
   <div class="block"><div class="block-title">Investition</div>
-    ${br('Kaufpreis',eu(S.kaufpreis))}
-    ${br('Kaufnebenkosten',eu(c.nkGes),'bm')}
-    ${br('Anfängl. Invest.',eu(S.anfInvest),'bm')}
-    ${br('Gesamtinvestition',eu(c.gI),'bb')}
-    ${br('Kaufpreis/m²',eu(S.kaufpreis/(S.wohnflaeche||1)),'bm')}
+    ${br('Kaufpreis',eu(S.kaufpreis))}${br('Kaufnebenkosten',eu(c.nkGes),'bm')}${br('Anfängl. Invest.',eu(S.anfInvest),'bm')}${br('Gesamtinvestition',eu(c.gI),'bb')}${br('Kaufpreis/m²',eu(S.kaufpreis/(S.wohnflaeche||1)),'bm')}
   </div>
   <div class="block"><div class="block-title">Miete & Bewirtschaftung</div>
-    ${br('Kaltmiete/m²',S.mietePqm.toFixed(2)+' €')}
-    ${br('Nettokaltmiete',eu(c.nkm)+'/Mo.')}
-    ${br('– Mietausfall','–'+eu(c.mao)+'/Mo.','bm')}
-    ${br('Nettokaltmiete eff.',eu(c.nkmE)+'/Mo.','bb')}
-    ${br('Bewirtschaftung','–'+eu(c.bk)+'/Mo.','bm')}
+    ${br('Kaltmiete/m²',S.mietePqm.toFixed(2)+' €')}${br('Nettokaltmiete',eu(c.nkm)+'/Mo.')}${br('– Mietausfall','–'+eu(c.mao)+'/Mo.','bm')}${br('Nettokaltmiete eff.',eu(c.nkmE)+'/Mo.','bb')}${br('Bewirtschaftung','–'+eu(c.bk)+'/Mo.','bm')}
   </div>
   <div class="block"><div class="block-title">Finanzierung</div>
-    ${br('Gesamtdarlehen',eu(c.dG))}
-    ${br('Eigenkapital',eu(c.ek),'bb')}
-    ${br('EK-Anteil',pf(c.ek/(c.gI||1)),'bm')}
-    ${br('Kapitaldienst',eu(c.kd)+'/Mo.','bb')}
-    ${br('davon Zinsen',eu(c.zi)+'/Mo.','bm')}
-    ${br('davon Tilgung',eu(c.ti)+'/Mo.','bm')}
+    ${br('Gesamtdarlehen',eu(c.dG))}${br('Eigenkapital',eu(c.ek),'bb')}${br('EK-Anteil',pf(c.ek/(c.gI||1)),'bm')}${br('Kapitaldienst',eu(c.kd)+'/Mo.','bb')}${br('davon Zinsen',eu(c.zi)+'/Mo.','bm')}${br('davon Tilgung',eu(c.ti)+'/Mo.','bm')}
   </div>
 </div>
 <div class="disc">Keine Gewähr für Richtigkeit. Kein Ersatz für Rechts-, Steuer- oder Finanzberatung.</div>`;
@@ -333,13 +319,13 @@ function buildFin(c){
 
 let charts={};
 function buildCharts(){
-  return`<div class="chart-wrap"><div class="chart-title">Wertentwicklung & Restschuld</div><div style="position:relative;width:100%;height:260px"><canvas id="cW"></canvas></div></div>
-<div class="chart-wrap"><div class="chart-title">Cashflow-Entwicklung (monatlich, nach Steuern)</div><div style="position:relative;width:100%;height:260px"><canvas id="cC"></canvas></div></div>`;
+  return`<div class="chart-wrap"><div class="chart-title">Wertentwicklung & Restschuld</div><div style="position:relative;width:100%;height:280px"><canvas id="cW"></canvas></div></div>
+<div class="chart-wrap"><div class="chart-title">Cashflow-Entwicklung (monatlich, nach Steuern)</div><div style="position:relative;width:100%;height:280px"><canvas id="cC"></canvas></div></div>`;
 }
 function renderCharts(c){
   ['cW','cC'].forEach(id=>{if(charts[id]){charts[id].destroy();delete charts[id]}});
   const pr=c.prj,lb=pr.map(d=>d.yr);
-  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11},color:'#3a3a3c'}}},scales:{x:{ticks:{font:{size:10},maxTicksLimit:10,color:'#8e8e93'},grid:{color:'#f0ede8'}},y:{ticks:{font:{size:10},color:'#8e8e93'},grid:{color:'#f0ede8'}}}};
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:12},color:'#3a3a3c'}}},scales:{x:{ticks:{font:{size:11},maxTicksLimit:10,color:'#8e8e93'},grid:{color:'#f0ede8'}},y:{ticks:{font:{size:11},color:'#8e8e93'},grid:{color:'#f0ede8'}}}};
   const cW=document.getElementById('cW'),cC=document.getElementById('cC');
   if(!cW||!cC)return;
   const o1=JSON.parse(JSON.stringify(base));o1.scales.y.ticks.callback=v=>(v/1000).toFixed(0)+'k €';
