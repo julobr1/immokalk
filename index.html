@@ -21,8 +21,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .content{flex:1;padding:clamp(14px,2vw,24px)}
 .cockpit-top{display:grid;grid-template-columns:1fr clamp(220px,22vw,300px);gap:clamp(10px,1.5vw,16px);margin-bottom:clamp(14px,2vw,20px);align-items:start}
 .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,0.8vw,10px)}
-
-/* Kennzahl-Karte mit Info-Button */
 .kcard{background:white;border-radius:10px;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px);border:1px solid #e0dcd6;position:relative}
 .kcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px}
 .kbadge{display:inline-flex;align-items:center;font-size:var(--fs-xs);font-weight:600;padding:2px 7px;border-radius:20px}
@@ -30,37 +28,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .kcard-label{font-size:var(--fs-xs);color:#8e8e93;margin-bottom:2px}
 .kcard-val{font-size:var(--fs-lg);font-weight:700;letter-spacing:-.2px;white-space:nowrap}
 .kcard-sub{font-size:var(--fs-xs);color:#8e8e93;margin-top:2px}
-
-/* Info-Button auf Karte */
 .kinfo-btn{width:16px;height:16px;border-radius:50%;background:#ede9e2;border:none;cursor:pointer;font-size:9px;font-weight:700;color:#8e8e93;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;margin-top:1px}
 .kinfo-btn:hover{background:#d6d2cb;color:#3a3a3c}
-
-/* Tooltip für Kennzahlen — nach unten oder links öffnen */
-.ktooltip{
-  display:none;
-  position:absolute;
-  top:calc(100% + 8px);
-  right:0;
-  background:#1c1c1e;
-  color:#f2f2f7;
-  font-size:var(--fs-xs);
-  border-radius:12px;
-  padding:12px 14px;
-  width:260px;
-  z-index:400;
-  line-height:1.6;
-  pointer-events:none;
-  box-shadow:0 8px 24px rgba(0,0,0,.2);
-}
-.ktooltip::before{
-  content:'';
-  position:absolute;
-  top:-5px;
-  right:5px;
-  border:5px solid transparent;
-  border-bottom-color:#1c1c1e;
-  border-top:none;
-}
+.ktooltip{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1c1c1e;color:#f2f2f7;font-size:var(--fs-xs);border-radius:12px;padding:12px 14px;width:260px;z-index:400;line-height:1.6;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.ktooltip::before{content:'';position:absolute;top:-5px;right:5px;border:5px solid transparent;border-bottom-color:#1c1c1e;border-top:none}
 .kinfo-btn:hover .ktooltip{display:block}
 .kt-title{font-weight:600;font-size:var(--fs-sm);margin-bottom:6px;color:#fff}
 .kt-desc{color:#c8c8cc;margin-bottom:8px}
@@ -69,7 +40,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .kt-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .kt-dot.g{background:#34c759}.kt-dot.y{background:#f4d03f}.kt-dot.r{background:#ff453a}
 .kt-rowlbl{color:#aaa}
-
 .cf-box{background:white;border-radius:12px;border:1px solid #e0dcd6;overflow:hidden}
 .cfr{display:flex;justify-content:space-between;padding:clamp(6px,0.8vw,9px) clamp(10px,1.2vw,14px);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
 .cfr:last-child{border-bottom:none}
@@ -105,6 +75,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl tr:hover{background:#fff8f5}
 .tbl .paid{color:#1a7f37;font-weight:600}
 .tbl .highlight-row{background:#fff8f5;font-weight:600}
+
+/* ── Fazit-Box ── */
+.fazit{border-radius:14px;border:1.5px solid;padding:16px 20px;margin-bottom:clamp(14px,2vw,20px);display:flex;gap:14px;align-items:flex-start}
+.fazit-icon{font-size:28px;flex-shrink:0;line-height:1}
+.fazit-body{flex:1;min-width:0}
+.fazit-verdict{font-size:var(--fs-lg);font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+.fazit-summary{font-size:var(--fs-sm);line-height:1.55;margin-bottom:10px}
+.fazit-points{display:flex;flex-direction:column;gap:4px}
+.fazit-point{display:flex;align-items:baseline;gap:7px;font-size:var(--fs-xs);line-height:1.4}
+.fp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.fazit.green{background:#f0faf1;border-color:#86efac}
+.fazit.green .fazit-verdict{color:#15803d}
+.fazit.green .fazit-summary{color:#166534}
+.fazit.green .fazit-point{color:#166534}
+.fazit.green .fp-dot{background:#22c55e}
+.fazit.yellow{background:#fefce8;border-color:#fde047}
+.fazit.yellow .fazit-verdict{color:#854d0e}
+.fazit.yellow .fazit-summary{color:#713f12}
+.fazit.yellow .fazit-point{color:#713f12}
+.fazit.yellow .fp-dot{background:#eab308}
+.fazit.red{background:#fff1f2;border-color:#fca5a5}
+.fazit.red .fazit-verdict{color:#9f1239}
+.fazit.red .fazit-summary{color:#881337}
+.fazit.red .fazit-point{color:#881337}
+.fazit.red .fp-dot{background:#f43f5e}
+
+/* eingaben */
 .inp-layout{display:grid;grid-template-columns:260px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:400px}
 .inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0;display:flex;flex-direction:column}
 .inp-nav-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
@@ -179,65 +176,16 @@ const S={
 };
 
 const KINFO={
-  bm:{
-    title:'Bruttomietrendite',
-    desc:'Verhältnis der jährlichen Kaltmiete zum Kaufpreis. Schnellcheck ohne Kosten — je höher desto besser.',
-    scale:[
-      {c:'g',lbl:'Gut: über 6 %'},
-      {c:'y',lbl:'Ok: 5 – 6 %'},
-      {c:'r',lbl:'Kritisch: unter 5 %'}
-    ]
-  },
-  nm:{
-    title:'Nettomietrendite',
-    desc:'Wie die Bruttomietrendite, aber nach Abzug aller Bewirtschaftungskosten. Realistischerer Vergleichswert.',
-    scale:[
-      {c:'g',lbl:'Gut: über 5 %'},
-      {c:'y',lbl:'Ok: 4 – 5 %'},
-      {c:'r',lbl:'Kritisch: unter 4 %'}
-    ]
-  },
-  fakt:{
-    title:'Kaufpreisfaktor',
-    desc:'Kaufpreis geteilt durch die jährliche Kaltmiete. Zeigt, wie viele Jahreskaltmieten man für das Objekt zahlt. Niedrigerer Faktor = besseres Geschäft.',
-    scale:[
-      {c:'g',lbl:'Gut: unter 20x'},
-      {c:'y',lbl:'Ok: 20 – 25x'},
-      {c:'r',lbl:'Teuer: über 25x'}
-    ]
-  },
-  cfo:{
-    title:'Cashflow operativ (vor Steuern)',
-    desc:'Monatlicher Überschuss aus Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten. Zeigt ob das Objekt sich selbst trägt.',
-    scale:[
-      {c:'g',lbl:'Gut: über +100 €/Mo.'},
-      {c:'y',lbl:'Ok: 0 – +100 €/Mo.'},
-      {c:'r',lbl:'Kritisch: negativ (Zuzahlung nötig)'}
-    ]
-  },
-  cfn:{
-    title:'Cashflow nach Steuern',
-    desc:'Tatsächlicher monatlicher Über- oder Unterschuss nach allen Kosten inkl. Steuer. Gibt an, was monatlich wirklich aus der eigenen Tasche fließt oder übrig bleibt.',
-    scale:[
-      {c:'g',lbl:'Gut: über +100 €/Mo.'},
-      {c:'y',lbl:'Ok: 0 – +100 €/Mo.'},
-      {c:'r',lbl:'Kritisch: negativ'}
-    ]
-  },
-  afa:{
-    title:'Monatliche AfA',
-    desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein echter Geldfluss, aber steuerlich absetzbar — reduziert das zu versteuernde Einkommen und damit die Steuerlast.',
-    scale:[
-      {c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},
-      {c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},
-      {c:'r',lbl:'Kein schlechter Wert — nur Kontext'}
-    ]
-  }
+  bm:{title:'Bruttomietrendite',desc:'Verhältnis der jährlichen Kaltmiete zum Kaufpreis. Schnellcheck ohne Kosten.',scale:[{c:'g',lbl:'Gut: über 6 %'},{c:'y',lbl:'Ok: 5 – 6 %'},{c:'r',lbl:'Kritisch: unter 5 %'}]},
+  nm:{title:'Nettomietrendite',desc:'Wie die Bruttomietrendite, aber nach Abzug aller Bewirtschaftungskosten.',scale:[{c:'g',lbl:'Gut: über 5 %'},{c:'y',lbl:'Ok: 4 – 5 %'},{c:'r',lbl:'Kritisch: unter 4 %'}]},
+  fakt:{title:'Kaufpreisfaktor',desc:'Kaufpreis geteilt durch die jährliche Kaltmiete. Niedrigerer Faktor = besseres Geschäft.',scale:[{c:'g',lbl:'Gut: unter 20x'},{c:'y',lbl:'Ok: 20 – 25x'},{c:'r',lbl:'Teuer: über 25x'}]},
+  cfo:{title:'Cashflow operativ (vor Steuern)',desc:'Monatlicher Überschuss nach Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ (Zuzahlung nötig)'}]},
+  cfn:{title:'Cashflow nach Steuern',desc:'Tatsächlicher monatlicher Über- oder Unterschuss nach allen Kosten inkl. Steuer.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
+  afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein Geldfluss, aber steuerlich absetzbar.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},{c:'r',lbl:'Kein schlechter Wert — nur Kontext'}]}
 };
 
 function kInfoTooltip(key){
-  const d=KINFO[key];
-  if(!d)return'';
+  const d=KINFO[key];if(!d)return'';
   const rows=d.scale.map(r=>`<div class="kt-row"><div class="kt-dot ${r.c}"></div><span class="kt-rowlbl">${r.lbl}</span></div>`).join('');
   return`<div class="ktooltip"><div class="kt-title">${d.title}</div><div class="kt-desc">${d.desc}</div><div class="kt-scale">${rows}</div></div>`;
 }
@@ -256,8 +204,8 @@ const GROUPS=[
     {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc. zusätzlich zum Kaufpreis.',std:'0 – 30.000 €'}
   ]},
   {id:'g1',icon:'📋',title:'Kaufnebenkosten',fields:[
-    {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'Maklerprovision des Käufers. In DE meist 3,57%.',std:'3,57 %'},
-    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ca. 1,5% + Grundbuchamt ca. 0,5% = ~2%.',std:'2,0 %'},
+    {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'In DE meist 3,57%.',std:'3,57 %'},
+    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ~1,5% + Grundbuchamt ~0,5%.',std:'2,0 %'},
     {k:'grunderwerb',l:'Grunderwerbsteuer',u:'%',step:0.1,info:'Bayern 3,5% — NRW & SH 6,5%.',std:'NRW: 6,5% · Bayern: 3,5%'}
   ]},
   {id:'g2',icon:'🏷️',title:'Miete',fields:[
@@ -270,14 +218,14 @@ const GROUPS=[
     {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,auto:true,autoFn:'autoGrundsteuer',hint:'Automatisch: 0,90 €/m² × Wohnfläche',info:'Monatlicher Anteil der Grundsteuer.',std:'Jahresbescheid ÷ 12'}
   ]},
   {id:'g4',icon:'🏦',title:'Finanzierung',fields:[
-    {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'Beleihungsquote. 90% = 10% Eigenkapital.',std:'80 – 90 %'},
+    {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'90% = 10% Eigenkapital.',std:'80 – 90 %'},
     {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung.',std:'ca. 3,5 – 4,5 % p.a.'},
     {k:'tilgung',l:'Anfängliche Tilgung',u:'%',step:0.1,info:'2% p.a. = ca. 35 Jahre Laufzeit.',std:'2 % p.a.'}
   ]},
   {id:'g5',icon:'📊',title:'Steuern & AfA',fields:[
-    {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'2% Bestandsbauten, 3% Neubauten ab 2023.',std:'2 % Bestand · 3 % Neubau'},
+    {k:'afa',l:'AfA-Satz',u:'%',step:0.1,info:'2% Bestandsbauten, 3% Neubauten ab 2023.',std:'2 % / 3 %'},
     {k:'gebaude',l:'Gebäudeanteil am Kaufpreis',u:'%',step:1,info:'Anteil des Gebäudes ohne Grundstück.',std:'60 – 80 %'},
-    {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Steuersatz auf zusätzliches Einkommen.',std:'42 % ab ca. 66.000 € zvE'}
+    {k:'steuer',l:'Persönl. Grenzsteuersatz',u:'%',step:1,info:'Dein Steuersatz auf zusätzliches Einkommen.',std:'42 % ab ~66.000 € zvE'}
   ]},
   {id:'g6',icon:'📈',title:'Prognose',fields:[
     {k:'betrjahr',l:'Betrachtungsjahr',u:'',step:1,info:'Bis zu welchem Jahr soll die Projektion gehen?',std:'Kaufjahr + 25 Jahre'},
@@ -287,8 +235,7 @@ const GROUPS=[
   ]}
 ];
 
-let activeGroup='g0';
-let tplanOpen=false;
+let activeGroup='g0', tplanOpen=false;
 
 function groupSummary(g){
   return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
@@ -296,17 +243,11 @@ function groupSummary(g){
     return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
   }).join('');
 }
-
 function resetAuto(k){
   S[k]=null;
-  if(activeTab==='eingaben'){
-    const el=document.getElementById('inp-detail');
-    const g=GROUPS.find(g=>g.id===activeGroup);
-    if(el&&g)el.innerHTML=renderDetail(g);
-  }
+  if(activeTab==='eingaben'){const el=document.getElementById('inp-detail');const g=GROUPS.find(g=>g.id===activeGroup);if(el&&g)el.innerHTML=renderDetail(g);}
   if(activeTab!=='eingaben')renderTab(activeTab);
 }
-
 function renderDetail(g){
   let html=`<div class="inp-detail-header"><span class="inp-detail-icon">${g.icon}</span><span class="inp-detail-title">${g.title}</span></div><div class="inp-detail-fields">`;
   g.fields.forEach(f=>{
@@ -314,42 +255,43 @@ function renderDetail(g){
       html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
         <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
           oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value;if(activeTab!=='eingaben')renderTab(activeTab)"></div>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
-      </div>`;
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     } else if(f.auto){
-      const isAuto=S[f.k]===null;
-      const val=isAuto?window[f.autoFn]():S[f.k];
-      html+=`<div class="irow">
-        <div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
+      const isAuto=S[f.k]===null, val=isAuto?window[f.autoFn]():S[f.k];
+      html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
         ${isAuto?'<span class="auto-badge">Auto</span>':''}
-        <div class="ifield">
-          <input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isAuto?'auto-val':''}"
-            oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
-          <span class="iunit">${f.u||''}</span>
-        </div>
+        <div class="ifield"><input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isAuto?'auto-val':''}"
+          oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
+          <span class="iunit">${f.u||''}</span></div>
         <button class="reset-btn" id="reset-${f.k}" style="display:${isAuto?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
-      </div>`;
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     } else {
       html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
-        <div class="ifield">
-          <input type="number" value="${S[f.k]}" step="${f.step||1}"
-            oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
-          <span class="iunit">${f.u||''}</span>
-        </div>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button>
-      </div>`;
+        <div class="ifield"><input type="number" value="${S[f.k]}" step="${f.step||1}"
+          oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
+          <span class="iunit">${f.u||''}</span></div>
+        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
     }
   });
   return html+'</div>';
 }
-
 function selectGroup(id){
   activeGroup=id;
   document.querySelectorAll('.inp-nav-item').forEach(el=>el.classList.toggle('active',el.dataset.gid===id));
   const g=GROUPS.find(g=>g.id===id);
   const detail=document.getElementById('inp-detail');
   if(detail&&g)detail.innerHTML=renderDetail(g);
+}
+function buildEingaben(){
+  const g=GROUPS.find(g=>g.id===activeGroup)||GROUPS[0];
+  let nav='<div class="inp-nav">';
+  GROUPS.forEach(gr=>{
+    const sum=groupSummary(gr);
+    nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
+      <span class="nav-icon">${gr.icon}</span><span class="nav-label">${gr.title}</span>
+      ${sum?`<span class="nav-summary">${sum}</span>`:''}<span class="nav-arrow">›</span></div>`;
+  });
+  return`<div class="inp-layout">${nav}</div><div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`.replace('</div><div class="inp-detail"','<div class="inp-detail"');
 }
 
 function buildEingaben(){
@@ -358,11 +300,8 @@ function buildEingaben(){
   GROUPS.forEach(gr=>{
     const sum=groupSummary(gr);
     nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
-      <span class="nav-icon">${gr.icon}</span>
-      <span class="nav-label">${gr.title}</span>
-      ${sum?`<span class="nav-summary">${sum}</span>`:''}
-      <span class="nav-arrow">›</span>
-    </div>`;
+      <span class="nav-icon">${gr.icon}</span><span class="nav-label">${gr.title}</span>
+      ${sum?`<span class="nav-summary">${sum}</span>`:''}<span class="nav-arrow">›</span></div>`;
   });
   nav+='</div>';
   return`<div class="inp-layout">${nav}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
@@ -397,18 +336,77 @@ function famp(v){return v<=SW.fk[0]?'kg':v<=SW.fk[1]?'ky':'kr'}
 const ALBL={kg:'Gut',ky:'Ok',kr:'Kritisch'};
 const ACOL={kg:'#1a7f37',ky:'#856404',kr:'#b91c1c'};
 
-function kc(l,v,a,s,infoKey){
-  return`<div class="kcard">
-    <div class="kcard-top">
-      <span class="kbadge ${a}">${ALBL[a]}</span>
-      <button class="kinfo-btn">i${kInfoTooltip(infoKey)}</button>
+function buildFazit(c){
+  const score={green:0,yellow:0,red:0};
+  const inc=a=>score[a==='kg'?'green':a==='ky'?'yellow':'red']++;
+  inc(amp(c.bR,SW.bm)); inc(amp(c.nR,SW.nm)); inc(famp(c.fakt));
+  inc(amp(c.cfOp,SW.cf)); inc(amp(c.cfNSt,SW.cf));
+
+  const points=[];
+
+  // Rendite
+  if(c.bR>=0.06) points.push({pos:true,txt:`Bruttomietrendite von ${pf(c.bR)} — solider Wert über 6 %`});
+  else if(c.bR>=0.05) points.push({pos:null,txt:`Bruttomietrendite von ${pf(c.bR)} — im mittleren Bereich`});
+  else points.push({pos:false,txt:`Bruttomietrendite von ${pf(c.bR)} — unter 5 %, schwache Rendite`});
+
+  // Faktor
+  if(c.fakt<=20) points.push({pos:true,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig bewertet`});
+  else if(c.fakt<=25) points.push({pos:null,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`});
+  else points.push({pos:false,txt:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer bewertet`});
+
+  // Cashflow
+  if(c.cfNSt>=100) points.push({pos:true,txt:`Monatlicher Cashflow von ${eu(c.cfNSt)} nach Steuern — positiv`});
+  else if(c.cfNSt>=0) points.push({pos:null,txt:`Cashflow von ${eu(c.cfNSt)}/Mo. — nahezu neutral`});
+  else points.push({pos:false,txt:`Negativer Cashflow von ${eu(c.cfNSt)}/Mo. — monatliche Zuzahlung nötig`});
+
+  // EK-Anteil
+  const ekPct=c.ek/(c.gI||1);
+  if(ekPct>=0.2) points.push({pos:true,txt:`Eigenkapitalanteil von ${pf(ekPct)} — solide Finanzierungsbasis`});
+  else if(ekPct>=0.1) points.push({pos:null,txt:`Eigenkapitalanteil von ${pf(ekPct)} — knapp kalkuliert`});
+  else points.push({pos:false,txt:`Sehr geringer Eigenkapitalanteil (${pf(ekPct)}) — hohes Finanzierungsrisiko`});
+
+  // Gesamturteil
+  let cls,icon,verdict,summary;
+  if(score.green>=3 && score.red===0){
+    cls='green'; icon='✓';
+    verdict='Interessantes Objekt';
+    summary='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow. Das Objekt trägt sich weitgehend selbst und ist als Kapitalanlage attraktiv.';
+  } else if(score.red>=3){
+    cls='red'; icon='✗';
+    verdict='Nicht empfehlenswert';
+    summary='Mehrere kritische Kennzahlen machen dieses Objekt zu einem schlechten Investment. Rendite, Cashflow oder Bewertung sind unattraktiv. Verhandlung oder Abstand empfohlen.';
+  } else if(score.green>=2 && score.red<=1){
+    cls='green'; icon='~';
+    verdict='Tendenziell interessant';
+    summary='Das Objekt zeigt überwiegend gute Kennzahlen mit einzelnen Schwächen. Mit etwas Verhandlungsspielraum beim Kaufpreis oder besserer Mietoptimierung kann es attraktiv werden.';
+  } else if(score.red>=2){
+    cls='red'; icon='!';
+    verdict='Eher nicht empfehlenswert';
+    summary='Mehrere Kennzahlen sind kritisch. Das Objekt stellt sich unter den aktuellen Bedingungen als schwaches Investment dar. Eine Nachverhandlung des Kaufpreises wäre nötig.';
+  } else {
+    cls='yellow'; icon='~';
+    verdict='Durchschnittliches Objekt';
+    summary='Die Kennzahlen sind gemischt. Das Objekt ist weder besonders attraktiv noch offensichtlich ungeeignet. Langfristig denkbar, aber mit moderaten Ertragserwartungen.';
+  }
+
+  const ptHtml=points.map(pt=>`<div class="fazit-point">
+    <div class="fp-dot" style="background:${pt.pos===true?'#22c55e':pt.pos===false?'#f43f5e':'#eab308'}"></div>
+    <span>${pt.txt}</span>
+  </div>`).join('');
+
+  return`<div class="fazit ${cls}">
+    <div class="fazit-icon">${icon==='✓'?'✅':icon==='✗'?'❌':icon==='!'?'⚠️':'📊'}</div>
+    <div class="fazit-body">
+      <div class="fazit-verdict">${verdict}</div>
+      <div class="fazit-summary">${summary}</div>
+      <div class="fazit-points">${ptHtml}</div>
     </div>
-    <div class="kcard-label">${l}</div>
-    <div class="kcard-val" style="color:${ACOL[a]}">${v}</div>
-    ${s?`<div class="kcard-sub">${s}</div>`:''}
   </div>`;
 }
 
+function kc(l,v,a,s,infoKey){
+  return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kInfoTooltip(infoKey)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;
+}
 function br(l,v,cls=''){return`<div class="brow ${cls}"><span>${l}</span><span>${v}</span></div>`}
 function cfr(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
 function cfrt(l,v,a){return`<div class="cfr cft" style="background:${a==='kg'?'#f0faf1':a==='ky'?'#fffbeb':'#fef2f2'}"><span>${l}</span><span style="color:${ACOL[a]}">${eu(v)}</span></div>`}
@@ -422,7 +420,9 @@ function toggleTilgung(){
 
 function buildCockpit(c){
   const bma=amp(c.bR,SW.bm),nma=amp(c.nR,SW.nm),cfa=amp(c.cfOp,SW.cf),cfna=amp(c.cfNSt,SW.cf),fa=famp(c.fakt);
-  return`<div class="cockpit-top">
+  return`
+${buildFazit(c)}
+<div class="cockpit-top">
   <div>
     <div class="slabel" style="margin-bottom:8px">Kennzahlen</div>
     <div class="kgrid">
@@ -437,12 +437,8 @@ function buildCockpit(c){
   <div>
     <div class="slabel" style="margin-bottom:8px">Monatlicher Cashflow</div>
     <div class="cf-box">
-      ${cfr('Nettokaltmiete',c.nkmE)}
-      ${cfr('– Bewirtschaftung',-c.bk)}
-      ${cfr('– Zinsen',-c.fin.zinsen)}
-      ${cfr('– Tilgung',-c.fin.tilgung)}
-      ${cfrt('= Cashflow operativ',c.cfOp,cfa)}
-      ${cfr('– Steuern',-c.stM)}
+      ${cfr('Nettokaltmiete',c.nkmE)}${cfr('– Bewirtschaftung',-c.bk)}${cfr('– Zinsen',-c.fin.zinsen)}${cfr('– Tilgung',-c.fin.tilgung)}
+      ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr('– Steuern',-c.stM)}
       ${cfrt('= Cashflow n. Steuern',c.cfNSt,cfna)}
     </div>
   </div>
@@ -469,10 +465,7 @@ function buildFin(c){
   let rows='';
   c.tplan.forEach(r=>{
     const paid=r.rs<=0;
-    rows+=`<tr class="${paid?'highlight-row':''}">
-      <td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td>
-      <td class="${paid?'paid':''}">${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td>
-    </tr>`;
+    rows+=`<tr class="${paid?'highlight-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td class="${paid?'paid':''}">${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;
   });
   return`<div class="fin-grid">
   ${fc('Darlehen','#ff6b35',fr('Darlehenssumme',eu(c.darlehen))+fr('Zinssatz',pf(p(S.zinssatz)))+fr('Anfäng. Tilgung',pf(p(S.tilgung)))+fr('Monatl. Rate',eu(c.fin.rate),true)+fr('davon Zinsen',eu(c.fin.zinsen))+fr('davon Tilgung',eu(c.fin.tilgung)))}
@@ -485,21 +478,12 @@ function buildFin(c){
     <div class="tplan-icon">📅</div>
     <div><div class="tplan-title">Tilgungsplan</div></div>
     <div style="flex:1"></div>
-    <div class="tplan-meta">
-      <span>Volltilgung: <strong>${vollTilgJahr}</strong></span>
-      <span>Gesamt-Zinsen: <strong>${eu(gesamtZinsen)}</strong></span>
-      <span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span>
-    </div>
+    <div class="tplan-meta"><span>Volltilgung: <strong>${vollTilgJahr}</strong></span><span>Gesamt-Zinsen: <strong>${eu(gesamtZinsen)}</strong></span><span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span></div>
     <span class="tplan-chevron">▾</span>
   </div>
-  <div class="tplan-body"><div class="tplan-inner">
-    <div style="overflow-x:auto">
-      <table class="tbl">
-        <thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate/Monat</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-  </div></div>
+  <div class="tplan-body"><div class="tplan-inner"><div style="overflow-x:auto">
+    <table class="tbl"><thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate/Monat</th></tr></thead><tbody>${rows}</tbody></table>
+  </div></div></div>
 </div>`;
 }
 
