@@ -41,8 +41,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .brow.bb{font-weight:600}.brow.bm{color:#8e8e93}
 .disc{font-size:var(--fs-xs);color:#8e8e93;margin-top:8px}
 .fin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1vw,12px)}
-.chart-wrap{background:white;border-radius:12px;border:1px solid #e0dcd6;padding:clamp(12px,1.5vw,18px);margin-bottom:12px}
-.chart-title{font-size:var(--fs-sm);font-weight:600;color:#3a3a3c;margin-bottom:12px}
 .tbl{width:100%;border-collapse:collapse;font-size:var(--fs-sm);background:white;border-radius:12px;overflow:hidden;border:1px solid #e0dcd6}
 .tbl th{background:#3a3a3c;color:white;padding:clamp(7px,0.9vw,10px) clamp(8px,1vw,12px);text-align:right;font-size:var(--fs-xs);font-weight:600}
 .tbl th:first-child{text-align:left}
@@ -50,8 +48,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl td:first-child{text-align:left;font-weight:500}
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl .paid{color:#1a7f37;font-weight:600}
-
-/* Eingaben */
 .inp-layout{display:grid;grid-template-columns:260px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:400px}
 .inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0;display:flex;flex-direction:column}
 .inp-nav-item{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
@@ -98,13 +94,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 <div class="shell">
   <div class="topbar">
     <div class="topbar-brand">
-      <span class="topbar-logo">Immo Rechner</span>
+      <span class="topbar-logo">Immobilien Kalkulation</span>
       <span class="topbar-obj" id="obj-name"></span>
     </div>
     <div class="tab-bar">
       <div class="tab active" onclick="showTab('cockpit',this)">Cockpit</div>
       <div class="tab" onclick="showTab('finanzierung',this)">Finanzierung</div>
-      <div class="tab" onclick="showTab('charts',this)">Charts</div>
       <div class="tab" onclick="showTab('tilgung',this)">Tilgungsplan</div>
       <div class="tab" onclick="showTab('eingaben',this)">Eingaben</div>
     </div>
@@ -112,13 +107,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
   <div class="content">
     <div id="tab-cockpit"></div>
     <div id="tab-finanzierung" style="display:none"></div>
-    <div id="tab-charts" style="display:none"></div>
     <div id="tab-tilgung" style="display:none"></div>
     <div id="tab-eingaben" style="display:none"></div>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const S={
   adresse:'',kaufjahr:2025,kaufpreis:200000,wohnflaeche:60,anfInvest:0,
@@ -130,12 +123,8 @@ const S={
   wertst:2,mietst:2,kostst:2,betrjahr:2050
 };
 
-// Auto-berechnete Bewirtschaftungswerte (Mittelwert der üblichen Range * m²)
-// hausgeldN: 1,00 €/m² mtl. (Mitte von 0,50–1,50)
-// grundsteuer: 1,50 €/m² jährlich ≈ 0,125 €/m² mtl. → gerundet auf typische ~50 €/Mo für 60m²
 function autoHausgeld(){return Math.round(S.wohnflaeche*1.00)}
 function autoGrundsteuer(){return Math.round(S.wohnflaeche*0.9)}
-
 function getHausgeld(){return S.hausgeldN!==null?S.hausgeldN:autoHausgeld()}
 function getGrundsteuer(){return S.grundsteuer!==null?S.grundsteuer:autoGrundsteuer()}
 
@@ -158,18 +147,8 @@ const GROUPS=[
     {k:'ruecklage',l:'Instandhaltungsrücklage',u:'€/m²/Jahr',step:0.5,info:'Eigene Rücklage für Reparaturen, zusätzlich zur WEG-Rücklage.',std:'8 – 12 €/m²/Jahr empfohlen'}
   ]},
   {id:'g3',icon:'🔧',title:'Bewirtschaftung',fields:[
-    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:5,
-      auto:true,
-      autoFn:'autoHausgeld',
-      hint:'Automatisch: 1,00 €/m² × Wohnfläche',
-      info:'Nicht umlagefähiger Anteil: Verwaltung, WEG-Rücklage. Mittelwert: 1,00 €/m² mtl.',
-      std:'0,50 – 1,50 €/m² mtl.'},
-    {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,
-      auto:true,
-      autoFn:'autoGrundsteuer',
-      hint:'Automatisch: 0,90 €/m² × Wohnfläche',
-      info:'Monatlicher Anteil der Grundsteuer. Richtwert: ~0,90 €/m² mtl. Exakten Wert im Jahresbescheid prüfen.',
-      std:'Jahresbescheid ÷ 12'}
+    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:5,auto:true,autoFn:'autoHausgeld',hint:'Automatisch: 1,00 €/m² × Wohnfläche',info:'Nicht umlagefähiger Anteil: Verwaltung, WEG-Rücklage. Mittelwert: 1,00 €/m² mtl.',std:'0,50 – 1,50 €/m² mtl.'},
+    {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,auto:true,autoFn:'autoGrundsteuer',hint:'Automatisch: 0,90 €/m² × Wohnfläche',info:'Monatlicher Anteil der Grundsteuer. Richtwert ~0,90 €/m² mtl. Exakten Wert im Jahresbescheid prüfen.',std:'Jahresbescheid ÷ 12'}
   ]},
   {id:'g4',icon:'🏦',title:'Finanzierung',fields:[
     {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'Beleihungsquote. 90% = 10% Eigenkapital.',std:'80 – 90 %'},
@@ -209,11 +188,7 @@ function resetAuto(k){
 }
 
 function renderDetail(g){
-  let html=`<div class="inp-detail-header">
-    <span class="inp-detail-icon">${g.icon}</span>
-    <span class="inp-detail-title">${g.title}</span>
-  </div><div class="inp-detail-fields">`;
-
+  let html=`<div class="inp-detail-header"><span class="inp-detail-icon">${g.icon}</span><span class="inp-detail-title">${g.title}</span></div><div class="inp-detail-fields">`;
   g.fields.forEach(f=>{
     if(f.t==='text'){
       html+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
@@ -225,14 +200,10 @@ function renderDetail(g){
       const isAuto=S[f.k]===null;
       const val=isAuto?window[f.autoFn]():S[f.k];
       html+=`<div class="irow">
-        <div class="ilabel">
-          <span class="ilabel-main">${f.l}</span>
-          <span class="ilabel-hint">${f.hint}</span>
-        </div>
-        ${isAuto?`<span class="auto-badge">Auto</span>`:''}
+        <div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
+        ${isAuto?'<span class="auto-badge">Auto</span>':''}
         <div class="ifield">
-          <input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}"
-            class="${isAuto?'auto-val':''}"
+          <input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isAuto?'auto-val':''}"
             oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
           <span class="iunit">${f.u||''}</span>
         </div>
@@ -263,18 +234,18 @@ function selectGroup(id){
 
 function buildEingaben(){
   const g=GROUPS.find(g=>g.id===activeGroup)||GROUPS[0];
-  let navHtml='<div class="inp-nav">';
+  let nav='<div class="inp-nav">';
   GROUPS.forEach(gr=>{
     const sum=groupSummary(gr);
-    navHtml+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
+    nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selectGroup('${gr.id}')">
       <span class="nav-icon">${gr.icon}</span>
       <span class="nav-label">${gr.title}</span>
       ${sum?`<span class="nav-summary">${sum}</span>`:''}
       <span class="nav-arrow">›</span>
     </div>`;
   });
-  navHtml+='</div>';
-  return`<div class="inp-layout">${navHtml}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
+  nav+='</div>';
+  return`<div class="inp-layout">${nav}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
 }
 
 const p=v=>v/100;
@@ -367,30 +338,6 @@ function buildFin(c){
 </div>`;
 }
 
-let charts={};
-function buildCharts(){
-  return`<div class="chart-wrap"><div class="chart-title">Wertentwicklung & Restschuld</div><div style="position:relative;width:100%;height:280px"><canvas id="cW"></canvas></div></div>
-<div class="chart-wrap"><div class="chart-title">Cashflow-Entwicklung (monatlich, nach Steuern)</div><div style="position:relative;width:100%;height:280px"><canvas id="cC"></canvas></div></div>`;
-}
-function renderCharts(c){
-  ['cW','cC'].forEach(id=>{if(charts[id]){charts[id].destroy();delete charts[id]}});
-  const pr=c.prj,lb=pr.map(d=>d.yr);
-  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:12},color:'#3a3a3c'}}},scales:{x:{ticks:{font:{size:11},maxTicksLimit:10,color:'#8e8e93'},grid:{color:'#f0ede8'}},y:{ticks:{font:{size:11},color:'#8e8e93'},grid:{color:'#f0ede8'}}}};
-  const cW=document.getElementById('cW'),cC=document.getElementById('cC');
-  if(!cW||!cC)return;
-  const o1=JSON.parse(JSON.stringify(base));o1.scales.y.ticks.callback=v=>(v/1000).toFixed(0)+'k €';
-  charts.cW=new Chart(cW,{type:'line',data:{labels:lb,datasets:[
-    {label:'Immobilienwert',data:pr.map(d=>Math.round(d.wert)),borderColor:'#ff6b35',borderWidth:2,pointRadius:0,tension:.3},
-    {label:'Restschuld',data:pr.map(d=>Math.round(d.rs)),borderColor:'#ff3b30',borderWidth:2,pointRadius:0,tension:.3,borderDash:[4,3]},
-    {label:'Nettovermögen',data:pr.map(d=>Math.round(d.nv)),borderColor:'#34c759',borderWidth:2,pointRadius:0,tension:.3}
-  ]},options:o1});
-  const o2=JSON.parse(JSON.stringify(base));o2.scales.y.ticks.callback=v=>eu(v);
-  charts.cC=new Chart(cC,{type:'line',data:{labels:lb,datasets:[
-    {label:'Miete',data:pr.map(d=>Math.round(d.miete)),borderColor:'#5856d6',borderWidth:1.5,pointRadius:0,tension:.3},
-    {label:'Cashflow n. Steuern',data:pr.map(d=>Math.round(d.cf)),borderColor:'#34c759',borderWidth:2,pointRadius:0,tension:.3}
-  ]},options:o2});
-}
-
 function buildTilgung(c){
   let rows='';
   c.tplan.forEach(r=>{const paid=r.rs<=0;rows+=`<tr><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td class="${paid?'paid':''}">${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;});
@@ -400,7 +347,7 @@ function buildTilgung(c){
 let activeTab='cockpit';
 function showTab(id,el){
   activeTab=id;
-  ['cockpit','finanzierung','charts','tilgung','eingaben'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
+  ['cockpit','finanzierung','tilgung','eingaben'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   renderTab(id);
@@ -409,7 +356,6 @@ function renderTab(id){
   const c=calcAll();
   if(id==='cockpit')document.getElementById('tab-cockpit').innerHTML=buildCockpit(c);
   else if(id==='finanzierung')document.getElementById('tab-finanzierung').innerHTML=buildFin(c);
-  else if(id==='charts'){document.getElementById('tab-charts').innerHTML=buildCharts();setTimeout(()=>renderCharts(c),60)}
   else if(id==='tilgung')document.getElementById('tab-tilgung').innerHTML=buildTilgung(c);
   else if(id==='eingaben')document.getElementById('tab-eingaben').innerHTML=buildEingaben();
 }
