@@ -60,7 +60,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .kt-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .kt-dot.g{background:#34c759}.kt-dot.y{background:#f4d03f}.kt-dot.r{background:#ff453a}
 .kt-rowlbl{color:#aaa}
-.cf-box{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
+.cfbox{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
 .cfr{display:flex;justify-content:space-between;padding:8px var(--pad);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
 .cfr:last-child{border-bottom:none}
 .cft{font-weight:600}
@@ -102,7 +102,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl .done-row td{color:#1a7f37;font-weight:600}
 .disclaimer{font-size:var(--fs-xs);color:#8e8e93;margin-top:clamp(10px,1.2vw,16px);padding-top:10px;border-top:1px solid #e0dcd6}
 
-/* ── Input tab ── */
+/* Input */
 .inp-layout{display:grid;grid-template-columns:240px 1fr;gap:0;background:white;border-radius:16px;border:1px solid #e0dcd6;overflow:hidden;min-height:420px}
 .inp-nav{background:#f5f2ed;border-right:1px solid #e0dcd6;padding:8px 0}
 .inp-nav-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;user-select:none;transition:background .12s;border-left:3px solid transparent}
@@ -144,49 +144,57 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tt-title{font-weight:600;margin-bottom:4px;color:#fff}
 .tt-std{color:#aaa;font-size:var(--fs-xs);margin-top:5px;padding-top:5px;border-top:1px solid #333}
 
-/* ── Cashflow Tab ── */
-.cf-year-control{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:var(--pad);display:flex;align-items:center;gap:16px;margin-bottom:var(--gap);flex-wrap:wrap}
-.cf-year-label{font-size:var(--fs-sm);color:#8e8e93;white-space:nowrap}
-.cf-year-nav{display:flex;align-items:center;gap:8px}
-.cf-year-btn{width:32px;height:32px;border-radius:8px;background:#f5f2ed;border:1px solid #d6d2cb;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:#3a3a3c;transition:background .1s;flex-shrink:0;user-select:none}
-.cf-year-btn:hover{background:#ede9e2}
-.cf-year-display{font-size:var(--fs-xl);font-weight:700;color:#2c2c2e;min-width:90px;text-align:center;letter-spacing:-.5px}
-.cf-year-sub{font-size:var(--fs-xs);color:#8e8e93;text-align:center;margin-top:1px}
-.cf-year-input{display:flex;align-items:center;gap:6px;margin-left:auto}
-.cf-year-input label{font-size:var(--fs-xs);color:#8e8e93}
-.cf-year-input input{width:60px;padding:5px 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);text-align:center;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield}
-.cf-year-input input:focus{outline:none;border-color:#ff6b35;background:white}
-.cf-year-input input::-webkit-inner-spin-button,.cf-year-input input::-webkit-outer-spin-button{-webkit-appearance:none}
+/* ── Cashflow Tab — kompakt ── */
+.cf-ctrl{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:12px var(--pad);display:flex;align-items:center;gap:14px;margin-bottom:var(--gap)}
+.cf-ctrl-label{font-size:var(--fs-xs);color:#8e8e93;white-space:nowrap}
+.cf-nav{display:flex;align-items:center;gap:6px}
+.cf-btn{width:28px;height:28px;border-radius:7px;background:#f5f2ed;border:1px solid #d6d2cb;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:#3a3a3c;transition:background .1s;user-select:none;flex-shrink:0}
+.cf-btn:hover{background:#ede9e2}
+.cf-disp{text-align:center;min-width:80px}
+.cf-disp-main{font-size:var(--fs-lg);font-weight:700;color:#2c2c2e;display:block;line-height:1.1}
+.cf-disp-sub{font-size:var(--fs-xs);color:#8e8e93}
+.cf-inp-wrap{display:flex;align-items:center;gap:5px;margin-left:auto}
+.cf-inp-wrap label{font-size:var(--fs-xs);color:#8e8e93}
+.cf-inp-wrap input{width:52px;padding:4px 7px;border:1px solid #d6d2cb;border-radius:6px;font-size:var(--fs-sm);text-align:center;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield}
+.cf-inp-wrap input:focus{outline:none;border-color:#ff6b35;background:white}
+.cf-inp-wrap input::-webkit-inner-spin-button,.cf-inp-wrap input::-webkit-outer-spin-button{-webkit-appearance:none}
+.cf-inp-wrap span{font-size:var(--fs-xs);color:#8e8e93}
 
-.cf-big-val{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.5px;line-height:1.1}
-.cf-big-label{font-size:var(--fs-sm);color:#8e8e93;margin-top:4px}
-.cf-big-box{background:white;border-radius:var(--radius);border:2px solid;padding:var(--pad) clamp(14px,1.6vw,22px);text-align:center}
-.cf-big-box.green{border-color:#86efac;background:#f0faf1}
-.cf-big-box.green .cf-big-val{color:#166534}
-.cf-big-box.yellow{border-color:#fde047;background:#fefce8}
-.cf-big-box.yellow .cf-big-val{color:#854d0e}
-.cf-big-box.red{border-color:#fca5a5;background:#fff1f2}
-.cf-big-box.red .cf-big-val{color:#9f1239}
+/* Hero numbers */
+.cf-heroes{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-bottom:var(--gap)}
+.cf-hero{border-radius:var(--radius);border:1.5px solid;padding:12px 14px;text-align:center}
+.cf-hero-val{font-size:var(--fs-xl);font-weight:700;letter-spacing:-.3px;line-height:1.1}
+.cf-hero-lbl{font-size:var(--fs-xs);color:inherit;opacity:.75;margin-top:3px}
+.cf-hero.green{background:#f0faf1;border-color:#86efac;color:#166534}
+.cf-hero.yellow{background:#fefce8;border-color:#fde047;color:#854d0e}
+.cf-hero.red{background:#fff1f2;border-color:#fca5a5;color:#9f1239}
+.cf-hero.neutral{background:white;border-color:#e0dcd6;color:#2c2c2e}
 
-.cf-flow{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
-.cf-flow-row{display:flex;align-items:center;padding:10px var(--pad);border-bottom:1px solid #f7f5f2;gap:10px;font-size:var(--fs-sm)}
-.cf-flow-row:last-child{border-bottom:none}
-.cf-flow-row.cf-total{font-weight:600;font-size:var(--fs-md)}
-.cf-flow-label{flex:1;color:#3a3a3c}
-.cf-flow-val{font-weight:500;white-space:nowrap;min-width:90px;text-align:right}
-.cf-flow-row.cf-total .cf-flow-label{color:#2c2c2e}
-.cf-flow-bar-wrap{width:120px;flex-shrink:0;height:6px;background:#f0ede8;border-radius:3px;overflow:hidden}
-.cf-flow-bar{height:100%;border-radius:3px;transition:width .3s}
-.cf-sign-pos{color:#1a7f37}.cf-sign-neg{color:#b91c1c}
-.cf-indent{padding-left:14px;opacity:.85}
-.cf-separator{height:1px;background:#e0dcd6;margin:2px 0}
+/* Compact flow table */
+.cf-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
+.cf-table td{padding:6px 0;border-bottom:1px solid #f7f5f2;vertical-align:middle}
+.cf-table tr:last-child td{border-bottom:none}
+.cf-table .cf-lbl{color:#8e8e93;width:60%}
+.cf-table .cf-val{text-align:right;font-weight:500;white-space:nowrap}
+.cf-table .cf-bar-cell{width:80px;padding-left:8px}
+.cf-table .cf-bar-bg{height:4px;background:#f0ede8;border-radius:2px;overflow:hidden}
+.cf-table .cf-bar-fill{height:100%;border-radius:2px}
+.cf-table .cf-total td{font-weight:600;padding-top:8px}
+.cf-table .cf-total .cf-lbl{color:#2c2c2e}
+.cf-table .cf-sub td{padding-left:10px}
+.cf-table .cf-sub .cf-lbl{color:#8e8e93}
+.cf-table .cf-highlight{background:#f7f5f2;border-radius:6px}
+.cf-table .cf-highlight td{padding:7px 6px}
+.cf-pos{color:#1a7f37}.cf-neg{color:#b91c1c}.cf-orange{color:#854d0e}
 
-.cf-assumptions{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:var(--pad)}
-.cf-ass-title{font-size:var(--fs-xs);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
-.cf-ass-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.cf-ass-item{text-align:center;padding:8px 6px;background:#f5f2ed;border-radius:8px}
-.cf-ass-val{font-size:var(--fs-md);font-weight:700;color:#2c2c2e}
-.cf-ass-lbl{font-size:var(--fs-xs);color:#8e8e93;margin-top:2px}
+/* Assumptions strip */
+.cf-ass{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:10px var(--pad);margin-top:var(--gap)}
+.cf-ass-title{font-size:var(--fs-label);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.cf-ass-grid{display:flex;gap:0;flex-wrap:wrap}
+.cf-ass-item{flex:1;min-width:120px;padding:6px 10px;border-right:1px solid #f0ede8}
+.cf-ass-item:last-child{border-right:none}
+.cf-ass-val{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
+.cf-ass-lbl{font-size:var(--fs-xs);color:#8e8e93;margin-top:1px}
 </style>
 
 <div class="shell">
@@ -228,13 +236,9 @@ const KINFO={
   fakt:{title:'Kaufpreisfaktor',desc:'Kaufpreis ÷ Jahreskaltmiete. Niedrigerer Faktor = besseres Geschäft.',scale:[{c:'g',lbl:'Gut: unter 20x'},{c:'y',lbl:'Ok: 20 – 25x'},{c:'r',lbl:'Teuer: über 25x'}]},
   cfo:{title:'Cashflow operativ',desc:'Monatlicher Überschuss aus Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
   cfn:{title:'Cashflow nach Steuern',desc:'Tatsächlicher monatlicher Über- oder Unterschuss nach allen Kosten inkl. Steuer.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
-  afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein Geldfluss, aber steuerlich absetzbar.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},{c:'r',lbl:'Kein Negativ-Wert'}]}
+  afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis ab'},{c:'r',lbl:'Kein Negativ-Wert'}]}
 };
-function kTip(key){
-  const d=KINFO[key];if(!d)return'';
-  const rows=d.scale.map(r=>`<div class="kt-row"><div class="kt-dot ${r.c}"></div><span class="kt-rowlbl">${r.lbl}</span></div>`).join('');
-  return`<div class="ktooltip"><div class="kt-title">${d.title}</div><div class="kt-desc">${d.desc}</div><div class="kt-scale">${rows}</div></div>`;
-}
+function kTip(key){const d=KINFO[key];if(!d)return'';const rows=d.scale.map(r=>`<div class="kt-row"><div class="kt-dot ${r.c}"></div><span class="kt-rowlbl">${r.lbl}</span></div>`).join('');return`<div class="ktooltip"><div class="kt-title">${d.title}</div><div class="kt-desc">${d.desc}</div><div class="kt-scale">${rows}</div></div>`;}
 
 function autoHausgeld(){return Math.round(S.wohnflaeche*1.0)}
 function autoGrundsteuer(){return Math.round(S.wohnflaeche*0.9)}
@@ -245,7 +249,7 @@ const GROUPS=[
   {id:'g0',icon:'🏠',title:'Objekt',fields:[
     {k:'adresse',l:'Adresse',t:'text',info:'Name oder Adresse des Objekts.',std:'z.B. Mülheim, 3-Zi-Wohnung'},
     {k:'kaufpreis',l:'Kaufpreis',u:'€',step:1000,info:'Kaufpreis laut Kaufvertrag, ohne Nebenkosten.',std:'150.000 – 500.000 €'},
-    {k:'wohnflaeche',l:'Wohnfläche',u:'m²',step:1,info:'Wohnfläche laut Grundriss oder Exposé.',std:'40 – 120 m²'},
+    {k:'wohnflaeche',l:'Wohnfläche',u:'m²',step:1,info:'Wohnfläche laut Grundriss.',std:'40 – 120 m²'},
     {k:'kaufjahr',l:'Kaufjahr',u:'',step:1,info:'Jahr des Kaufabschlusses.',std:String(new Date().getFullYear())},
     {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc.',std:'0 – 30.000 €'}
   ]},
@@ -256,16 +260,16 @@ const GROUPS=[
   ]},
   {id:'g2',icon:'🏷️',title:'Miete',fields:[
     {k:'mietePqm',l:'Kaltmiete pro m²',u:'€',step:0.5,info:'Erzielbare Kaltmiete je m².',std:'6 – 15 €/m²'},
-    {k:'mietausfall',l:'Kalk. Mietausfall',u:'%',step:0.5,info:'Abschlag für Leerstand & Mietausfälle.',std:'3 % ≈ 2 Wochen/Jahr'},
+    {k:'mietausfall',l:'Kalk. Mietausfall',u:'%',step:0.5,info:'Abschlag für Leerstand.',std:'3 % ≈ 2 Wochen/Jahr'},
     {k:'ruecklage',l:'Instandhaltungsrücklage',u:'€/m²/Jahr',step:0.5,info:'Eigene Rücklage für Reparaturen.',std:'8 – 12 €/m²/Jahr'}
   ]},
   {id:'g3',icon:'🔧',title:'Bewirtschaftung',fields:[
-    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:5,auto:true,autoFn:'autoHausgeld',hint:'Automatisch: 1,00 €/m² × Wohnfläche',info:'Nicht umlagefähiger Anteil: Verwaltung, WEG-Rücklage.',std:'0,50 – 1,50 €/m² mtl.'},
+    {k:'hausgeldN',l:'Hausgeld (Eigentümeranteil)',u:'€/Mo.',step:5,auto:true,autoFn:'autoHausgeld',hint:'Automatisch: 1,00 €/m² × Wohnfläche',info:'Nicht umlagefähiger Anteil.',std:'0,50 – 1,50 €/m² mtl.'},
     {k:'grundsteuer',l:'Grundsteuer',u:'€/Mo.',step:5,auto:true,autoFn:'autoGrundsteuer',hint:'Automatisch: 0,90 €/m² × Wohnfläche',info:'Monatlicher Anteil der Grundsteuer.',std:'Jahresbescheid ÷ 12'}
   ]},
   {id:'g4',icon:'🏦',title:'Finanzierung',fields:[
     {k:'darlehenPct',l:'Darlehen (% des Kaufpreises)',u:'%',step:1,info:'90% = 10% Eigenkapital.',std:'80 – 90 %'},
-    {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Aktueller Marktzins für 10 Jahre Zinsbindung.',std:'ca. 3,5 – 4,5 % p.a.'},
+    {k:'zinssatz',l:'Zinssatz',u:'%',step:0.1,info:'Marktzins für 10 Jahre Zinsbindung.',std:'ca. 3,5 – 4,5 % p.a.'},
     {k:'tilgung',l:'Anfängliche Tilgung',u:'%',step:0.1,info:'2% p.a. = ca. 35 Jahre Laufzeit.',std:'2 % p.a.'}
   ]},
   {id:'g5',icon:'📊',title:'Steuern & AfA',fields:[
@@ -281,60 +285,22 @@ const GROUPS=[
   ]}
 ];
 let activeGroup='g0',tplanOpen=false;
-function gSum(g){
-  return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
-    const v=f.auto?(S[f.k]!==null?S[f.k]:window[f.autoFn]()):S[f.k];
-    return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);
-  }).join('');
-}
-function resetAuto(k){
-  S[k]=null;
-  if(activeTab==='eingaben'){const el=document.getElementById('inp-detail');const g=GROUPS.find(g=>g.id===activeGroup);if(el&&g)el.innerHTML=renderDetail(g);}
-  if(activeTab!=='eingaben')renderTab(activeTab);
-}
+function gSum(g){return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{const v=f.auto?(S[f.k]!==null?S[f.k]:window[f.autoFn]()):S[f.k];return f.u==='€'?eu(v):f.u==='%'?v.toFixed(f.step<0.1?2:1)+'%':String(v);}).join('');}
+function resetAuto(k){S[k]=null;if(activeTab==='eingaben'){const el=document.getElementById('inp-detail');const g=GROUPS.find(g=>g.id===activeGroup);if(el&&g)el.innerHTML=renderDetail(g);}if(activeTab!=='eingaben')renderTab(activeTab);}
 function renderDetail(g){
   let h=`<div class="inp-dheader"><span class="inp-dicon">${g.icon}</span><span class="inp-dtitle">${g.title}</span></div>`;
   g.fields.forEach(f=>{
-    if(f.t==='text'){
-      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
-        <div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}"
-          oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value||'';if(activeTab!=='eingaben')renderTab(activeTab)"></div>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
-    } else if(f.auto){
-      const isA=S[f.k]===null,val=isA?window[f.autoFn]():S[f.k];
-      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>
-        ${isA?'<span class="auto-badge">Auto</span>':''}
-        <div class="ifield"><input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isA?'auto-val':''}"
-          oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)">
-          <span class="iunit">${f.u||''}</span></div>
-        <button class="reset-btn" id="reset-${f.k}" style="display:${isA?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
-    } else {
-      h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div>
-        <div class="ifield"><input type="number" value="${S[f.k]}" step="${f.step||1}"
-          oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)">
-          <span class="iunit">${f.u||''}</span></div>
-        <button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;
-    }
+    if(f.t==='text'){h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div><div class="ifield"><input type="text" value="${S[f.k]}" placeholder="${f.std}" oninput="S['${f.k}']=this.value;document.getElementById('obj-name').textContent=this.value||'';if(activeTab!=='eingaben')renderTab(activeTab)"></div><button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;}
+    else if(f.auto){const isA=S[f.k]===null,val=isA?window[f.autoFn]():S[f.k];h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span><span class="ilabel-hint">${f.hint}</span></div>${isA?'<span class="auto-badge">Auto</span>':''}<div class="ifield"><input type="number" id="inp-${f.k}" value="${val}" step="${f.step||1}" class="${isA?'auto-val':''}" oninput="S['${f.k}']=parseFloat(this.value)||0;this.classList.remove('auto-val');document.getElementById('reset-${f.k}').style.display='inline';document.querySelectorAll('.auto-badge').forEach(b=>{if(b.closest('.irow')===this.closest('.irow'))b.remove()});if(activeTab!=='eingaben')renderTab(activeTab)"><span class="iunit">${f.u||''}</span></div><button class="reset-btn" id="reset-${f.k}" style="display:${isA?'none':'inline'}" onclick="resetAuto('${f.k}')">↺ Auto</button><button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;}
+    else{h+=`<div class="irow"><div class="ilabel"><span class="ilabel-main">${f.l}</span></div><div class="ifield"><input type="number" value="${S[f.k]}" step="${f.step||1}" oninput="S['${f.k}']=parseFloat(this.value)||0;if(activeTab!=='eingaben')renderTab(activeTab)"><span class="iunit">${f.u||''}</span></div><button class="iinfo">i<div class="tooltip"><div class="tt-title">${f.l}</div>${f.info}<div class="tt-std">Standard: ${f.std}</div></div></button></div>`;}
   });
   return h;
 }
-function selGroup(id){
-  activeGroup=id;
-  document.querySelectorAll('.inp-nav-item').forEach(el=>el.classList.toggle('active',el.dataset.gid===id));
-  const g=GROUPS.find(g=>g.id===id);
-  const d=document.getElementById('inp-detail');
-  if(d&&g)d.innerHTML=renderDetail(g);
-}
+function selGroup(id){activeGroup=id;document.querySelectorAll('.inp-nav-item').forEach(el=>el.classList.toggle('active',el.dataset.gid===id));const g=GROUPS.find(g=>g.id===id);const d=document.getElementById('inp-detail');if(d&&g)d.innerHTML=renderDetail(g);}
 function buildEingaben(){
   const g=GROUPS.find(g=>g.id===activeGroup)||GROUPS[0];
   let nav='<div class="inp-nav">';
-  GROUPS.forEach(gr=>{
-    const s=gSum(gr);
-    nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selGroup('${gr.id}')">
-      <span class="nav-icon">${gr.icon}</span><span class="nav-label">${gr.title}</span>
-      ${s?`<span class="nav-summary">${s}</span>`:''}<span class="nav-arr">›</span></div>`;
-  });
+  GROUPS.forEach(gr=>{const s=gSum(gr);nav+=`<div class="inp-nav-item${gr.id===activeGroup?' active':''}" data-gid="${gr.id}" onclick="selGroup('${gr.id}')"><span class="nav-icon">${gr.icon}</span><span class="nav-label">${gr.title}</span>${s?`<span class="nav-summary">${s}</span>`:''}<span class="nav-arr">›</span></div>`;});
   nav+='</div>';
   return`<div class="inp-layout">${nav}<div class="inp-detail" id="inp-detail">${renderDetail(g)}</div></div>`;
 }
@@ -360,189 +326,134 @@ function calcAll(){
 }
 
 function calcJahr(j){
-  const kp=S.kaufpreis,wf=S.wohnflaeche;
-  const idx=j-1;
-  const fakt_m=Math.pow(1+p(S.mietst),idx);
-  const fakt_k=Math.pow(1+p(S.kostst),idx);
-  const nkm0=S.mietePqm*wf;
-  const nkm=nkm0*fakt_m;
-  const mao=nkm*p(S.mietausfall);
-  const nkmE=nkm-mao;
+  const kp=S.kaufpreis,wf=S.wohnflaeche,idx=j-1;
+  const fm=Math.pow(1+p(S.mietst),idx),fk=Math.pow(1+p(S.kostst),idx);
+  const nkm=S.mietePqm*wf*fm,mao=nkm*p(S.mietausfall),nkmE=nkm-mao;
   const hg0=getHG(),gs0=getGS();
-  const bk=hg0*fakt_k+gs0*fakt_k+(S.ruecklage*wf/12)*fakt_k+mao;
+  const hg=hg0*fk,gs=gs0*fk,rl=(S.ruecklage*wf/12)*fk;
+  const bk=hg+gs+rl+mao;
   const dar=kp*p(S.darlehenPct);
   const tplan=tilgP(dar,p(S.zinssatz),p(S.tilgung),50);
   const tp=tplan[idx]||{zj:0,tj:0,rs:0};
   const zi=tp.zj/12,ti=tp.tj/12;
   const afaM=(kp*p(S.gebaude)*p(S.afa))/12;
-  const zvs=nkmE-bk-zi-afaM;
-  const stM=zvs*p(S.steuer);
-  const cfOp=nkmE-bk-zi-ti;
-  const cfNSt=cfOp-stM;
+  const zvs=nkmE-bk-zi-afaM,stM=zvs*p(S.steuer);
+  const cfOp=nkmE-bk-zi-ti,cfNSt=cfOp-stM;
   const immowert=kp*Math.pow(1+p(S.wertst),idx);
-  return{j,nkm,mao,nkmE,bk,hg:hg0*fakt_k,gs:gs0*fakt_k,ruecKosten:(S.ruecklage*wf/12)*fakt_k,zi,ti,afaM,zvs,stM,cfOp,cfNSt,immowert,rs:tp.rs};
+  return{j,nkm,mao,nkmE,bk,hg,gs,rl,zi,ti,afaM,zvs,stM,cfOp,cfNSt,immowert,rs:tp.rs};
 }
 
-function cfAmpel(v){return v>=100?'green':v>=0?'yellow':'red'}
+function cfAmp(v){return v>=100?'green':v>=0?'yellow':'red'}
 
 function buildCashflow(){
   const maxJ=Math.max(1,S.betrjahr-S.kaufjahr);
-  const clampJ=Math.min(Math.max(1,cfJahr),maxJ);
-  if(cfJahr!==clampJ)cfJahr=clampJ;
-  const d=calcJahr(cfJahr);
-  const kp=S.kaufpreis;
-  const kalJahr=S.kaufjahr+cfJahr-1;
-  const ampN=cfAmpel(d.cfNSt),ampO=cfAmpel(d.cfOp);
+  cfJahr=Math.min(Math.max(1,cfJahr),maxJ);
+  const d=calcJahr(cfJahr),kalJahr=S.kaufjahr+cfJahr-1;
+  const ampN=cfAmp(d.cfNSt),ampO=cfAmp(d.cfOp);
+  const maxV=Math.max(d.nkm,1);
+  const bar=(v,col)=>`<div class="cf-bar-bg"><div class="cf-bar-fill" style="width:${Math.min(100,Math.abs(v)/maxV*100).toFixed(1)}%;background:${col}"></div></div>`;
 
-  const barW=(v,max)=>`${Math.min(100,Math.abs(v)/max*100).toFixed(1)}%`;
-  const maxVal=Math.max(d.nkmE,1);
+  const kumMiet=((Math.pow(1+p(S.mietst),cfJahr-1)-1)*100).toFixed(1);
+  const kumWert=((Math.pow(1+p(S.wertst),cfJahr-1)-1)*100).toFixed(1);
 
   return`
-${secH('💶','Cashflow-Analyse')}
-<div class="cf-year-control">
-  <span class="cf-year-label">Analysejahr:</span>
-  <div class="cf-year-nav">
-    <button class="cf-year-btn" onclick="setCFJahr(${clampJ-1})">‹</button>
-    <div>
-      <div class="cf-year-display">Jahr ${clampJ}</div>
-      <div class="cf-year-sub">${kalJahr}</div>
+<div class="cf-ctrl">
+  <span class="cf-ctrl-label">Jahr:</span>
+  <div class="cf-nav">
+    <button class="cf-btn" onclick="setCFJahr(${cfJahr-1})">‹</button>
+    <div class="cf-disp">
+      <span class="cf-disp-main">Jahr ${cfJahr}</span>
+      <span class="cf-disp-sub">${kalJahr}</span>
     </div>
-    <button class="cf-year-btn" onclick="setCFJahr(${clampJ+1})">›</button>
+    <button class="cf-btn" onclick="setCFJahr(${cfJahr+1})">›</button>
   </div>
-  <div class="cf-year-input">
-    <label>Direkt eingeben:</label>
-    <input type="number" id="cf-jahr-inp" value="${clampJ}" min="1" max="${maxJ}" step="1"
-      oninput="setCFJahr(parseInt(this.value)||1)">
-    <span style="font-size:var(--fs-xs);color:#8e8e93">/ ${maxJ}</span>
+  <div class="cf-inp-wrap">
+    <label>Jahr:</label>
+    <input type="number" value="${cfJahr}" min="1" max="${maxJ}" step="1" oninput="setCFJahr(parseInt(this.value)||1)">
+    <span>/ ${maxJ}</span>
   </div>
 </div>
 
-<div class="grid-3" style="margin-bottom:var(--gap)">
-  <div class="cf-big-box ${ampN}">
-    <div class="cf-big-val">${eu(d.cfNSt)}</div>
-    <div class="cf-big-label">Cashflow nach Steuern / Monat</div>
+<div class="cf-heroes">
+  <div class="cf-hero ${ampN}">
+    <div class="cf-hero-val">${eu(d.cfNSt)}/Mo.</div>
+    <div class="cf-hero-lbl">Cashflow nach Steuern</div>
   </div>
-  <div class="cf-big-box ${ampO}">
-    <div class="cf-big-val">${eu(d.cfOp)}</div>
-    <div class="cf-big-label">Cashflow operativ / Monat</div>
+  <div class="cf-hero ${ampO}">
+    <div class="cf-hero-val">${eu(d.cfOp)}/Mo.</div>
+    <div class="cf-hero-lbl">Cashflow operativ</div>
   </div>
-  <div class="cf-big-box" style="border-color:#e0dcd6;background:white">
-    <div class="cf-big-val" style="color:#2c2c2e">${eu(d.immowert)}</div>
-    <div class="cf-big-label">Immobilienwert (geschätzt)</div>
+  <div class="cf-hero neutral">
+    <div class="cf-hero-val">${eu(d.immowert-d.rs)}</div>
+    <div class="cf-hero-lbl">Nettovermögen</div>
   </div>
 </div>
 
-<div class="grid-2" style="margin-bottom:var(--gap)">
-  <div>
-    ${secH('📥','Einnahmen & Ausgaben (monatlich)')}
-    <div class="cf-flow">
-      <div class="cf-flow-row">
-        <span class="cf-flow-label">Nettokaltmiete (Markt)</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.nkm,maxVal)};background:#3b82f6"></div></div>
-        <span class="cf-flow-val cf-sign-pos">${eu(d.nkm)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Kalk. Mietausfall</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.mao,maxVal)};background:#f87171"></div></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.mao)}</span>
-      </div>
-      <div class="cf-flow-row cf-total">
-        <span class="cf-flow-label">= Nettokaltmiete eff.</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.nkmE,maxVal)};background:#22c55e"></div></div>
-        <span class="cf-flow-val cf-sign-pos">${eu(d.nkmE)}</span>
-      </div>
-      <div class="cf-separator"></div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Hausgeld (Eigentümer)</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.hg,maxVal)};background:#f87171"></div></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.hg)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Grundsteuer</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.gs,maxVal)};background:#f87171"></div></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.gs)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Instandhaltungsrücklage</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.ruecKosten,maxVal)};background:#f87171"></div></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.ruecKosten)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Zinsen</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.zi,maxVal)};background:#f87171"></div></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.zi)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Tilgung</span>
-        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.ti,maxVal)};background:#fb923c"></div></div>
-        <span class="cf-flow-val" style="color:#854d0e">–${eu(d.ti)}</span>
-      </div>
-      <div class="cf-flow-row cf-total" style="background:${ampO==='green'?'#f0faf1':ampO==='yellow'?'#fefce8':'#fff1f2'}">
-        <span class="cf-flow-label" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#713f12':'#881337'}">= Cashflow operativ</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#713f12':'#881337'}">${eu(d.cfOp)}</span>
-      </div>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header"><span class="card-header-icon">📥</span><span class="card-title">Cashflow-Rechnung (monatlich)</span></div>
+    <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+      <table class="cf-table">
+        <tr><td class="cf-lbl">Nettokaltmiete</td><td class="cf-bar-cell">${bar(d.nkm,'#3b82f6')}</td><td class="cf-val cf-pos">+${eu(d.nkm)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Mietausfall (kalk.)</td><td class="cf-bar-cell">${bar(d.mao,'#f87171')}</td><td class="cf-val cf-neg">–${eu(d.mao)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Hausgeld</td><td class="cf-bar-cell">${bar(d.hg,'#f87171')}</td><td class="cf-val cf-neg">–${eu(d.hg)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Grundsteuer</td><td class="cf-bar-cell">${bar(d.gs,'#f87171')}</td><td class="cf-val cf-neg">–${eu(d.gs)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Instandhaltung</td><td class="cf-bar-cell">${bar(d.rl,'#f87171')}</td><td class="cf-val cf-neg">–${eu(d.rl)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Zinsen</td><td class="cf-bar-cell">${bar(d.zi,'#f87171')}</td><td class="cf-val cf-neg">–${eu(d.zi)}</td></tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Tilgung</td><td class="cf-bar-cell">${bar(d.ti,'#fb923c')}</td><td class="cf-val cf-orange">–${eu(d.ti)}</td></tr>
+        <tr class="cf-total cf-highlight" style="background:${ampO==='green'?'#f0faf1':ampO==='yellow'?'#fefce8':'#fff1f2'}">
+          <td class="cf-lbl" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#854d0e':'#9f1239'}">= Cashflow operativ</td>
+          <td class="cf-bar-cell"></td>
+          <td class="cf-val" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#854d0e':'#9f1239'};font-weight:700">${eu(d.cfOp)}</td>
+        </tr>
+        <tr class="cf-sub"><td class="cf-lbl">– Steuern (${S.steuer}%)</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.stM)}</td></tr>
+        <tr class="cf-total cf-highlight" style="background:${ampN==='green'?'#f0faf1':ampN==='yellow'?'#fefce8':'#fff1f2'}">
+          <td class="cf-lbl" style="color:${ampN==='green'?'#166534':ampN==='yellow'?'#854d0e':'#9f1239'}">= Cashflow n. Steuern</td>
+          <td class="cf-bar-cell"></td>
+          <td class="cf-val" style="color:${ampN==='green'?'#166534':ampN==='yellow'?'#854d0e':'#9f1239'};font-weight:700">${eu(d.cfNSt)}</td>
+        </tr>
+      </table>
     </div>
   </div>
 
-  <div>
-    ${secH('📊','Steuerrechnung (monatlich)')}
-    <div class="cf-flow" style="margin-bottom:var(--gap)">
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">Nettokaltmiete eff.</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val cf-sign-pos">${eu(d.nkmE)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Bewirtschaftung</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.bk)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– Zinsen</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.zi)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">– AfA</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val cf-sign-neg">–${eu(d.afaM)}</span>
-      </div>
-      <div class="cf-flow-row cf-total">
-        <span class="cf-flow-label">= Zu versteuern</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val ${d.zvs>=0?'cf-sign-pos':'cf-sign-neg'}">${eu(d.zvs)}</span>
-      </div>
-      <div class="cf-flow-row cf-indent">
-        <span class="cf-flow-label">× Grenzsteuersatz (${S.steuer}%)</span>
-        <div class="cf-flow-bar-wrap"></div>
-        <span class="cf-flow-val cf-sign-neg">= –${eu(d.stM)}</span>
+  <div style="display:flex;flex-direction:column;gap:var(--gap)">
+    <div class="card">
+      <div class="card-header"><span class="card-header-icon">📊</span><span class="card-title">Steuerbasis (monatlich)</span></div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <table class="cf-table">
+          <tr><td class="cf-lbl">Nettokaltmiete eff.</td><td class="cf-bar-cell"></td><td class="cf-val cf-pos">+${eu(d.nkmE)}</td></tr>
+          <tr class="cf-sub"><td class="cf-lbl">– Bewirtschaftung</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.bk)}</td></tr>
+          <tr class="cf-sub"><td class="cf-lbl">– Zinsen</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.zi)}</td></tr>
+          <tr class="cf-sub"><td class="cf-lbl">– AfA</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.afaM)}</td></tr>
+          <tr class="cf-total"><td class="cf-lbl">= Zu versteuern</td><td class="cf-bar-cell"></td><td class="cf-val ${d.zvs>=0?'cf-pos':'cf-neg'}">${eu(d.zvs)}</td></tr>
+          <tr class="cf-sub"><td class="cf-lbl">× ${S.steuer}% Grenzsteuersatz</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.stM)}</td></tr>
+        </table>
       </div>
     </div>
-
-    ${secH('💰','Jahresübersicht')}
-    <div class="cf-assumptions">
-      <div class="cf-ass-grid">
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.cfNSt*12)}</div><div class="cf-ass-lbl">Cashflow p.a.</div></div>
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.nkmE*12)}</div><div class="cf-ass-lbl">Mieteinnahmen p.a.</div></div>
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.rs)}</div><div class="cf-ass-lbl">Restschuld</div></div>
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.immowert-d.rs)}</div><div class="cf-ass-lbl">Nettovermögen</div></div>
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.stM*12)}</div><div class="cf-ass-lbl">Steuern p.a.</div></div>
-        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.afaM*12)}</div><div class="cf-ass-lbl">AfA p.a.</div></div>
+    <div class="card">
+      <div class="card-header"><span class="card-header-icon">📅</span><span class="card-title">Jahreswerte (${kalJahr})</span></div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <table class="cf-table">
+          <tr><td class="cf-lbl">Cashflow p.a.</td><td class="cf-bar-cell"></td><td class="cf-val ${d.cfNSt>=0?'cf-pos':'cf-neg'}">${eu(d.cfNSt*12)}</td></tr>
+          <tr><td class="cf-lbl">Mieteinnahmen p.a.</td><td class="cf-bar-cell"></td><td class="cf-val">${eu(d.nkmE*12)}</td></tr>
+          <tr><td class="cf-lbl">Immobilienwert</td><td class="cf-bar-cell"></td><td class="cf-val">${eu(d.immowert)}</td></tr>
+          <tr><td class="cf-lbl">Restschuld</td><td class="cf-bar-cell"></td><td class="cf-val cf-neg">–${eu(d.rs)}</td></tr>
+          <tr class="cf-total"><td class="cf-lbl">Nettovermögen</td><td class="cf-bar-cell"></td><td class="cf-val cf-pos">${eu(d.immowert-d.rs)}</td></tr>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
-<div class="cf-assumptions">
-  <div class="cf-ass-title">Annahmen für Jahr ${clampJ} (${kalJahr})</div>
+<div class="cf-ass">
+  <div class="cf-ass-title">Annahmen Jahr ${cfJahr} (${kalJahr})</div>
   <div class="cf-ass-grid">
-    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.nkm/S.wohnflaeche).replace('€','').trim()} €/m²</div><div class="cf-ass-lbl">Kaltmiete/m² (nach +${S.mietst}% p.a.)</div></div>
-    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.mietst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Mietsteigerung</div></div>
-    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.kostst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Kostensteigerung</div></div>
-    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.wertst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Wertsteigerung</div></div>
-    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.immowert)}</div><div class="cf-ass-lbl">Immobilienwert (${kalJahr})</div></div>
-    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.zi)}/Mo.</div><div class="cf-ass-lbl">Zinsen (Restschuld)</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">+${kumMiet}%</div><div class="cf-ass-lbl">Kum. Mietsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">+${kumWert}%</div><div class="cf-ass-lbl">Kum. Wertsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${S.mietst}% p.a.</div><div class="cf-ass-lbl">Mietsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${S.wertst}% p.a.</div><div class="cf-ass-lbl">Wertsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${S.kostst}% p.a.</div><div class="cf-ass-lbl">Kostensteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.nkm/S.wohnflaeche).replace('€','').trim()} €/m²</div><div class="cf-ass-lbl">Kaltmiete/m²</div></div>
   </div>
 </div>
 <div class="disclaimer">Alle Werte basieren auf den eingegebenen Annahmen und sind Prognosen. Keine Gewähr für Richtigkeit.</div>`;
@@ -563,15 +474,11 @@ function famp(v){return v<=SW.fk[0]?'kg':v<=SW.fk[1]?'ky':'kr'}
 const ALBL={kg:'Gut',ky:'Ok',kr:'Kritisch'};
 const ACOL={kg:'#1a7f37',ky:'#856404',kr:'#b91c1c'};
 
-function secH(icon,title){
-  return`<div class="sec-header"><div class="sec-header-icon" style="background:#ff6b3518">${icon}</div><span class="sec-title">${title}</span></div>`;
-}
+function secH(icon,title){return`<div class="sec-header"><div class="sec-header-icon" style="background:#ff6b3518">${icon}</div><span class="sec-title">${title}</span></div>`;}
 function drow(l,v,bold=false){return`<div class="drow${bold?' drow-bold':''}"><span class="dl">${l}</span><span class="dv">${v}</span></div>`}
 function cfr2(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
 function cfrt(l,v,a){return`<div class="cfr cft" style="background:${a==='kg'?'#f0faf1':a==='ky'?'#fffbeb':'#fef2f2'}"><span>${l}</span><span style="color:${ACOL[a]}">${eu(v)}</span></div>`}
-function kc(l,v,a,s,k){
-  return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kTip(k)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;
-}
+function kc(l,v,a,s,k){return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kTip(k)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;}
 
 function buildFazit(c){
   const sc={g:0,y:0,r:0};
@@ -579,17 +486,17 @@ function buildFazit(c){
   inc(amp(c.bR,SW.bm));inc(amp(c.nR,SW.nm));inc(famp(c.fakt));inc(amp(c.cfOp,SW.cf));inc(amp(c.cfNSt,SW.cf));
   const pts=[
     c.bR>=0.06?{p:true,t:`Bruttomietrendite ${pf(c.bR)} — über 6 %`}:c.bR>=0.05?{p:null,t:`Bruttomietrendite ${pf(c.bR)} — mittlerer Bereich`}:{p:false,t:`Bruttomietrendite ${pf(c.bR)} — unter 5 %`},
-    c.fakt<=20?{p:true,t:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig bewertet`}:c.fakt<=25?{p:null,t:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`}:{p:false,t:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer bewertet`},
-    c.cfNSt>=100?{p:true,t:`Cashflow ${eu(c.cfNSt)}/Mo. nach Steuern — positiv`}:c.cfNSt>=0?{p:null,t:`Cashflow ${eu(c.cfNSt)}/Mo. — nahezu neutral`}:{p:false,t:`Negativer Cashflow ${eu(c.cfNSt)}/Mo.`},
+    c.fakt<=20?{p:true,t:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig`}:c.fakt<=25?{p:null,t:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`}:{p:false,t:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer`},
+    c.cfNSt>=100?{p:true,t:`Cashflow ${eu(c.cfNSt)}/Mo. — positiv`}:c.cfNSt>=0?{p:null,t:`Cashflow ${eu(c.cfNSt)}/Mo. — neutral`}:{p:false,t:`Cashflow ${eu(c.cfNSt)}/Mo. — negativ`},
   ];
   const ekP=c.ek/(c.gI||1);
-  pts.push(ekP>=0.2?{p:true,t:`Eigenkapitalanteil ${pf(ekP)} — solide Basis`}:ekP>=0.1?{p:null,t:`Eigenkapitalanteil ${pf(ekP)} — knapp kalkuliert`}:{p:false,t:`Eigenkapitalanteil ${pf(ekP)} — hohes Finanzierungsrisiko`});
+  pts.push(ekP>=0.2?{p:true,t:`EK-Anteil ${pf(ekP)} — solide`}:ekP>=0.1?{p:null,t:`EK-Anteil ${pf(ekP)} — knapp`}:{p:false,t:`EK-Anteil ${pf(ekP)} — riskant`});
   let cls,icon,verd,summ;
-  if(sc.g>=3&&sc.r===0){cls='green';icon='✅';verd='Interessantes Objekt';summ='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow.';}
-  else if(sc.r>=3){cls='red';icon='❌';verd='Nicht empfehlenswert';summ='Mehrere kritische Kennzahlen — Rendite, Cashflow oder Bewertung sind unattraktiv.';}
+  if(sc.g>=3&&sc.r===0){cls='green';icon='✅';verd='Interessantes Objekt';summ='Renditestarkes Investment mit positivem Cashflow.';}
+  else if(sc.r>=3){cls='red';icon='❌';verd='Nicht empfehlenswert';summ='Mehrere kritische Kennzahlen — Abstand oder Nachverhandlung empfohlen.';}
   else if(sc.g>=2&&sc.r<=1){cls='green';icon='✅';verd='Tendenziell interessant';summ='Überwiegend gute Kennzahlen mit einzelnen Schwächen.';}
   else if(sc.r>=2){cls='red';icon='⚠️';verd='Eher nicht empfehlenswert';summ='Mehrere Kennzahlen sind kritisch.';}
-  else{cls='yellow';icon='📊';verd='Durchschnittliches Objekt';summ='Die Kennzahlen sind gemischt — weder besonders attraktiv noch offensichtlich ungeeignet.';}
+  else{cls='yellow';icon='📊';verd='Durchschnittliches Objekt';summ='Gemischte Kennzahlen — weder besonders attraktiv noch offensichtlich ungeeignet.';}
   const ptH=pts.map(pt=>`<div class="fazit-point"><div class="fp-dot" style="background:${pt.p===true?'#22c55e':pt.p===false?'#f43f5e':'#eab308'}"></div><span>${pt.t}</span></div>`).join('');
   return`<div class="fazit ${cls}"><div class="fazit-icon">${icon}</div><div class="fazit-body"><div class="fazit-verdict">${verd}</div><div class="fazit-summary">${summ}</div><div class="fazit-points">${ptH}</div></div></div>`;
 }
@@ -601,21 +508,15 @@ function buildCockpit(c){
   return`${buildFazit(c)}
 <div style="display:grid;grid-template-columns:1fr clamp(220px,22vw,290px);gap:var(--gap);margin-bottom:var(--gap);align-items:start">
   <div>${secH('📊','Kennzahlen')}<div class="kgrid">
-    ${kc('Bruttomietrendite',pf(c.bR),bma,'Kaltmiete / KP','bm')}
-    ${kc('Nettomietrendite',pf(c.nR),nma,'nach Bewirt.','nm')}
-    ${kc('Kaufpreisfaktor',n2(c.fakt)+'x',fa,'KP / Jahreskaltmiete','fakt')}
-    ${kc('Cashflow operativ',eu(c.cfOp)+'/Mo.',cfa,'vor Steuern','cfo')}
-    ${kc('Cashflow n. Steuern',eu(c.cfNSt)+'/Mo.',cfna,'nach AfA & Steuern','cfn')}
-    ${kc('Monatl. AfA',eu(c.afaM),'kg','steuerl. Abschreibung','afa')}
+    ${kc('Bruttomietrendite',pf(c.bR),bma,'Kaltmiete / KP','bm')}${kc('Nettomietrendite',pf(c.nR),nma,'nach Bewirt.','nm')}${kc('Kaufpreisfaktor',n2(c.fakt)+'x',fa,'KP / Jahreskaltmiete','fakt')}
+    ${kc('Cashflow operativ',eu(c.cfOp)+'/Mo.',cfa,'vor Steuern','cfo')}${kc('Cashflow n. Steuern',eu(c.cfNSt)+'/Mo.',cfna,'nach AfA & Steuern','cfn')}${kc('Monatl. AfA',eu(c.afaM),'kg','steuerl. Abschreibung','afa')}
   </div></div>
-  <div>${secH('💶','Monatlicher Cashflow')}<div class="cf-box">
+  <div>${secH('💶','Monatlicher Cashflow')}<div class="cfbox">
     ${cfr2('Nettokaltmiete',c.nkmE)}${cfr2('– Bewirtschaftung',-c.bk)}${cfr2('– Zinsen',-c.fin.zinsen)}${cfr2('– Tilgung',-c.fin.tilgung)}
-    ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr2('– Steuern',-c.stM)}
-    ${cfrt('= Cashflow n. Steuern',c.cfNSt,cfna)}
+    ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr2('– Steuern',-c.stM)}${cfrt('= Cashflow n. Steuern',c.cfNSt,cfna)}
   </div></div>
 </div>
-<div class="sec-divider"></div>
-${secH('📋','Übersicht')}
+<div class="sec-divider"></div>${secH('📋','Übersicht')}
 <div class="grid-3" style="margin-bottom:var(--gap)">
   <div class="card"><div class="card-header"><span class="card-header-icon">🏠</span><span class="card-title">Investition</span></div><div class="card-body">
     ${drow('Kaufpreis',eu(S.kaufpreis))}${drow('Kaufnebenkosten',eu(c.nkGes))}${drow('Anfängl. Invest.',eu(S.anfInvest))}${drow('Gesamtinvestition',eu(c.gI),true)}${drow('Kaufpreis/m²',eu(S.kaufpreis/(S.wohnflaeche||1)))}
@@ -637,25 +538,15 @@ function buildFin(c){
   c.tplan.forEach(r=>{const paid=r.rs<=0;rows+=`<tr class="${paid?'done-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td>${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;});
   return`${secH('🏦','Finanzierungsübersicht')}
 <div class="grid-2" style="margin-bottom:var(--gap)">
-  <div class="card"><div class="card-header"><span class="card-header-icon">📄</span><span class="card-title">Darlehen</span></div><div class="card-body">
-    ${drow('Darlehenssumme',eu(c.dar))}${drow('Zinssatz',pf(p(S.zinssatz)))}${drow('Anfäng. Tilgung',pf(p(S.tilgung)))}${drow('Monatl. Rate',eu(c.fin.rate),true)}${drow('davon Zinsen',eu(c.fin.zinsen))}${drow('davon Tilgung',eu(c.fin.tilgung))}
-  </div></div>
-  <div class="card"><div class="card-header"><span class="card-header-icon">💰</span><span class="card-title">Eigenkapital & Gesamtinvestition</span></div><div class="card-body">
-    ${drow('Kaufpreis',eu(S.kaufpreis))}${drow('Nebenkosten',eu(c.nkGes))}${drow('Anfängl. Invest.',eu(S.anfInvest))}${drow('Gesamtinvestition',eu(c.gI),true)}${drow('Eigenkapital',eu(c.ek),true)}${drow('EK-Anteil',pf(c.ek/(c.gI||1)))}
-  </div></div>
-  <div class="card"><div class="card-header"><span class="card-header-icon">📋</span><span class="card-title">Kaufnebenkosten</span></div><div class="card-body">
-    ${drow('Makler',eu(c.nkObj.makler))}${drow('Notar & Grundbuch',eu(c.nkObj.notar))}${drow('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))}${drow('Summe',eu(c.nkGes),true)}${drow('in % des Kaufpreises',pf(c.nkGes/(S.kaufpreis||1)))}
-  </div></div>
-  <div class="card"><div class="card-header"><span class="card-header-icon">📊</span><span class="card-title">Steuern & AfA</span></div><div class="card-body">
-    ${drow('AfA-Satz',pf(p(S.afa)))}${drow('Gebäudeanteil',pf(p(S.gebaude)))}${drow('Monatl. AfA',eu(c.afaM))}${drow('Grenzsteuersatz',pf(p(S.steuer)))}${drow('Monatl. Steuern',eu(c.stM),true)}
-  </div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">📄</span><span class="card-title">Darlehen</span></div><div class="card-body">${drow('Darlehenssumme',eu(c.dar))}${drow('Zinssatz',pf(p(S.zinssatz)))}${drow('Anfäng. Tilgung',pf(p(S.tilgung)))}${drow('Monatl. Rate',eu(c.fin.rate),true)}${drow('davon Zinsen',eu(c.fin.zinsen))}${drow('davon Tilgung',eu(c.fin.tilgung))}</div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">💰</span><span class="card-title">Eigenkapital & Gesamtinvestition</span></div><div class="card-body">${drow('Kaufpreis',eu(S.kaufpreis))}${drow('Nebenkosten',eu(c.nkGes))}${drow('Anfängl. Invest.',eu(S.anfInvest))}${drow('Gesamtinvestition',eu(c.gI),true)}${drow('Eigenkapital',eu(c.ek),true)}${drow('EK-Anteil',pf(c.ek/(c.gI||1)))}</div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">📋</span><span class="card-title">Kaufnebenkosten</span></div><div class="card-body">${drow('Makler',eu(c.nkObj.makler))}${drow('Notar & Grundbuch',eu(c.nkObj.notar))}${drow('Grunderwerbsteuer',eu(c.nkObj.grunderwerb))}${drow('Summe',eu(c.nkGes),true)}${drow('in % des Kaufpreises',pf(c.nkGes/(S.kaufpreis||1)))}</div></div>
+  <div class="card"><div class="card-header"><span class="card-header-icon">📊</span><span class="card-title">Steuern & AfA</span></div><div class="card-body">${drow('AfA-Satz',pf(p(S.afa)))}${drow('Gebäudeanteil',pf(p(S.gebaude)))}${drow('Monatl. AfA',eu(c.afaM))}${drow('Grenzsteuersatz',pf(p(S.steuer)))}${drow('Monatl. Steuern',eu(c.stM),true)}</div></div>
 </div>
-<div class="sec-divider"></div>
-${secH('📅','Tilgungsplan')}
+<div class="sec-divider"></div>${secH('📅','Tilgungsplan')}
 <div class="accordion${tplanOpen?' open':''}" id="tplan-acc">
   <div class="accordion-header" onclick="toggleTP()">
-    <div class="accordion-icon">📅</div>
-    <span class="accordion-title">Jahresübersicht</span>
+    <div class="accordion-icon">📅</div><span class="accordion-title">Jahresübersicht</span>
     <div class="accordion-meta"><span>Volltilgung: <strong>${vollJ}</strong></span><span>Gesamt-Zinsen: <strong>${eu(gZ)}</strong></span><span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span></div>
     <span class="accordion-chevron">▾</span>
   </div>
