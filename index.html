@@ -6,6 +6,7 @@
   --fs-sm:clamp(12px,1.3vw,14px);
   --fs-md:clamp(13px,1.5vw,15px);
   --fs-lg:clamp(15px,1.8vw,18px);
+  --fs-xl:clamp(18px,2.2vw,24px);
   --fs-label:clamp(9px,1vw,11px);
   --gap:clamp(10px,1.2vw,16px);
   --pad:clamp(12px,1.4vw,18px);
@@ -13,8 +14,6 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;font-size:var(--fs-md);background:#f0ede8;color:#2c2c2e;min-height:100vh}
 .shell{display:flex;flex-direction:column;min-height:100vh}
-
-/* ── Topbar ── */
 .topbar{background:#eae7e1;border-bottom:1px solid #d6d2cb;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .topbar-left{display:flex;align-items:baseline;gap:10px;padding:14px 0;flex-shrink:0}
 .topbar-logo{font-size:var(--fs-lg);font-weight:700;color:#2c2c2e;letter-spacing:-.3px}
@@ -23,52 +22,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tab{padding:14px clamp(10px,1.4vw,18px);font-size:var(--fs-sm);font-weight:500;cursor:pointer;border-bottom:2px solid transparent;color:#8e8e93;transition:all .12s;user-select:none;white-space:nowrap}
 .tab:hover{color:#3a3a3c}
 .tab.active{color:#ff6b35;border-bottom-color:#ff6b35;font-weight:600}
-
-/* ── Content wrapper ── */
 .content{flex:1;padding:clamp(16px,2vw,24px)}
-
-/* ── Shared section header ── */
 .sec-header{display:flex;align-items:center;gap:8px;margin-bottom:var(--gap)}
 .sec-header-icon{font-size:15px;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sec-title{font-size:var(--fs-md);font-weight:600;color:#2c2c2e}
 .sec-divider{height:1px;background:#e0dcd6;margin:clamp(14px,1.8vw,20px) 0}
-
-/* ── Cards & blocks ── */
 .card{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
 .card-header{padding:11px var(--pad);border-bottom:1px solid #f0ede8;display:flex;align-items:center;gap:8px}
 .card-header-icon{font-size:14px}
 .card-title{font-size:var(--fs-sm);font-weight:600;color:#2c2c2e}
 .card-body{padding:var(--pad)}
-
-/* row within a card */
 .drow{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:var(--fs-sm);border-bottom:1px solid #f7f5f2}
 .drow:last-child{border-bottom:none}
 .drow .dl{color:#8e8e93}
 .drow .dv{font-weight:500;color:#2c2c2e}
 .drow.drow-bold .dl{color:#2c2c2e;font-weight:600}
 .drow.drow-bold .dv{font-weight:700}
-
-/* grid layouts */
 .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
 .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap)}
-
-/* ── Cockpit: Fazit ── */
-.fazit{border-radius:var(--radius);border:1.5px solid;padding:var(--pad) clamp(14px,1.6vw,20px);margin-bottom:var(--gap);display:flex;gap:14px;align-items:flex-start}
-.fazit-icon{font-size:26px;flex-shrink:0;line-height:1;margin-top:2px}
-.fazit-body{flex:1;min-width:0}
-.fazit-verdict{font-size:var(--fs-lg);font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
-.fazit-summary{font-size:var(--fs-sm);line-height:1.55;margin-bottom:10px;opacity:.9}
-.fazit-points{display:flex;flex-direction:column;gap:4px}
-.fazit-point{display:flex;align-items:flex-start;gap:7px;font-size:var(--fs-xs);line-height:1.45}
-.fp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.fazit.green{background:#f0faf1;border-color:#86efac}
-.fazit.green .fazit-verdict,.fazit.green .fazit-summary,.fazit.green .fazit-point{color:#166534}
-.fazit.yellow{background:#fefce8;border-color:#fde047}
-.fazit.yellow .fazit-verdict,.fazit.yellow .fazit-summary,.fazit.yellow .fazit-point{color:#713f12}
-.fazit.red{background:#fff1f2;border-color:#fca5a5}
-.fazit.red .fazit-verdict,.fazit.red .fazit-summary,.fazit.red .fazit-point{color:#881337}
-
-/* ── Cockpit: Kennzahl-Karten ── */
 .kgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
 .kcard{background:white;border-radius:var(--radius);padding:clamp(10px,1.2vw,14px);border:1px solid #e0dcd6;position:relative}
 .kcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px}
@@ -89,15 +60,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .kt-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .kt-dot.g{background:#34c759}.kt-dot.y{background:#f4d03f}.kt-dot.r{background:#ff453a}
 .kt-rowlbl{color:#aaa}
-
-/* ── Cashflow-Box ── */
 .cf-box{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
 .cfr{display:flex;justify-content:space-between;padding:8px var(--pad);border-bottom:1px solid #f7f5f2;font-size:var(--fs-sm)}
 .cfr:last-child{border-bottom:none}
 .cft{font-weight:600}
 .gv{color:#1a7f37;font-weight:600}.rv{color:#b91c1c;font-weight:600}
-
-/* ── Tilgungsplan accordion ── */
+.fazit{border-radius:var(--radius);border:1.5px solid;padding:var(--pad) clamp(14px,1.6vw,20px);margin-bottom:var(--gap);display:flex;gap:14px;align-items:flex-start}
+.fazit-icon{font-size:26px;flex-shrink:0;line-height:1;margin-top:2px}
+.fazit-body{flex:1;min-width:0}
+.fazit-verdict{font-size:var(--fs-lg);font-weight:700;margin-bottom:4px;letter-spacing:-.2px}
+.fazit-summary{font-size:var(--fs-sm);line-height:1.55;margin-bottom:10px;opacity:.9}
+.fazit-points{display:flex;flex-direction:column;gap:4px}
+.fazit-point{display:flex;align-items:flex-start;gap:7px;font-size:var(--fs-xs);line-height:1.45}
+.fp-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.fazit.green{background:#f0faf1;border-color:#86efac}
+.fazit.green .fazit-verdict,.fazit.green .fazit-summary,.fazit.green .fazit-point{color:#166534}
+.fazit.yellow{background:#fefce8;border-color:#fde047}
+.fazit.yellow .fazit-verdict,.fazit.yellow .fazit-summary,.fazit.yellow .fazit-point{color:#713f12}
+.fazit.red{background:#fff1f2;border-color:#fca5a5}
+.fazit.red .fazit-verdict,.fazit.red .fazit-summary,.fazit.red .fazit-point{color:#881337}
 .accordion{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
 .accordion-header{display:flex;align-items:center;gap:12px;padding:13px var(--pad);cursor:pointer;user-select:none;transition:background .12s}
 .accordion-header:hover{background:#faf9f7}
@@ -111,8 +92,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s cubic-bezier(.4,0,.2,1)}
 .accordion.open .accordion-body{grid-template-rows:1fr}
 .accordion-inner{overflow:hidden}
-
-/* ── Table ── */
 .tbl{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
 .tbl th{background:#3a3a3c;color:white;padding:9px clamp(10px,1.2vw,16px);text-align:right;font-size:var(--fs-xs);font-weight:600}
 .tbl th:first-child{text-align:left}
@@ -120,10 +99,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .tbl td:first-child{text-align:left;font-weight:500}
 .tbl tr:nth-child(even){background:#faf9f7}
 .tbl tr:hover{background:#fff8f5}
-.tbl .paid{color:#1a7f37;font-weight:600}
 .tbl .done-row td{color:#1a7f37;font-weight:600}
-
-/* ── Disclaimer ── */
 .disclaimer{font-size:var(--fs-xs);color:#8e8e93;margin-top:clamp(10px,1.2vw,16px);padding-top:10px;border-top:1px solid #e0dcd6}
 
 /* ── Input tab ── */
@@ -167,6 +143,50 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
 .iinfo:hover .tooltip{display:block}
 .tt-title{font-weight:600;margin-bottom:4px;color:#fff}
 .tt-std{color:#aaa;font-size:var(--fs-xs);margin-top:5px;padding-top:5px;border-top:1px solid #333}
+
+/* ── Cashflow Tab ── */
+.cf-year-control{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:var(--pad);display:flex;align-items:center;gap:16px;margin-bottom:var(--gap);flex-wrap:wrap}
+.cf-year-label{font-size:var(--fs-sm);color:#8e8e93;white-space:nowrap}
+.cf-year-nav{display:flex;align-items:center;gap:8px}
+.cf-year-btn{width:32px;height:32px;border-radius:8px;background:#f5f2ed;border:1px solid #d6d2cb;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:#3a3a3c;transition:background .1s;flex-shrink:0;user-select:none}
+.cf-year-btn:hover{background:#ede9e2}
+.cf-year-display{font-size:var(--fs-xl);font-weight:700;color:#2c2c2e;min-width:90px;text-align:center;letter-spacing:-.5px}
+.cf-year-sub{font-size:var(--fs-xs);color:#8e8e93;text-align:center;margin-top:1px}
+.cf-year-input{display:flex;align-items:center;gap:6px;margin-left:auto}
+.cf-year-input label{font-size:var(--fs-xs);color:#8e8e93}
+.cf-year-input input{width:60px;padding:5px 8px;border:1px solid #d6d2cb;border-radius:7px;font-size:var(--fs-sm);text-align:center;background:#f5f2ed;color:#0055cc;font-weight:600;-moz-appearance:textfield}
+.cf-year-input input:focus{outline:none;border-color:#ff6b35;background:white}
+.cf-year-input input::-webkit-inner-spin-button,.cf-year-input input::-webkit-outer-spin-button{-webkit-appearance:none}
+
+.cf-big-val{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.cf-big-label{font-size:var(--fs-sm);color:#8e8e93;margin-top:4px}
+.cf-big-box{background:white;border-radius:var(--radius);border:2px solid;padding:var(--pad) clamp(14px,1.6vw,22px);text-align:center}
+.cf-big-box.green{border-color:#86efac;background:#f0faf1}
+.cf-big-box.green .cf-big-val{color:#166534}
+.cf-big-box.yellow{border-color:#fde047;background:#fefce8}
+.cf-big-box.yellow .cf-big-val{color:#854d0e}
+.cf-big-box.red{border-color:#fca5a5;background:#fff1f2}
+.cf-big-box.red .cf-big-val{color:#9f1239}
+
+.cf-flow{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;overflow:hidden}
+.cf-flow-row{display:flex;align-items:center;padding:10px var(--pad);border-bottom:1px solid #f7f5f2;gap:10px;font-size:var(--fs-sm)}
+.cf-flow-row:last-child{border-bottom:none}
+.cf-flow-row.cf-total{font-weight:600;font-size:var(--fs-md)}
+.cf-flow-label{flex:1;color:#3a3a3c}
+.cf-flow-val{font-weight:500;white-space:nowrap;min-width:90px;text-align:right}
+.cf-flow-row.cf-total .cf-flow-label{color:#2c2c2e}
+.cf-flow-bar-wrap{width:120px;flex-shrink:0;height:6px;background:#f0ede8;border-radius:3px;overflow:hidden}
+.cf-flow-bar{height:100%;border-radius:3px;transition:width .3s}
+.cf-sign-pos{color:#1a7f37}.cf-sign-neg{color:#b91c1c}
+.cf-indent{padding-left:14px;opacity:.85}
+.cf-separator{height:1px;background:#e0dcd6;margin:2px 0}
+
+.cf-assumptions{background:white;border-radius:var(--radius);border:1px solid #e0dcd6;padding:var(--pad)}
+.cf-ass-title{font-size:var(--fs-xs);font-weight:600;color:#8e8e93;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.cf-ass-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cf-ass-item{text-align:center;padding:8px 6px;background:#f5f2ed;border-radius:8px}
+.cf-ass-val{font-size:var(--fs-md);font-weight:700;color:#2c2c2e}
+.cf-ass-lbl{font-size:var(--fs-xs);color:#8e8e93;margin-top:2px}
 </style>
 
 <div class="shell">
@@ -177,12 +197,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue'
     </div>
     <div class="tab-bar">
       <div class="tab active" onclick="showTab('eingaben',this)">Input</div>
+      <div class="tab" onclick="showTab('cashflow',this)">Cashflow</div>
       <div class="tab" onclick="showTab('finanzierung',this)">Finanzierung</div>
       <div class="tab" onclick="showTab('cockpit',this)">Cockpit</div>
     </div>
   </div>
   <div class="content">
     <div id="tab-eingaben"></div>
+    <div id="tab-cashflow" style="display:none"></div>
     <div id="tab-finanzierung" style="display:none"></div>
     <div id="tab-cockpit" style="display:none"></div>
   </div>
@@ -198,14 +220,15 @@ const S={
   afa:2,gebaude:75,steuer:42,
   wertst:2,mietst:2,kostst:2,betrjahr:2050
 };
+let cfJahr=1;
 
 const KINFO={
-  bm:{title:'Bruttomietrendite',desc:'Verhältnis der jährlichen Kaltmiete zum Kaufpreis. Schnellcheck ohne Kosten.',scale:[{c:'g',lbl:'Gut: über 6 %'},{c:'y',lbl:'Ok: 5 – 6 %'},{c:'r',lbl:'Kritisch: unter 5 %'}]},
+  bm:{title:'Bruttomietrendite',desc:'Verhältnis der jährlichen Kaltmiete zum Kaufpreis.',scale:[{c:'g',lbl:'Gut: über 6 %'},{c:'y',lbl:'Ok: 5 – 6 %'},{c:'r',lbl:'Kritisch: unter 5 %'}]},
   nm:{title:'Nettomietrendite',desc:'Bruttomietrendite nach Abzug aller Bewirtschaftungskosten.',scale:[{c:'g',lbl:'Gut: über 5 %'},{c:'y',lbl:'Ok: 4 – 5 %'},{c:'r',lbl:'Kritisch: unter 4 %'}]},
   fakt:{title:'Kaufpreisfaktor',desc:'Kaufpreis ÷ Jahreskaltmiete. Niedrigerer Faktor = besseres Geschäft.',scale:[{c:'g',lbl:'Gut: unter 20x'},{c:'y',lbl:'Ok: 20 – 25x'},{c:'r',lbl:'Teuer: über 25x'}]},
   cfo:{title:'Cashflow operativ',desc:'Monatlicher Überschuss aus Miete minus Bewirtschaftung, Zinsen und Tilgung — vor Steuereffekten.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
   cfn:{title:'Cashflow nach Steuern',desc:'Tatsächlicher monatlicher Über- oder Unterschuss nach allen Kosten inkl. Steuer.',scale:[{c:'g',lbl:'Gut: über +100 €/Mo.'},{c:'y',lbl:'Ok: 0 – +100 €/Mo.'},{c:'r',lbl:'Kritisch: negativ'}]},
-  afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein Geldfluss, aber steuerlich absetzbar.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},{c:'r',lbl:'Kein schlechter Wert — nur Kontext'}]}
+  afa:{title:'Monatliche AfA',desc:'Steuerliche Abschreibung auf den Gebäudeanteil. Kein Geldfluss, aber steuerlich absetzbar.',scale:[{c:'g',lbl:'Je höher, desto mehr Steuerersparnis'},{c:'y',lbl:'Hängt von Kaufpreis & Gebäudeanteil ab'},{c:'r',lbl:'Kein Negativ-Wert'}]}
 };
 function kTip(key){
   const d=KINFO[key];if(!d)return'';
@@ -221,14 +244,14 @@ function getGS(){return S.grundsteuer!==null?S.grundsteuer:autoGrundsteuer()}
 const GROUPS=[
   {id:'g0',icon:'🏠',title:'Objekt',fields:[
     {k:'adresse',l:'Adresse',t:'text',info:'Name oder Adresse des Objekts.',std:'z.B. Mülheim, 3-Zi-Wohnung'},
-    {k:'kaufpreis',l:'Kaufpreis',u:'€',step:1000,info:'Vereinbarter Kaufpreis laut Kaufvertrag, ohne Nebenkosten.',std:'150.000 – 500.000 €'},
+    {k:'kaufpreis',l:'Kaufpreis',u:'€',step:1000,info:'Kaufpreis laut Kaufvertrag, ohne Nebenkosten.',std:'150.000 – 500.000 €'},
     {k:'wohnflaeche',l:'Wohnfläche',u:'m²',step:1,info:'Wohnfläche laut Grundriss oder Exposé.',std:'40 – 120 m²'},
     {k:'kaufjahr',l:'Kaufjahr',u:'',step:1,info:'Jahr des Kaufabschlusses.',std:String(new Date().getFullYear())},
-    {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc. zusätzlich zum Kaufpreis.',std:'0 – 30.000 €'}
+    {k:'anfInvest',l:'Investitionen bei Kauf',u:'€',step:500,info:'Renovierung, Möblierung etc.',std:'0 – 30.000 €'}
   ]},
   {id:'g1',icon:'📋',title:'Kaufnebenkosten',fields:[
     {k:'makler',l:'Maklerprovision',u:'%',step:0.01,info:'In DE meist 3,57 %.',std:'3,57 %'},
-    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ~1,5% + Grundbuchamt ~0,5% = ~2%.',std:'2,0 %'},
+    {k:'notar',l:'Notar & Grundbuch',u:'%',step:0.01,info:'Notar ~1,5% + Grundbuchamt ~0,5%.',std:'2,0 %'},
     {k:'grunderwerb',l:'Grunderwerbsteuer',u:'%',step:0.1,info:'Bayern 3,5% — NRW & SH 6,5%.',std:'NRW: 6,5% · Bayern: 3,5%'}
   ]},
   {id:'g2',icon:'🏷️',title:'Miete',fields:[
@@ -257,9 +280,7 @@ const GROUPS=[
     {k:'kostst',l:'Kostensteigerung p.a.',u:'%',step:0.1,info:'Jährliche Kostensteigerung.',std:'2 % p.a.'}
   ]}
 ];
-
 let activeGroup='g0',tplanOpen=false;
-
 function gSum(g){
   return g.fields.filter(f=>f.t!=='text').slice(0,1).map(f=>{
     const v=f.auto?(S[f.k]!==null?S[f.k]:window[f.autoFn]()):S[f.k];
@@ -321,6 +342,7 @@ function buildEingaben(){
 const p=v=>v/100;
 function ann(d,z,t){if(d<=0)return{rate:0,zinsen:0,tilgung:0};const zm=z/12,r=d*(zm+t/12),zi=d*zm,ti=r-zi;return{rate:r,zinsen:zi,tilgung:ti}}
 function tilgP(d,z,t,j=50){if(d<=0)return[];const zm=z/12,r=d*(zm+t/12);let rs=d;const pl=[];for(let i=1;i<=j;i++){let zj=0,tj=0;for(let m=0;m<12;m++){if(rs<=0)break;const zi=rs*zm,ti=Math.min(r-zi,rs);zj+=zi;tj+=ti;rs-=ti;}pl.push({j:i,zj,tj,ann:zj+tj,rs:Math.max(0,rs),kdm:(zj+tj)/12});if(rs<=0)break;}return pl}
+
 function calcAll(){
   const kp=S.kaufpreis,wf=S.wohnflaeche;
   const nkGes=kp*(p(S.makler)+p(S.notar)+p(S.grunderwerb));
@@ -337,6 +359,201 @@ function calcAll(){
   return{nkObj,nkGes,gI,dar,ek,fin,nkm,mao,nkmE,bk,hg,gs,afaM,stM,cfOp,cfNSt,bR,nR,fakt,tplan};
 }
 
+function calcJahr(j){
+  const kp=S.kaufpreis,wf=S.wohnflaeche;
+  const idx=j-1;
+  const fakt_m=Math.pow(1+p(S.mietst),idx);
+  const fakt_k=Math.pow(1+p(S.kostst),idx);
+  const nkm0=S.mietePqm*wf;
+  const nkm=nkm0*fakt_m;
+  const mao=nkm*p(S.mietausfall);
+  const nkmE=nkm-mao;
+  const hg0=getHG(),gs0=getGS();
+  const bk=hg0*fakt_k+gs0*fakt_k+(S.ruecklage*wf/12)*fakt_k+mao;
+  const dar=kp*p(S.darlehenPct);
+  const tplan=tilgP(dar,p(S.zinssatz),p(S.tilgung),50);
+  const tp=tplan[idx]||{zj:0,tj:0,rs:0};
+  const zi=tp.zj/12,ti=tp.tj/12;
+  const afaM=(kp*p(S.gebaude)*p(S.afa))/12;
+  const zvs=nkmE-bk-zi-afaM;
+  const stM=zvs*p(S.steuer);
+  const cfOp=nkmE-bk-zi-ti;
+  const cfNSt=cfOp-stM;
+  const immowert=kp*Math.pow(1+p(S.wertst),idx);
+  return{j,nkm,mao,nkmE,bk,hg:hg0*fakt_k,gs:gs0*fakt_k,ruecKosten:(S.ruecklage*wf/12)*fakt_k,zi,ti,afaM,zvs,stM,cfOp,cfNSt,immowert,rs:tp.rs};
+}
+
+function cfAmpel(v){return v>=100?'green':v>=0?'yellow':'red'}
+
+function buildCashflow(){
+  const maxJ=Math.max(1,S.betrjahr-S.kaufjahr);
+  const clampJ=Math.min(Math.max(1,cfJahr),maxJ);
+  if(cfJahr!==clampJ)cfJahr=clampJ;
+  const d=calcJahr(cfJahr);
+  const kp=S.kaufpreis;
+  const kalJahr=S.kaufjahr+cfJahr-1;
+  const ampN=cfAmpel(d.cfNSt),ampO=cfAmpel(d.cfOp);
+
+  const barW=(v,max)=>`${Math.min(100,Math.abs(v)/max*100).toFixed(1)}%`;
+  const maxVal=Math.max(d.nkmE,1);
+
+  return`
+${secH('💶','Cashflow-Analyse')}
+<div class="cf-year-control">
+  <span class="cf-year-label">Analysejahr:</span>
+  <div class="cf-year-nav">
+    <button class="cf-year-btn" onclick="setCFJahr(${clampJ-1})">‹</button>
+    <div>
+      <div class="cf-year-display">Jahr ${clampJ}</div>
+      <div class="cf-year-sub">${kalJahr}</div>
+    </div>
+    <button class="cf-year-btn" onclick="setCFJahr(${clampJ+1})">›</button>
+  </div>
+  <div class="cf-year-input">
+    <label>Direkt eingeben:</label>
+    <input type="number" id="cf-jahr-inp" value="${clampJ}" min="1" max="${maxJ}" step="1"
+      oninput="setCFJahr(parseInt(this.value)||1)">
+    <span style="font-size:var(--fs-xs);color:#8e8e93">/ ${maxJ}</span>
+  </div>
+</div>
+
+<div class="grid-3" style="margin-bottom:var(--gap)">
+  <div class="cf-big-box ${ampN}">
+    <div class="cf-big-val">${eu(d.cfNSt)}</div>
+    <div class="cf-big-label">Cashflow nach Steuern / Monat</div>
+  </div>
+  <div class="cf-big-box ${ampO}">
+    <div class="cf-big-val">${eu(d.cfOp)}</div>
+    <div class="cf-big-label">Cashflow operativ / Monat</div>
+  </div>
+  <div class="cf-big-box" style="border-color:#e0dcd6;background:white">
+    <div class="cf-big-val" style="color:#2c2c2e">${eu(d.immowert)}</div>
+    <div class="cf-big-label">Immobilienwert (geschätzt)</div>
+  </div>
+</div>
+
+<div class="grid-2" style="margin-bottom:var(--gap)">
+  <div>
+    ${secH('📥','Einnahmen & Ausgaben (monatlich)')}
+    <div class="cf-flow">
+      <div class="cf-flow-row">
+        <span class="cf-flow-label">Nettokaltmiete (Markt)</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.nkm,maxVal)};background:#3b82f6"></div></div>
+        <span class="cf-flow-val cf-sign-pos">${eu(d.nkm)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Kalk. Mietausfall</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.mao,maxVal)};background:#f87171"></div></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.mao)}</span>
+      </div>
+      <div class="cf-flow-row cf-total">
+        <span class="cf-flow-label">= Nettokaltmiete eff.</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.nkmE,maxVal)};background:#22c55e"></div></div>
+        <span class="cf-flow-val cf-sign-pos">${eu(d.nkmE)}</span>
+      </div>
+      <div class="cf-separator"></div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Hausgeld (Eigentümer)</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.hg,maxVal)};background:#f87171"></div></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.hg)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Grundsteuer</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.gs,maxVal)};background:#f87171"></div></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.gs)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Instandhaltungsrücklage</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.ruecKosten,maxVal)};background:#f87171"></div></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.ruecKosten)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Zinsen</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.zi,maxVal)};background:#f87171"></div></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.zi)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Tilgung</span>
+        <div class="cf-flow-bar-wrap"><div class="cf-flow-bar" style="width:${barW(d.ti,maxVal)};background:#fb923c"></div></div>
+        <span class="cf-flow-val" style="color:#854d0e">–${eu(d.ti)}</span>
+      </div>
+      <div class="cf-flow-row cf-total" style="background:${ampO==='green'?'#f0faf1':ampO==='yellow'?'#fefce8':'#fff1f2'}">
+        <span class="cf-flow-label" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#713f12':'#881337'}">= Cashflow operativ</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val" style="color:${ampO==='green'?'#166534':ampO==='yellow'?'#713f12':'#881337'}">${eu(d.cfOp)}</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    ${secH('📊','Steuerrechnung (monatlich)')}
+    <div class="cf-flow" style="margin-bottom:var(--gap)">
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">Nettokaltmiete eff.</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val cf-sign-pos">${eu(d.nkmE)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Bewirtschaftung</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.bk)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– Zinsen</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.zi)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">– AfA</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val cf-sign-neg">–${eu(d.afaM)}</span>
+      </div>
+      <div class="cf-flow-row cf-total">
+        <span class="cf-flow-label">= Zu versteuern</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val ${d.zvs>=0?'cf-sign-pos':'cf-sign-neg'}">${eu(d.zvs)}</span>
+      </div>
+      <div class="cf-flow-row cf-indent">
+        <span class="cf-flow-label">× Grenzsteuersatz (${S.steuer}%)</span>
+        <div class="cf-flow-bar-wrap"></div>
+        <span class="cf-flow-val cf-sign-neg">= –${eu(d.stM)}</span>
+      </div>
+    </div>
+
+    ${secH('💰','Jahresübersicht')}
+    <div class="cf-assumptions">
+      <div class="cf-ass-grid">
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.cfNSt*12)}</div><div class="cf-ass-lbl">Cashflow p.a.</div></div>
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.nkmE*12)}</div><div class="cf-ass-lbl">Mieteinnahmen p.a.</div></div>
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.rs)}</div><div class="cf-ass-lbl">Restschuld</div></div>
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.immowert-d.rs)}</div><div class="cf-ass-lbl">Nettovermögen</div></div>
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.stM*12)}</div><div class="cf-ass-lbl">Steuern p.a.</div></div>
+        <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.afaM*12)}</div><div class="cf-ass-lbl">AfA p.a.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cf-assumptions">
+  <div class="cf-ass-title">Annahmen für Jahr ${clampJ} (${kalJahr})</div>
+  <div class="cf-ass-grid">
+    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.nkm/S.wohnflaeche).replace('€','').trim()} €/m²</div><div class="cf-ass-lbl">Kaltmiete/m² (nach +${S.mietst}% p.a.)</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.mietst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Mietsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.kostst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Kostensteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">+${((Math.pow(1+p(S.wertst),clampJ-1)-1)*100).toFixed(1)}%</div><div class="cf-ass-lbl">Kum. Wertsteigerung</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.immowert)}</div><div class="cf-ass-lbl">Immobilienwert (${kalJahr})</div></div>
+    <div class="cf-ass-item"><div class="cf-ass-val">${eu(d.zi)}/Mo.</div><div class="cf-ass-lbl">Zinsen (Restschuld)</div></div>
+  </div>
+</div>
+<div class="disclaimer">Alle Werte basieren auf den eingegebenen Annahmen und sind Prognosen. Keine Gewähr für Richtigkeit.</div>`;
+}
+
+function setCFJahr(j){
+  const max=Math.max(1,S.betrjahr-S.kaufjahr);
+  cfJahr=Math.min(Math.max(1,j),max);
+  if(activeTab==='cashflow')document.getElementById('tab-cashflow').innerHTML=buildCashflow();
+}
+
 const eu=v=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(v);
 const pf=(v,d=2)=>(v*100).toFixed(d)+'%';
 const n2=v=>new Intl.NumberFormat('de-DE',{maximumFractionDigits:1}).format(v);
@@ -346,11 +563,11 @@ function famp(v){return v<=SW.fk[0]?'kg':v<=SW.fk[1]?'ky':'kr'}
 const ALBL={kg:'Gut',ky:'Ok',kr:'Kritisch'};
 const ACOL={kg:'#1a7f37',ky:'#856404',kr:'#b91c1c'};
 
-function secH(icon,title,color='#ff6b35'){
-  return`<div class="sec-header"><div class="sec-header-icon" style="background:${color}18">${icon}</div><span class="sec-title">${title}</span></div>`;
+function secH(icon,title){
+  return`<div class="sec-header"><div class="sec-header-icon" style="background:#ff6b3518">${icon}</div><span class="sec-title">${title}</span></div>`;
 }
 function drow(l,v,bold=false){return`<div class="drow${bold?' drow-bold':''}"><span class="dl">${l}</span><span class="dv">${v}</span></div>`}
-function cfr(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
+function cfr2(l,v){return`<div class="cfr"><span>${l}</span><span class="${v>=0?'gv':'rv'}">${eu(v)}</span></div>`}
 function cfrt(l,v,a){return`<div class="cfr cft" style="background:${a==='kg'?'#f0faf1':a==='ky'?'#fffbeb':'#fef2f2'}"><span>${l}</span><span style="color:${ACOL[a]}">${eu(v)}</span></div>`}
 function kc(l,v,a,s,k){
   return`<div class="kcard"><div class="kcard-top"><span class="kbadge ${a}">${ALBL[a]}</span><button class="kinfo-btn">i${kTip(k)}</button></div><div class="kcard-label">${l}</div><div class="kcard-val" style="color:${ACOL[a]}">${v}</div>${s?`<div class="kcard-sub">${s}</div>`:''}</div>`;
@@ -363,15 +580,15 @@ function buildFazit(c){
   const pts=[
     c.bR>=0.06?{p:true,t:`Bruttomietrendite ${pf(c.bR)} — über 6 %`}:c.bR>=0.05?{p:null,t:`Bruttomietrendite ${pf(c.bR)} — mittlerer Bereich`}:{p:false,t:`Bruttomietrendite ${pf(c.bR)} — unter 5 %`},
     c.fakt<=20?{p:true,t:`Kaufpreisfaktor ${n2(c.fakt)}x — günstig bewertet`}:c.fakt<=25?{p:null,t:`Kaufpreisfaktor ${n2(c.fakt)}x — marktüblich`}:{p:false,t:`Kaufpreisfaktor ${n2(c.fakt)}x — teuer bewertet`},
-    c.cfNSt>=100?{p:true,t:`Cashflow ${eu(c.cfNSt)}/Mo. nach Steuern — positiv`}:c.cfNSt>=0?{p:null,t:`Cashflow ${eu(c.cfNSt)}/Mo. — nahezu neutral`}:{p:false,t:`Negativer Cashflow ${eu(c.cfNSt)}/Mo. — Zuzahlung nötig`},
+    c.cfNSt>=100?{p:true,t:`Cashflow ${eu(c.cfNSt)}/Mo. nach Steuern — positiv`}:c.cfNSt>=0?{p:null,t:`Cashflow ${eu(c.cfNSt)}/Mo. — nahezu neutral`}:{p:false,t:`Negativer Cashflow ${eu(c.cfNSt)}/Mo.`},
   ];
   const ekP=c.ek/(c.gI||1);
   pts.push(ekP>=0.2?{p:true,t:`Eigenkapitalanteil ${pf(ekP)} — solide Basis`}:ekP>=0.1?{p:null,t:`Eigenkapitalanteil ${pf(ekP)} — knapp kalkuliert`}:{p:false,t:`Eigenkapitalanteil ${pf(ekP)} — hohes Finanzierungsrisiko`});
   let cls,icon,verd,summ;
-  if(sc.g>=3&&sc.r===0){cls='green';icon='✅';verd='Interessantes Objekt';summ='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow. Das Objekt trägt sich weitgehend selbst.';}
-  else if(sc.r>=3){cls='red';icon='❌';verd='Nicht empfehlenswert';summ='Mehrere kritische Kennzahlen machen dieses Objekt zu einem schlechten Investment. Abstand oder Nachverhandlung empfohlen.';}
-  else if(sc.g>=2&&sc.r<=1){cls='green';icon='✅';verd='Tendenziell interessant';summ='Überwiegend gute Kennzahlen mit einzelnen Schwächen. Mit Verhandlungsspielraum beim Kaufpreis kann es attraktiv werden.';}
-  else if(sc.r>=2){cls='red';icon='⚠️';verd='Eher nicht empfehlenswert';summ='Mehrere Kennzahlen sind kritisch. Das Objekt ist unter den aktuellen Bedingungen ein schwaches Investment.';}
+  if(sc.g>=3&&sc.r===0){cls='green';icon='✅';verd='Interessantes Objekt';summ='Die Kennzahlen zeigen ein renditestarkes Investment mit positivem Cashflow.';}
+  else if(sc.r>=3){cls='red';icon='❌';verd='Nicht empfehlenswert';summ='Mehrere kritische Kennzahlen — Rendite, Cashflow oder Bewertung sind unattraktiv.';}
+  else if(sc.g>=2&&sc.r<=1){cls='green';icon='✅';verd='Tendenziell interessant';summ='Überwiegend gute Kennzahlen mit einzelnen Schwächen.';}
+  else if(sc.r>=2){cls='red';icon='⚠️';verd='Eher nicht empfehlenswert';summ='Mehrere Kennzahlen sind kritisch.';}
   else{cls='yellow';icon='📊';verd='Durchschnittliches Objekt';summ='Die Kennzahlen sind gemischt — weder besonders attraktiv noch offensichtlich ungeeignet.';}
   const ptH=pts.map(pt=>`<div class="fazit-point"><div class="fp-dot" style="background:${pt.p===true?'#22c55e':pt.p===false?'#f43f5e':'#eab308'}"></div><span>${pt.t}</span></div>`).join('');
   return`<div class="fazit ${cls}"><div class="fazit-icon">${icon}</div><div class="fazit-body"><div class="fazit-verdict">${verd}</div><div class="fazit-summary">${summ}</div><div class="fazit-points">${ptH}</div></div></div>`;
@@ -381,28 +598,21 @@ function toggleTP(){tplanOpen=!tplanOpen;const el=document.getElementById('tplan
 
 function buildCockpit(c){
   const bma=amp(c.bR,SW.bm),nma=amp(c.nR,SW.nm),cfa=amp(c.cfOp,SW.cf),cfna=amp(c.cfNSt,SW.cf),fa=famp(c.fakt);
-  return`
-${buildFazit(c)}
+  return`${buildFazit(c)}
 <div style="display:grid;grid-template-columns:1fr clamp(220px,22vw,290px);gap:var(--gap);margin-bottom:var(--gap);align-items:start">
-  <div>
-    ${secH('📊','Kennzahlen')}
-    <div class="kgrid">
-      ${kc('Bruttomietrendite',pf(c.bR),bma,'Kaltmiete / KP','bm')}
-      ${kc('Nettomietrendite',pf(c.nR),nma,'nach Bewirt.','nm')}
-      ${kc('Kaufpreisfaktor',n2(c.fakt)+'x',fa,'KP / Jahreskaltmiete','fakt')}
-      ${kc('Cashflow operativ',eu(c.cfOp)+'/Mo.',cfa,'vor Steuern','cfo')}
-      ${kc('Cashflow n. Steuern',eu(c.cfNSt)+'/Mo.',cfna,'nach AfA & Steuern','cfn')}
-      ${kc('Monatl. AfA',eu(c.afaM),'kg','steuerl. Abschreibung','afa')}
-    </div>
-  </div>
-  <div>
-    ${secH('💶','Monatlicher Cashflow')}
-    <div class="cf-box">
-      ${cfr('Nettokaltmiete',c.nkmE)}${cfr('– Bewirtschaftung',-c.bk)}${cfr('– Zinsen',-c.fin.zinsen)}${cfr('– Tilgung',-c.fin.tilgung)}
-      ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr('– Steuern',-c.stM)}
-      ${cfrt('= Cashflow n. Steuern',c.cfNSt,cfna)}
-    </div>
-  </div>
+  <div>${secH('📊','Kennzahlen')}<div class="kgrid">
+    ${kc('Bruttomietrendite',pf(c.bR),bma,'Kaltmiete / KP','bm')}
+    ${kc('Nettomietrendite',pf(c.nR),nma,'nach Bewirt.','nm')}
+    ${kc('Kaufpreisfaktor',n2(c.fakt)+'x',fa,'KP / Jahreskaltmiete','fakt')}
+    ${kc('Cashflow operativ',eu(c.cfOp)+'/Mo.',cfa,'vor Steuern','cfo')}
+    ${kc('Cashflow n. Steuern',eu(c.cfNSt)+'/Mo.',cfna,'nach AfA & Steuern','cfn')}
+    ${kc('Monatl. AfA',eu(c.afaM),'kg','steuerl. Abschreibung','afa')}
+  </div></div>
+  <div>${secH('💶','Monatlicher Cashflow')}<div class="cf-box">
+    ${cfr2('Nettokaltmiete',c.nkmE)}${cfr2('– Bewirtschaftung',-c.bk)}${cfr2('– Zinsen',-c.fin.zinsen)}${cfr2('– Tilgung',-c.fin.tilgung)}
+    ${cfrt('= Cashflow operativ',c.cfOp,cfa)}${cfr2('– Steuern',-c.stM)}
+    ${cfrt('= Cashflow n. Steuern',c.cfNSt,cfna)}
+  </div></div>
 </div>
 <div class="sec-divider"></div>
 ${secH('📋','Übersicht')}
@@ -422,14 +632,10 @@ ${secH('📋','Übersicht')}
 
 function buildFin(c){
   const vollJ=c.tplan.length>0?S.kaufjahr+c.tplan[c.tplan.length-1].j-1:'—';
-  const gZinsen=c.tplan.reduce((s,r)=>s+r.zj,0);
+  const gZ=c.tplan.reduce((s,r)=>s+r.zj,0);
   let rows='';
-  c.tplan.forEach(r=>{
-    const paid=r.rs<=0;
-    rows+=`<tr class="${paid?'done-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td>${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;
-  });
-  return`
-${secH('🏦','Finanzierungsübersicht')}
+  c.tplan.forEach(r=>{const paid=r.rs<=0;rows+=`<tr class="${paid?'done-row':''}"><td>${S.kaufjahr+r.j-1}</td><td>${eu(r.zj)}</td><td>${eu(r.tj)}</td><td>${eu(r.ann)}</td><td>${paid?'✓ abbezahlt':eu(r.rs)}</td><td>${eu(r.kdm)}</td></tr>`;});
+  return`${secH('🏦','Finanzierungsübersicht')}
 <div class="grid-2" style="margin-bottom:var(--gap)">
   <div class="card"><div class="card-header"><span class="card-header-icon">📄</span><span class="card-title">Darlehen</span></div><div class="card-body">
     ${drow('Darlehenssumme',eu(c.dar))}${drow('Zinssatz',pf(p(S.zinssatz)))}${drow('Anfäng. Tilgung',pf(p(S.tilgung)))}${drow('Monatl. Rate',eu(c.fin.rate),true)}${drow('davon Zinsen',eu(c.fin.zinsen))}${drow('davon Tilgung',eu(c.fin.tilgung))}
@@ -450,18 +656,11 @@ ${secH('📅','Tilgungsplan')}
   <div class="accordion-header" onclick="toggleTP()">
     <div class="accordion-icon">📅</div>
     <span class="accordion-title">Jahresübersicht</span>
-    <div class="accordion-meta">
-      <span>Volltilgung: <strong>${vollJ}</strong></span>
-      <span>Gesamt-Zinsen: <strong>${eu(gZinsen)}</strong></span>
-      <span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span>
-    </div>
+    <div class="accordion-meta"><span>Volltilgung: <strong>${vollJ}</strong></span><span>Gesamt-Zinsen: <strong>${eu(gZ)}</strong></span><span>Laufzeit: <strong>${c.tplan.length} Jahre</strong></span></div>
     <span class="accordion-chevron">▾</span>
   </div>
   <div class="accordion-body"><div class="accordion-inner"><div style="overflow-x:auto">
-    <table class="tbl">
-      <thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate / Monat</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
+    <table class="tbl"><thead><tr><th>Jahr</th><th>Zinsen p.a.</th><th>Tilgung p.a.</th><th>Annuität p.a.</th><th>Restschuld (Ende)</th><th>Rate / Monat</th></tr></thead><tbody>${rows}</tbody></table>
   </div></div></div>
 </div>
 <div class="disclaimer">Keine Gewähr für Richtigkeit. Kein Ersatz für Rechts-, Steuer- oder Finanzberatung.</div>`;
@@ -470,7 +669,7 @@ ${secH('📅','Tilgungsplan')}
 let activeTab='eingaben';
 function showTab(id,el){
   activeTab=id;
-  ['eingaben','finanzierung','cockpit'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
+  ['eingaben','cashflow','finanzierung','cockpit'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   renderTab(id);
@@ -479,6 +678,7 @@ function renderTab(id){
   const c=calcAll();
   if(id==='cockpit')document.getElementById('tab-cockpit').innerHTML=buildCockpit(c);
   else if(id==='finanzierung')document.getElementById('tab-finanzierung').innerHTML=buildFin(c);
+  else if(id==='cashflow')document.getElementById('tab-cashflow').innerHTML=buildCashflow();
   else if(id==='eingaben')document.getElementById('tab-eingaben').innerHTML=buildEingaben();
 }
 renderTab('eingaben');
